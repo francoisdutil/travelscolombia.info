@@ -1,0 +1,47 @@
+<section <section style="background-image: url('/assets/img/mapa_turistico.png'); background-size: 100% auto;" class="animated zoomInUp" data-ng-controller="ArticlesController" data-ng-init="findOne()">
+  <div class="container" style="margin-top: 50px;">
+    <img class="post-avatar" alt="Expotur" height="52" width="52" src="/assets/img/logo-expotur-sm.png">
+    <h2 class="post-title"><a href="#!/articles/{{article._id}}">{{article.title}}</a></h2>
+    <div class="post-meta">
+			<i class="fa fa-bullseye"></i>
+			<small>
+				<em class="text-muted">
+					Posted on
+					<span data-ng-bind="article.created | date:'mediumDate'"></span> by
+					<span data-ng-bind="article.user.displayName"></span>
+				</em>
+			</small>
+		</div>
+    <div class="post-meta"><i class="fa fa-thumbs-up"></i> {{article.likes}}</div>
+    <div class="post-meta">
+    	<ul class="list-inline">
+        <i class="fa fa-tags"></i>
+        <li ng-repeat="tag in article.tags">
+            <a class="label label-success" href="#/tag/{{tag}}">{{tag}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container post-content">
+    <h5 class-"small" ng-bind-html="article.content"></h5>
+
+  </div>
+  <footer class="container post-footer">
+    <button ng-click="likePost()" class="btn btn-xs btn-success" ng-hide="isAlreadyLiked">Like</button>
+    <button ng-click="unlikePost()" class="btn btn-xs btn-success" ng-show="isAlreadyLiked">Unlike</button>
+    {{article.likes}} <i class="fa fa-thumbs-up"></i>
+
+    <div style="font-size: 3.5em;" share-square="true" share-links="Facebook, Twitter, Google-Plus" share-title="Article Title"></div>
+    <ul ng-social-buttons
+         data-url="'http://news.mistinfo.com/'"
+         data-title="'test'"
+         data-description="'test2'"
+         data-image="'http://s3.mistinfo.com/32/d8/32d8eab76f4c242f665bda66b5edc6c5.jpg'">
+        <li>Share:</li>
+        <li class="ng-social-facebook">Facebook</li>
+        <li class="ng-social-google-plus">Google+</li>
+        <li class="ng-social-twitter">Twitter</li>
+        <li class="ng-social-pinterest">Pinterest</li>
+    </ul>
+  </footer>
+</section>

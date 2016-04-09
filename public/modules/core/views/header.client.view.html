@@ -1,0 +1,111 @@
+
+<div data-ng-controller="HeaderController">
+
+	<div class="navbar-header">
+		<button class="navbar-toggle" type="button" data-ng-click="toggleCollapsibleMenu()">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<div>
+		&nbsp;&nbsp;<a href="/#!/"><img alt="&nbsp;Expotur logo {{'global.menu.Home' | translate}}" src="https://res.cloudinary.com/fits/image/upload/v1425567455/logo-expotur-xs.png" /></a></div>
+	</div>
+	<nav class="collapse navbar-collapse navbar-inverse" collapse="!isCollapsed" role="navigation">
+		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user.roles == '*');">
+			<li data-ng-repeat="item in menu.items | orderBy: '-title'" data-ng-if="item.shouldRender(authentication.user);" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
+				<a ng-switch-when="dropdown" class="dropdown-toggle">
+					<span data-ng-bind="item.title"></span>
+					<b class="caret"></b>
+				</a>
+				<ul ng-switch-when="dropdown" class="dropdown-menu">
+					<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
+						<a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
+					</li>
+				</ul>
+				<a ng-switch-default href="/#!/{{item.link}}" data-ng-bind="item.title"></a>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user.roles == 'customer') || menu.shouldRender(!authentication.user);">
+
+			<li ui-route="/tours" ng-class="{active: $uiRoute}">
+				<a ng-href="#!/tours"><span translate="global.menu.Tours"></span></a>
+			</li>
+			<li ui-route="/bookings" ng-class="{active: $uiRoute}">
+				<a ng-href="#!/bookings/create"> <span translate="global.menu.Booking"></span></a>
+			</li>
+
+			<!-- <li ui-route="/articles" ng-class="{active: $uiRoute}">
+				<a ng-href="#!/articles"><span translate="global.menu.Blog"></span></a>
+			</li> -->
+
+		</ul>
+
+		<ul class="nav navbar-nav navbar-right" style="padding-right: 20px">
+
+
+			<li class="dropdown" data-ng-controller="LanguageController">
+					<a href="#!" class="dropdown-toggle" data-toggle="dropdown open">
+							<span>
+									<span class="glyphicon glyphicon-flag"></span>
+									<span class="hidden-tablet" translate="global.menu.language"></span>
+									<b class="caret"></b>
+							</span>
+					</a>
+					<ul class="dropdown-menu f32">
+						<li>
+							<a data-ng-controller="LanguageController" ng-click="changeLanguage(&apos;es&apos;)">
+								<span class="flag es"></span>
+									&nbsp;<span translate="global.language.es"></span>
+							</a>
+						</li>
+						<li>
+							<a data-ng-controller="LanguageController" ng-click="changeLanguage(&apos;en&apos;)"><span class="flag en"></span>
+									&nbsp;<span translate="global.language.en"></span></a>
+						</li>
+						<li>
+							<a data-ng-controller="LanguageController" ng-click="changeLanguage(&apos;fr&apos;)"><span class="flag fr"></span>
+									&nbsp;<span translate="global.language.fr"></span></a>
+						</li>
+						<li>
+							<a data-ng-controller="LanguageController" ng-click="changeLanguage(&apos;de&apos;)"><span class="flag de"></span>
+									&nbsp;<span translate="global.language.de"></span></a>
+						</li>
+				</ul>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li data-ng-hide="authentication.user.roles=='*'" ui-route="/contact" ng-class="{active: $uiRoute}">
+				<a ng-href="#!/contact"><span translate="General.Label.ContactUs"></span></a>
+			</li>
+			<li  data-ng-hide="authentication.user" ng-class="{active: $uiRoute}">
+				<a ng-controller="ModalController" ng-click="modalLogin()"><span translate="global.menu.Login"></span></a>
+			</li>
+		
+			<li data-ng-show="authentication.user" class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<!-- <gravatar-image alt="&nbsp;gravatar img" class="shadow img-circle" email="{{authentication.user.email}}" size="24"></gravatar-image>
+					&nbsp;&nbsp; -->
+					<span data-ng-bind="authentication.user.displayName"></span> <b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a ng-href="/#!/settings/profile"><gravatar-image email="{{authentication.user.email}}" size="16"></gravatar-image>  <span translate="global.menu.account.profile"></span></a>
+					</li>
+					<li>
+						<a ng-controller="ModalController" ng-click="modalSocialAccounts()"><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;<span translate="global.menu.account.settings"></span></a>
+					</li>
+					<li data-ng-show="authentication.user.provider === 'local'">
+						<a ng-controller="ModalController" ng-click="modalChangePassword()"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;<span translate="global.menu.account.password"></span></a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="/auth/signout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;<span translate="global.menu.account.logout"></span></a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+
+	</nav>
+
+</div>

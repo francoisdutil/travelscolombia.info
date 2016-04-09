@@ -1,0 +1,119 @@
+
+<div>
+
+  <div class="container row">
+    <legend><span translate="Bookings.Label.BegEndDates"></span></legend>
+    <div class="col-xs-12 col-md-6">
+      <label style="padding-left:20px;"><span translate="Bookings.Label.TourDate"></span></label>
+
+      <div class="group">
+        <input style="font-size" id="departDate" required type="date" show-button-bar="false" ng-class="calcReturnDate(dt)" ng-model="dt" ng-required="true"/>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+
+    <div style="opacity:.75" class="col-xs-12 col-md-6">
+      <label style="padding-left:20px;"><span translate="Bookings.Label.TourReturnDate"></span></label>
+      <div class="group">
+        <input ng-disable="disabled" id="returnDate" readonly="readonly" ng-disabled="false" type="text" ng-model="returnDate" />
+      </div>
+    </div>
+  </div>
+
+  <div class="container row">
+    <legend><span translate="Bookings.Label.PickupDropoffLocation"></span>&nbsp;<small class="sm text-info lighten">(<span translate="Bookings.Label.MeetingLocation"></span>)</small></legend>
+		<div class="col-xs-12">
+      <md-radio-group ng-model="formData.PickupDropoff" required>
+        <md-radio-button class="md-primary" value="SantaMartaOffice"><span translate="General.Label.SantaMartaOffice"></span></md-radio-button>
+        <md-radio-button class="md-primary" value="TagangaOffice"><span translate="General.Label.TagangaOffice"></span></md-radio-button>
+        <md-radio-button class="md-primary" value="RiohachaOffice"><span translate="General.Label.RiohachaOffice"></span></md-radio-button>
+        <md-radio-button class="md-primary" value="YourHotel"><span translate="General.Label.YourHotel"></span></md-radio-button>
+      </md-radio-group>
+    </div>
+  </div>
+
+  <div ng-if="formData.PickupDropoff ==='YourHotel'" class="row">
+		<div class="col-xs-12 col-md-3">
+      <div class="group" ng-class="{ 'has-error' : bookingForm.hotelName.$invalid && !bookingForm.hotelName.$pristine }">
+        <input ng-if="formData.PickupDropoff ==='YourHotel'" type="text" ng-model="hotel.name" id="hotelName" required>
+        <input ng-if="formData.PickupDropoff !=='YourHotel'" type="text" ng-model="hotel.name" id="hotelName">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label ng-if="formData.PickupDropoff ==='YourHotel'" ><span translate="Bookings.Label.Hotel.Name"></span></label>
+        <label style="color:#999" ng-if="formData.PickupDropoff !=='YourHotel'" ><span translate="Bookings.Label.Hotel.Name"></span></label>
+      </div>
+		</div>
+
+    <div class="col-xs-12 col-md-3">
+      <div class="group" ng-class="{ 'has-error' : bookingForm.address.$invalid && !bookingForm.address.$pristine }">
+        <input ng-if="formData.PickupDropoff ==='YourHotel'" type="text" ng-model="hotel.address" id="address" required>
+        <input ng-if="formData.PickupDropoff !=='YourHotel'" type="text" ng-model="hotel.address" id="address">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label ng-if="formData.PickupDropoff ==='YourHotel'" ><span translate="Bookings.Label.Hotel.Address"></span></label>
+        <label style="color:#999" ng-if="formData.PickupDropoff !=='YourHotel'" ><span translate="Bookings.Label.Hotel.Address"></span></label>
+      </div>
+		</div>
+
+    <div class="col-xs-12 col-md-3">
+      <div class="group" ng-class="{ 'has-error' : bookingForm.phone.$invalid && !bookingForm.phone.$pristine }">
+        <input ng-if="formData.PickupDropoff ==='YourHotel'" type="text" ng-model="hotel.phone" id="phone" required>
+        <input ng-if="formData.PickupDropoff !=='YourHotel'" type="text" ng-model="hotel.phone" id="phone">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label ng-if="formData.PickupDropoff ==='YourHotel'" ><span translate="Bookings.Label.Hotel.Phone"></span></label>
+        <label style="color:#999" ng-if="formData.PickupDropoff !=='YourHotel'" ><span translate="Bookings.Label.Hotel.Phone"></span></label>
+      </div>
+		</div>
+
+    <div class="col-xs-12 col-md-3">
+      <div class="group" ng-class="{ 'has-error' : bookingForm.note.$invalid && !bookingForm.note.$pristine }">
+        <input type="text" ng-model="hotel.note" id="note">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label style="color:#999"><span translate="Bookings.Label.Hotel.Note"></span></label>
+      </div>
+		</div>
+  </div>
+
+  <div class="row container">
+    <div class="col-xs-12 text-center">
+        <md-checkbox style="margin:0; padding:0;" class="md-primary" ng-model="notAlone" aria-label="{{'Bookings.Label.Block-Travelers.NotAlone' | translate}}">
+          <span translate="Bookings.Label.Block-Travelers.NotAlone"></span>
+        </md-checkbox>
+    </div>
+  </div>
+  <div class="row" style="padding-bottom:20px;" ng-show="notAlone">
+
+    <legend style="padding-left:20px;"><span translate="Bookings.Label.Participants"></span></legend>
+    <div class="col-xs-12" style="border-radius:3px; background:#fff; margin-bottom: 20px">
+      <ul style="margin:10px 0;">
+        <li ng-repeat="person in people">
+          <span translate="Bookings.Label.Participant"></span>&nbsp;{{$index+1}}
+          <input ng-model="person.name" placeholder="{{'Bookings.Label.Block-Travelers.Name' | translate}}">&nbsp;
+          <input ng-model="person.nationality" placeholder="{{'Bookings.Label.Block-Travelers.Nationality' | translate}}">&nbsp;
+          <input ng-model="person.docId" placeholder="{{'Bookings.Label.Block-Travelers.DocumentId' | translate}}">&nbsp;
+          <input ng-model="person.specialCare" placeholder="{{'Bookings.Label.Block-Travelers.SpecialCare' | translate}}">&nbsp;
+          <a ng-if="$index > 0" href ng-click="people.splice($index, 1) ;removeParticipant()"><span class="danger glyphicon glyphicon-trash"></span></a>
+        </li>
+        <li>
+          <div class="row">
+            <div class="col-xs-12">
+              <a  style="margin:10px 0;" href class="btn btn-sm btn-warning" ng-click="people.push({}); addParticipant()"><span translate="Bookings.Label.AddParticipant"></span></a><br>
+              <span ng-if="counter > 1"><strong><span translate="Bookings.Label.GroupOf"></span>: {{counter}}&nbsp;<span translate="General.Label.Persons"></span></span></strong></span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <a ui-sref-active="active" ui-sref="{{action}}.step3" class="btn btn-lg btn-block"  ng-disabled="bookingForm.$invalid" ng-class="{'btn-danger': bookingForm.$invalid, 'btn-success': !bookingForm.$invalid }">
+        {{'Bookings.Label.FormName.Step3' | translate}}&nbsp;<span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+    </div>
+  </div>
+</div>

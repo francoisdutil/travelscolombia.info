@@ -1,0 +1,173 @@
+<div data-ng-controller="AuthenticationController" style="background-image: url('https://res.cloudinary.com/travelscolombia/image/upload/v1425593847/assets/demo-expotur/img/bg-mapa-expotur.png'); position: top;">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+        <p class="text-center"><img style="width: auto;" src="https://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur-sm.png" /></p>
+      </div>
+    </div>
+    <h3 class="primary text-center"><span translate="global.action.Signup"></span></h3>
+    <h5 class="text-center"><span translate="General.Label.Signup.Subtitle"></span></h5>
+    <h5 class="text-center">
+      <span translate="global.terms-conditions.link-register"></span>
+      <a class="text-warning" ng-controller="ModalController" ng-click="closeThisDialog('button');" href="/#!/terms-conditions">
+        <span translate="global.terms-conditions.link-terms"></span>
+      </a>
+      <span translate="global.terms-conditions.link-and"></span>
+      <a ng-controller="ModalController" ng-click="closeThisDialog('button')" href="/#!/privacy-policy">
+        <span translate="global.terms-conditions.link-policy"></span>
+      </a>
+    </h5>
+
+    <br />
+    <form name="signupForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
+      <fieldset>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <div class="group" ng-class="{ 'has-error' : signupForm.firstName.$invalid && !signupForm.firstName.$pristine }">
+                <input
+                type="text"
+                ng-model="credentials.firstName"
+                id="firstName"
+              required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label><span translate="General.Label.Signup.FirstName"></span></label>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="group" ng-class="{ 'has-error' : signupForm.lastName.$invalid && !signupForm.lastName.$pristine }">
+                <input
+                type="text"
+                ng-model="credentials.lastName"
+                id="lastName"
+              required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label><span translate="General.Label.Signup.LastName"></span></label>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <div class="group" ng-class="{ 'has-error' : signupForm.username.$invalid && !signupForm.username.$pristine }">
+                <input
+                type="text"
+                ng-model="credentials.username"
+                id="username"
+              required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label><span translate="General.Label.Signup.Username"></span></label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <div class="group" ng-class="{ 'has-error' : signupForm.documentId.$invalid && !signupForm.documentId.$pristine }">
+                <input
+                type="text"
+                ng-model="credentials.documentId"
+                id="documentId"
+              required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label><span translate="General.Label.Signup.DocumentId"></span></label>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4">
+
+            <div data-ng-controller="SettingsController" class="group" ng-class="{ 'has-error' : signupForm.nationality.$invalid && !signupForm.nationality.$pristine }">
+              <ui-select ng-model="country.selected" theme="bootstrap" ng-disabled="disabled">
+                <ui-select-match placeholder="{{'General.Label.Signup.Nationality' | translate}}"> {{$select.selected.name}}</ui-select-match>
+                <ui-select-choices repeat="country in countries | filter: $select.search">
+                  <span ng-bind-html="country.name | highlight: $select.search"></span>
+                  <small ng-bind-html="country.code | highlight: $select.search"></small>
+                </ui-select-choices>
+              </ui-select>
+              <span class="highlight"></span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-4" data-ng-controller="LanguageController">
+            <div class="group" ng-class="{ 'has-error' : signupForm.prefLang.$invalid && !signupForm.prefLang.$pristine }">
+              <select name="prefLang" class="group" ng-model="credentials.prefLang" ng-change="changeLanguage(credentials.prefLang)" required>
+                <option value=""></option>
+                <option value="en">{{'global.language.en' | translate}}</option>
+                <option value="es">{{'global.language.es' | translate}}</option>
+                <option value="fr">{{'global.language.fr' | translate}}</option>
+                <option value="de">{{'global.language.de' | translate}}</option>
+              </select>
+              <span class="highlight"></span>
+              <label><span translate="General.Label.Signup.PrefLang"></span></label>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="group" ng-class="{ 'has-error' : signupForm.email.$invalid && !signupForm.email.$pristine }">
+                <input
+                type="email"
+                ng-model="credentials.email"
+                id="email"
+              required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label><span translate="General.Label.Signup.Email"></span></label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="group" ng-class="{ 'has-error' : signupForm.password.$invalid && !signupForm.password.$pristine }">
+                <input
+                type="password"
+                ng-model="credentials.password"
+                id="password"
+                required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label><span translate="General.Label.Signup.Password"></span></label>
+            </div>
+          </div>
+        </div>
+        <div class="row container">
+          <div class="col-xs-6 text-center">
+            <button
+              type="button"
+              ng-controller="ModalController"
+              ng-click="closeThisDialog('button'); modalLogin()"
+              class="btn btn-info btn-block">
+              <span translate="global.action.Login"></span>
+            </button>
+          </div>
+          <div class="col-xs-6 text-center">
+            <button
+              ng-click="showGrowl = true;"
+              ng-href="/#!/bookings/create"
+              class="btn btn-success btn-block"
+              type="submit"
+              ng-disabled="signupForm.$invalid"
+              ng-class="{'btn-danger': signupForm.$invalid, 'btn-success': !signupForm.$invalid }">
+              <span translate="global.action.Register"></span>
+            </button>
+          </div>
+        </div>
+
+        <div data-ng-if="authentication.user" ng-class="closeThisDialog('button')" class="text-center text-danger">
+          <growl-notification class="fading btn-success" ng-if="showGrowl">
+            <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+            <span translate="General.Notification.WellDone"></span>&nbsp;&nbsp;
+            <span translate="General.Notification.Welcome"></span>&nbsp;
+            {{credentials.firstName}}
+          </growl-notification>
+        </div>
+
+        <div data-ng-if="error" class="text-center text-danger">
+          <h5 class="danger"><strong>{{error | translate}}</strong></h5>
+          <growl-notification class="fading btn-danger" ng-if="showGrowl">
+            <i class="big warning glyphicon glyphicon-warning-sign"></i>&nbsp;&nbsp;&nbsp;
+            {{'General.Notification.Attention' | translate}} <span translate="{{error}}"></span>
+          </growl-notification>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

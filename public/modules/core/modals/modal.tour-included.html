@@ -1,0 +1,73 @@
+
+  <div class="container" style="background-image: url('/assets/img/bg-beige.jpg'); position: top;">
+    <p class="text-center lead"><span translate="Tour.FormLabel.Included"></span></p>
+    <h4 class="text-danger text-center">{{ tour.tourtitle }}</h4>
+    <div class="row">
+      <div class= "table-responsive col-xs-12">
+        <table class="table">
+          <tbody align="left">
+              <tr>
+                  <th width="40%"><span translate="global.menu.Services"></span></th>
+                  <th width="10%"><span translate="General.Label.Avail"></span></th>
+                  <th width="40%"><span translate="global.menu.Services"></span></th>
+                  <th width="10%"><span translate="General.Label.Avail"></span></th>
+              <tr>
+                  <td>{{'Tour.FormLabel.IncludedInsurance' | translate}}</td>
+                  <td ng-if="tour.includedinsurance"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedinsurance"><img src="/assets/img/wrong.png" /></td>
+                  <td>{{'Tour.FormLabel.IncludedGuide' | translate}}</td>
+                  <td ng-if="tour.includedguide"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedguide"><img src="/assets/img/wrong.png" /></td>
+              </tr>
+              <tr>
+                  <td>{{'Tour.FormLabel.Included4x4' | translate}}</td>
+                  <td ng-if="tour.included4x4"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.included4x4"><img src="/assets/img/wrong.png" /></td>
+                  <td>{{'Tour.FormLabel.IncludedTransportTerrestre' | translate}}</td>
+                  <td ng-if="tour.includedtransportterrestre"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedtransportterrestre"><img src="/assets/img/wrong.png" /></td>
+              </tr>
+              <tr>
+                  <td>{{'Tour.FormLabel.IncludedAccommodation' | translate}}</td>
+                  <td ng-if="tour.includedaccommodation"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedaccommodation"><img src="/assets/img/wrong.png" /></td>
+                  <td>{{'Tour.FormLabel.IncludedMeals' | translate}}</td>
+                  <td ng-if="tour.includedmeals"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedmeals"><img src="/assets/img/wrong.png" /></td>
+              </tr>
+              <tr>
+                  <td>{{'Tour.FormLabel.IncludedEntranceFee' | translate}}</td>
+                  <td ng-if="tour.includedentrancefee"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedentrancefee"><img src="/assets/img/wrong.png" /></td>
+                  <td>{{'Tour.FormLabel.IncludedGift' | translate}}</td>
+                  <td ng-if="tour.includedgift"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedgift"><img src="/assets/img/wrong.png" /></td>
+              </tr>
+              <tr>
+                  <td>{{'Tour.FormLabel.IncludedTransportPrivate' | translate}}</td>
+                  <td ng-if="tour.includedtransportprivate"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedtransportprivate"><img src="/assets/img/wrong.png" /></td>
+                  <td>{{'Tour.FormLabel.IncludedBoating' | translate}}</td>
+                  <td ng-if="tour.includedboating"><img src="/assets/img/checkmark.png" /></td>
+                  <td ng-if="!tour.includedboating"><img src="/assets/img/wrong.png" /></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div ng-if="tour.additionalservices" class="row">
+      <div class="col-xs-12">
+        <strong><p class="lead"><span translate="Tour.FormLabel.AdditionalServices"></span></p></strong>
+      </div>
+      <div class="col-xs-12">
+        <em><h5>{{ tour.additionalservices}}</h5></em>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+        <p class="text-center"><img style="width: auto;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur-sm.png" /></p>
+      </div>
+    </div>
+  </div>

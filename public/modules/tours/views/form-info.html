@@ -1,0 +1,186 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.tourtitle.$invalid && !tourForm.tourtitle.$pristine }">
+          <label class="required"><span translate="Tour.FormLabel.Title"></span></label>
+          <input type="text" name="tourtitle" class="form-control" ng-model="formData.tourtitle" placeholder="{{'Tour.PlaceHolder.Title' | translate}}" required>
+          <div class="err_tip" ng-show="tourForm.tourtitle.$dirty && tourForm.tourtitle.$invalid">
+            <span ng-show="tourForm.tourtitle.$invalid && !tourForm.tourtitle.$pristine"><span translate="ErrorMsg.TitleRequired"></span></span>
+          </div>
+      </div>
+    </div>
+    <div class="col-xs-8">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.subtitle.$invalid && !tourForm.subtitle.$pristine }">
+          <label class="required"><span translate="Tour.FormLabel.Subtitle"></span></label>
+          <input type="text" name="subtitle" class="form-control" ng-model="formData.subtitle" placeholder="{{'Tour.PlaceHolder.Subtitle' | translate}}" required>
+          <div class="err_tip" ng-show="tourForm.subtitle.$dirty && tourForm.subtitle.$invalid">
+            <span ng-show="tourForm.subtitle.$invalid && !tourForm.subtitle.$pristine"><span translate="ErrorMsg.SubtitleRequired"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div data-ng-controller="CategoriasController" class="col-xs-4">
+      <div class="form-group">
+        <label class="control-label required">{{'Category.Label.SelectCategory' | translate}}</label>
+        <ui-select ng-click="find()" ng-model="categoria.selected" ng-change="updateCategory(categoria.selected.translateId)" theme="bootstrap">
+          <ui-select-match placeholder="{{'Category.Label.SelectCategory' | translate}}">{{$select.selected.translateId}}</ui-select-match>
+            <ui-select-choices repeat="categoria as categoria in categorias | filter: $select.search | orderBy:'translateId'">
+              <span translate="Category.Content.Name.{{categoria.translateId | highlight: $select.search}}"></span>
+              <div class="small"> <span translate="Category.Content.Slogan.{{categoria.translateId | highlight: $select.search}}"></span></div>
+            </ui-select-choices>
+        </ui-select>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label class="control-label required">{{'Tour.FormLabel.Language' | translate}}</label>
+        <select name="select2" class="form-control" ng-model="formData.language" ng-change="changeLanguage(formData.language)">
+          <option value="">-- {{'Tour.FormLabel.SelectLanguage' | translate}} --</option>
+          <option value="en">{{'global.language.en' | translate}}</option>
+          <option value="es">{{'global.language.es' | translate}}</option>
+          <option value="fr">{{'global.language.fr' | translate}}</option>
+          <option value="de">{{'global.language.de' | translate}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label class="control-label required">{{'Tour.FormLabel.DifficultyLevel' | translate}}</label>
+        <select name="select2" class="form-control" ng-model="formData.difficultylevel" ng-change="changeDifficultyLevel(formData.difficultylevel)">
+          <option value="">-- {{'Tour.FormLabel.SelectDifficultyLevel' | translate}} --</option>
+          <option value="DifficultyLevel1">{{'Tour.FormLabel.DifficultyLevel1' | translate}}</option>
+          <option value="DifficultyLevel2">{{'Tour.FormLabel.DifficultyLevel2' | translate}}</option>
+          <option value="DifficultyLevel3">{{'Tour.FormLabel.DifficultyLevel3' | translate}}</option>
+          <option value="DifficultyLevel4">{{'Tour.FormLabel.DifficultyLevel4' | translate}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.duration.$invalid && !tourForm.duration.$pristine }">
+          <label class="required"><span translate="Tour.FormLabel.Duration"></span></label>
+          <input type="number" name="input" min="1" max="7" class="form-control" ng-model="formData.duration" placeholder="{{'Tour.PlaceHolder.Duration' | translate}}" required>
+          <div class="err_tip" ng-show="tourForm.duration.$dirty && tourForm.duration.$invalid">
+            <span ng-show="tourForm.duration.$invalid && !tourForm.duration.$pristine"><span translate="ErrorMsg.DurationRequired"></span></span>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="form-group">
+          <label class="required"><span translate="Tour.FormLabel.GroupSize"></span></label>
+          <div class="row">
+            <div class="col-xs-6">
+              <input type="number" min="1" max="15" name="groupminsize" ng-model="formData.groupminsize" id="groupminsize" class="form-control" placeholder="{{'Tour.PlaceHolder.GroupMinSize' | translate}}">
+            </div>
+            <div class="col-xs-6">
+              <input type="number" min="1" max="15" name="groupmaxsize" ng-model="formData.groupmaxsize" id="groupmaxsize" class="form-control" placeholder="{{'Tour.PlaceHolder.GroupMaxSize' | translate}}">
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label><span translate="Tour.FormLabel.Frequency"></span></label>
+      </div>
+      <div class="form-group">
+        <label style="padding-left:20px;" class="checkbox"><input type="checkbox" name="except" ng-model="formData.except" id="except"><span translate="global.calendar.dailyExcept"></span></label>
+      </div>
+    </div>
+  </div>
+  <div ng-show="formData.except" class="well container row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label><span translate="Tour.FormLabel.Frequency"></span>&nbsp;(<span translate="global.calendar.dailyExcept"></span>)</label>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label class="text-info"><span translate="global.calendar.availableDays"></span></label>
+      </div>
+      <div class="form-group">
+        <label ng-repeat="(day,enabled) in days">
+          <input type="checkbox" name="daysOfWeekDisabled" value="$index" ng-model="days[day]">
+          <span translate="global.calendar.{{day}}">&nbsp;</span>
+
+        </label>
+        <!-- <p>days: {{days}}</p> -->
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label class="text-info"><span translate="global.calendar.datesDisabled"></span></label>
+      </div>
+      <div class="form-group">
+        <textarea name="datesdisabled" rows="7" wrap="physical" class="form-control" ng-model="formData.datesdisabled" placeholder="{{'global.calendar.datesDisabled' | translate}}"></textarea>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label class="text-info"><span translate="global.calendar.startDate"></label>
+      </div>
+      <div class="form-group">
+        <input id="startDate" type="date" ng-model="formData.startDate" />
+      </div>
+
+      <div class="form-group">
+        <div class="form-group">
+          <label class="text-info"><span translate="global.calendar.endDate"></label>
+        </div>
+      </div>
+      <div class="form-group">
+        <input id="endDate" type="date" ng-model="formData.endDate" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.sellingprice.$invalid && !tourForm.sellingprice.$pristine }">
+          <label class="required"><span translate="Tour.FormLabel.SellingPrice"></span></label>
+          <input type="number" name="input" min="0" max="10000000" class="form-control" ng-model="formData.sellingprice" placeholder="{{'Tour.PlaceHolder.SellingPrice' | translate}}" required>
+          <div class="err_tip" ng-show="tourForm.sellingprice.$dirty && tourForm.sellingprice.$invalid">
+            <span ng-show="tourForm.sellingprice.$invalid && !tourForm.sellingprice.$pristine"><span translate="ErrorMsg.SellingPriceRequired"></span></span>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-xs-4">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.percentdeposit.$invalid && !tourForm.percentdeposit.$pristine }">
+          <label><span translate="Tour.FormLabel.PercentDeposit"></span></label>
+          <input type="number" name="input" min="0" max="100" class="form-control" ng-model="formData.percentdeposit" placeholder="{{'Tour.PlaceHolder.PercentDeposit' | translate}}">
+          <div class="err_tip" ng-show="tourForm.percentdeposit.$dirty && tourForm.percentdeposit.$invalid">
+            <span ng-show="tourForm.percentdeposit.$invalid && !tourForm.percentdeposit.$pristine"><span translate="ErrorMsg.PercentDepositRequired"></span></span>
+          </div>
+      </div>
+    </div>
+
+    <div data-ng-controller="GuidesController">
+      <div class="col-xs-4">
+        <div class="form-group">
+          <label><span translate="Tour.FormLabel.LeaderName"></span> {{person.selected}}</label>
+          <ui-select ng-click="listguides()" ng-model="person.selected" ng-change="updateLeader(person.selected)" theme="bootstrap">
+            <ui-select-match placeholder="{{tour.leadername}}">{{$select.selected.name}}</ui-select-match>
+              <ui-select-choices repeat="person.name as person in people | filter: $select.search | orderBy:'locationname' | orderBy:'name'">
+                <div ng-bind-html="person.name | highlight: $select.search"></div>
+              </ui-select-choices>
+        </ui-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>&nbsp;</p>
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <a ui-sref-active="active" ui-sref="{{action}}.included" class="btn btn-block btn-info" ng-disabled="tourForm.$invalid" ng-class="{'btn-danger': tourForm.$invalid, 'btn-success': !tourForm.$invalid }">
+        {{'Tour.FormLabel.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>
+    </div>
+  </div>
+</div>

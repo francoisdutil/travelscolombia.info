@@ -1,0 +1,57 @@
+
+<div class="container" style="background-image: url('/assets/img/bg-beige.jpg'); position: top;">
+  <p class="text-center lead"><span translate="global.terms-conditions.Included"></span></p>
+  <h4 class="text-danger text-center">{{ global.terms-conditions.title }}</h4>
+  <div class="row">
+    <div class= "col-xs-12 text-center">
+      <nav style="margin-bottom: 5px;" class="shadow navbar navbar-normal navbar-fixed-bottom" ng-style="{'background-image': '-webkit-gradient(linear, left top, left bottom, color-stop(100%,'+ tour.colorbg +'), color-stop(0%,'+ tour.colorfont +' ))'}" role="navigation" >
+        <div>
+          <div class="row">
+            <div class="col-xs-12 text-center"">
+              <h4 class="text-danger text-center">{{ global.terms-conditions.intro-title }}</h4>
+              <p>{{ global.terms-conditions.intro-content }}
+              <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                  <button ng-controller="ModalController" ng-click="showTermPara1()" type="button" class="btn btn-lg btn-info">
+                    <span class="glyphicon glyphicon-info-sign"></span> <span class="hidden-xs" translate="global.terms-conditions.para1-title"></span>
+                  </button>
+                </div>
+                <div class="btn-group">
+                  <button ng-controller="ModalController" ng-click="showToTermPara1()" type="button" class="btn btn-lg btn-info">
+                    <span class="glyphicon glyphicon-doc"></span> <span class="hidden-xs" translate="global.terms-conditions.para2-title"></span>
+                  </button>
+                </div>
+                <div class="btn-group">
+                  <button ng-controller="ModalController" ng-click="sTermPara1()" type="button" class="btn btn-lg btn-info">
+                    <span class="glyphicon glyphicon-read"></span> <span class="hidden-xs" translate="global.terms-conditions.para3-title"></span>
+                  </button>
+                </div>
+                <div class="btn-group">
+                  <button ng-controller="ModalController" ng-click="TermPara1()" type="button" class="btn btn-lg btn-info">
+                    <span class="glyphicon glyphicon-info"></span> <span class="hidden-xs" translate="global.terms-conditions.para4-title"></span>
+                  </button>
+                </div>
+
+                <div class="btn-group">
+                  <button ng-controller="ModalController" ng-click="showTTermPara1()" type="button" class="btn btn-lg btn-info">
+                    <span class="glyphicon glyphicon-doc"></span> <span class="hidden-xs" translate="global.terms-conditions.para5-title"></span>
+                  </button>
+                </div>
+                <div style="padding-right: 20px;" class="btn-group">
+                  <a ng-controller="ModalController" href="/#!/bookings/create" ng-click="closeThisDialog('button')" type="button" class="btn btn-danger btn-lg">
+                    <small><span class="glyphicon glyphicon-shopping-book"></span> <span class="hidden-xs" translate="global.action.BookNow"></span></small>
+                  </a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- <span href="#!/" class="left-arrow"><a href="" class="left-arrow"></a></span>
+  <a href="#!/" class="right-arrow" style="right: -7.5%;"></a> -->
+
+</div>

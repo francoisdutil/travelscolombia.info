@@ -1,0 +1,19 @@
+<a class="hide-link" ng-click="storeInfo.hide()" href="">x</a>
+<h3> {{store.name}} </h3>
+<table>
+  <tr>
+    <td> Address </td>
+    <td> {{store.street_combined}} <br/>
+      {{store.city}} {{store.postal_code}} {{store.country}} <br/>
+    </td>
+  </tr>
+  <tr>
+    <td> Coordinates </td>
+    <td>
+      Latitude: {{store.latitude}} <br/>
+      Longitude: {{store.longitude}}
+    </td>
+  </tr>
+</table>
+<a ng-show="panoId" href="" ng-click="showStreetView()">Street View</a>
+<a href="" ng-click="showHybridView()">Satellite View</a>

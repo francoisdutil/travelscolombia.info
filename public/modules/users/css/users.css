@@ -1,0 +1,50 @@
+@media (min-width: 992px) {
+	.nav-users {
+		position: fixed;
+	}
+}
+
+.remove-account-container {
+	display: inline-block;
+	position: relative;
+}
+
+.btn-remove-account {
+	top: 10px;
+	right: 10px;
+	position: absolute;
+}
+
+
+.login {
+	border-style: solid;
+	border-color: #363636;
+	border-width: 5px;
+	border-radius: 15px;
+	box-shadow:0 0 20px #00C0F7;
+	vertical-align: middle;
+	background: #2f2f2f;
+	margin-top:7%;
+}
+
+.login p a {
+	color: #999;
+	text-align: center;
+}
+
+section.password {
+	background-image: url(/assets/img/bg-password.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	min-height: 650px;
+}
+section.password p, section.password h1, section.password h3{
+	color: #e29b00;
+}
+
+section.success {
+	background-image: url(/assets/img/bg-success.jpg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	min-height: 600px;
+}

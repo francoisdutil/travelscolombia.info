@@ -1,0 +1,53 @@
+<section id="milestone" class="animated fadeInRight" data-ng-controller="MilestonesController">
+  <div class="row container">
+    <div class="col-xs-10 col-xs-offset-1">
+
+      <div data-ng-show="authentication.user.roles=='*'" class="container" id="form-container">
+        <a href="/#!/milestones" class="navbar-brand"><span class="glyphicon glyphicon-list"></span></a>
+        <a href="/#!/milestones/create" class="navbar-brand"><span class="glyphicon glyphicon-th"></span></a>
+        <div class="page-header">
+          <h2 class="text-center">{{'Milestone.Label.NewMilestone' | translate}}<span ng-show="formData.serviceId">&nbsp;-&nbsp;<span translate="Milestone.Content.Name.{{formData.serviceId}}"></span></span></h2>
+
+          <!-- the links to our nested states using relative paths -->
+          <!-- add the active class if the state matches our ui-sref -->
+          <div ng-hide="intro" id="status-buttons" class="text-center">
+            <a ui-sref-active="active" ui-sref=".content"><span>1</span> {{'General.Label.Content' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".development"><span>2</span> {{'General.Label.Development' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".billing"><span>3</span> {{'General.Label.Billing' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".preview"><span>4</span> {{'global.action.Preview' | translate}}</a>
+          </div>
+        </div>
+
+        <!-- use ng-submit to catch the form submission and use our Angular function -->
+        <form class="min-height" name="milestoneForm" data-ng-submit="create()" novalidate>
+          <!-- our nested state views will be injected here -->
+
+          <div id="form-views" ui-view></div>
+          <!-- <pre>{{formData}}</pre> -->
+          <div ng-show="intro">
+            <div class="tournote well">
+              <div class="row">
+                <div class="text-center col-xs-12">
+                  <img src="/assets/img/logo-expotur.png" />
+                </div>
+                <div class="text-center col-xs-12">
+                  <img style="width:250px;" src="/assets/img/logo-fits.png" />
+                </div>
+              </div>
+              <p class="text-right"><a ng-click="intro = !intro" ui-sref=".content" class="btn btn-success btn-block">{{'global.action.Proceed' | translate}}</a></p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div data-ng-hide="authentication.user.roles=='*'" class="text-center">
+    <div class="col-xs-6 col-xs-offset-3 ">
+      <h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+      <p class="lead text-center">{{'ErrorMsg.401-para' | translate}}</a></p><br>
+      <p class="text-center"><a ng-href="/#!/" class="btn btn-warning btn-block">{{'global.action.GoBackHome' | translate}}</a></p>
+    </div>
+  </div>
+
+</section>

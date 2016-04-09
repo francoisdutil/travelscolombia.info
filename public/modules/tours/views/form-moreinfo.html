@@ -1,0 +1,89 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.urlmoreinfo.$invalid && !tourForm.urlmoreinfo.$pristine }">
+          <label><span translate="Tour.FormLabel.UrlMoreInfo"></span></label>
+          <input type="url" name="urlmoreinfo" ng-model="formData.urlmoreinfo" class="form-control" placeholder="{{'Tour.PlaceHolder.UrlMoreInfo' | translate}}">
+          <div class="err_tip" ng-show="tourForm.urlmoreinfo.$dirty && tourForm.urlmoreinfo.$invalid">
+            <span ng-show="tourForm.urlmoreinfo.$invalid && !tourForm.urlmoreinfo.$pristine"><span translate="ErrorMsg.UrlInvalid"></span></span>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="col-xs-6">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.urlpdf.$invalid && !tourForm.urlpdf.$pristine }">
+          <label><span translate="Tour.FormLabel.UrlPDF"></span></label>
+          <input type="url" name="urlpdf" ng-model="formData.urlpdf" class="form-control" placeholder="{{'Tour.PlaceHolder.UrlPDF' | translate}}">
+          <div class="err_tip" ng-show="tourForm.urlpdf.$dirty && tourForm.urlpdf.$invalid">
+            <span ng-show="tourForm.urlTripAdvisor.$invalid && !tourForm.urlpdf.$pristine"><span translate="ErrorMsg.UrlInvalid"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.urlfacebook.$invalid && !tourForm.urlfacebook.$pristine }">
+          <label><span translate="Tour.FormLabel.UrlFacebook"></span></label>
+          <input type="url" name="urlfacebook" ng-model="formData.urlfacebook" class="form-control" placeholder="{{'Tour.PlaceHolder.UrlFacebook' | translate}}">
+          <div class="err_tip" ng-show="tourForm.urlfacebook.$dirty && tourForm.urlfacebook.$invalid">
+            <span ng-show="tourForm.urlfacebook.$invalid && !tourForm.urlfacebook.$pristine"><span translate="ErrorMsg.UrlInvalid"></span></span>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-xs-6">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.urlyoutube.$invalid && !tourForm.urlyoutube.$pristine }">
+          <label><span translate="Tour.FormLabel.UrlYoutube"></span></label>
+          <input type="url" name="urlyoutube" ng-model="formData.urlyoutube" class="form-control" placeholder="{{'Tour.PlaceHolder.UrlYoutube' | translate}}">
+          <div class="err_tip" ng-show="tourForm.urlyoutube.$dirty && tourForm.urlyoutube.$invalid">
+            <span ng-show="tourForm.urlyoutube.$invalid && !tourForm.urlyoutube.$pristine"><span translate="ErrorMsg.UrlInvalid"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.urltripadvisor.$invalid && !tourForm.urltripadvisor.$pristine }">
+          <label><span translate="Tour.FormLabel.UrlTripAdvisor"></span></label>
+          <input type="url" name="urltripadvisor" ng-model="formData.urltripadvisor" class="form-control" placeholder="{{'Tour.PlaceHolder.UrlTripAdvisor' | translate}}">
+          <div class="err_tip" ng-show="tourForm.urltripadvisor.$dirty && tourForm.urltripadvisor.$invalid">
+            <span ng-show="tourForm.urlTripAdvisor.$invalid && !tourForm.urltripadvisor.$pristine"><span translate="ErrorMsg.UrlInvalid"></span></span>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-xs-6">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.urlgoogle.$invalid && !tourForm.urlgoogle.$pristine }">
+          <label><span translate="Tour.FormLabel.UrlGoogle"></span></label>
+          <input type="url" name="urlgoogle" ng-model="formData.urlgoogle" class="form-control" placeholder="{{'Tour.PlaceHolder.UrlGoogle' | translate}}">
+          <div class="err_tip" ng-show="tourForm.urlgoogle.$dirty && tourForm.urlgoogle.$invalid">
+            <span ng-show="tourForm.urlgoogle.$invalid && !tourForm.urlgoogle.$pristine"><span translate="ErrorMsg.UrlInvalid"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.tags.$invalid && !tourForm.tags.$pristine }">
+          <label><span translate="Tour.FormLabel.Tags"></span></label>
+          <textarea cols="77" name="tags" rows="2" wrap="physical" class="form-control" ng-model="formData.tags" placeholder="{{'Tour.PlaceHolder.Tags' | translate}}"></textarea>
+          <div class="err_tip" ng-show="tourForm.tags.$dirty && tourForm.tags.$invalid">
+            <span ng-show="tourForm.tags.$invalid && !tourForm.tags.$pristine"><span translate="ErrorMsg.TagsRequired"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <p>&nbsp;</p>
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <a ui-sref-active="active" ui-sref="{{action}}.content" class="btn btn-block btn-info" ng-disabled="tourForm.$invalid" ng-class="{'btn-danger': tourForm.$invalid, 'btn-success': !tourForm.$invalid }">
+        {{'Tour.FormLabel.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>
+    </div>
+  </div>
+</div>

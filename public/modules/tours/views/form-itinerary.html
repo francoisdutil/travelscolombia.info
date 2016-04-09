@@ -1,0 +1,58 @@
+<div>
+    <div style="min-height:340px;" class="well pull-left col-xs-4">
+      <h3 class="text-center">{{'Tour.FormLabel.Itinerary' | translate}}</h3>
+      <div data-ng-controller="CategoriasController">
+        <div class="form-group">
+          <ui-select ng-click="find()" ng-model="categoria.selected" ng-change="updateCategory(categoria.selected.translateId)" theme="bootstrap">
+            <ui-select-match placeholder="{{'Category.Label.SelectCategory' | translate}}">{{$select.selected.translateId}}</ui-select-match>
+              <ui-select-choices repeat="categoria as categoria in categorias | filter: $select.search | orderBy:'translateId'">
+                <span translate="Category.Content.Name.{{categoria.translateId | highlight: $select.search}}"></span>
+                <div class="small"> <span translate="Category.Content.Slogan.{{categoria.translateId | highlight: $select.search}}"></span></div>
+              </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+
+      <div data-ng-controller="PlacesController">
+        <div class="form-group">
+          <ui-select ng-click="find()" ng-model="place.selected" ng-change="updatePlace(place.selected.properties.name)" theme="bootstrap">
+            <ui-select-match placeholder="{{'Place.Label.SelectPlace' | translate}}">{{$select.selected.properties.name}}</ui-select-match>
+              <ui-select-choices repeat="place as place in places | filter: $select.search | orderBy:'name'">
+                <span>{{place.properties.name | highlight: $select.search}}</span>
+                <div class="small lighten"><span translate="Category.Content.Name.{{place.properties.category}}"></span></div>
+                <div class="small text-info"><span>{{place.properties.description}}</span></div>
+              </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div data-ng-controller="ItineraryController">
+        <div class="map-searchbox" results-list="waypoints"></div>
+    		<p ng-show="!waypoints.length">
+    			No waypoints. Start searching for place or address.
+    		</p>
+    		<p ng-show="waypoints.length">
+    			Your itinerary (drag to reorder) :
+    		</p>
+        <ul ng-model="waypoints">
+    			<li ng-repeat="waypoint in waypoints">
+    				<strong>{{$index + 1}}</strong>
+    				{{waypoint.title}}
+    				<span class="close" ng-click="removeWaypoint(waypoint)">X</span>
+    			</li>
+    		</ul>
+      </div>
+
+    </div>
+    <div data-ng-controller="MapController" class="well pull-right col-xs-8">
+      <leaflet defaults="defaults" center="center" width="100%" height="300px"></leaflet>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+        <a ui-sref="{{action}}.layout" class="btn btn-block btn-info" ng-disabled="tourForm.$invalid" ng-class="{'btn-danger': tourForm.$invalid, 'btn-success': !tourForm.$invalid }">
+        {{'Tour.FormLabel.NextSection' | translate}}  <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>
+    </div>
+  </div>
+</div>

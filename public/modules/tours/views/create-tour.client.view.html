@@ -1,0 +1,53 @@
+<section id="tour" class="animated fadeInRight" data-ng-controller="ToursController">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+
+      <div data-ng-show="authentication.user.roles=='*'" class="container" id="form-container">
+          <a href="/#!/tours" class="navbar-brand"><span class="glyphicon glyphicon-list"></span></a>
+          <a href="/#!/tours" class="navbar-brand"><span class="glyphicon glyphicon-th"></span></a><br>
+          <div class="page-header text-center">
+            <h2>{{'Tour.FormLabel.NewTour' | translate}}<span ng-if="formData.tourtitle"> - {{formData.tourtitle}}</span></h2>
+
+            <!-- the links to our nested states using relative paths -->
+            <!-- add the active class if the state matches our ui-sref -->
+            <div ng-hide="intro" id="status-buttons" class="text-center">
+                <a ui-sref-active="active" ui-sref=".info"><span>1</span> {{'Tour.FormLabel.Info' | translate}}</a>
+                <a ui-sref-active="active" ui-sref=".included"><span>2</span> {{'Tour.FormLabel.Included' | translate}}</a>
+                <a ui-sref-active="active" ui-sref=".itinerary"><span>3</span> {{'Tour.FormLabel.Itinerary' | translate}}</a>
+                <a ui-sref-active="active" ui-sref=".layout"><span>4</span> {{'Tour.FormLabel.Layout' | translate}}</a>
+                <a ui-sref-active="active" ui-sref=".moreinfo"><span>5</span> {{'Tour.FormLabel.MoreInfo' | translate}}</a>
+                <a ui-sref-active="active" ui-sref=".content"><span>6</span> {{'Tour.FormLabel.Content' | translate}}</a>
+                <a ui-sref-active="active" ui-sref=".ratings"><span>7</span> {{'Tour.FormLabel.Ratings' | translate}}</a>
+                <a ui-sref-active="active" ui-sref=".seo"><span>8</span> {{'Tour.FormLabel.SEO' | translate}}</a>
+            </div>
+          </div>
+
+          <!-- use ng-submit to catch the form submission and use our Angular function -->
+          <form class="min-height" name="tourForm" data-ng-submit="create()" novalidate>
+              <!-- our nested state views will be injected here -->
+
+              <div id="form-views" ui-view></div>
+
+              <div ng-show="intro">
+                <div class="tournote well">
+                  <p class="lead">{{'Tour.Content.FormPara_1' | translate}}</p>
+                  <p class="lead">{{'Tour.Content.FormPara_2' | translate}}</p>
+                  <p class="lead">{{'Tour.Content.FormPara_3' | translate}}</p>
+                  <p class="text-right"><a ng-click="intro = !intro" ui-sref=".info" class="btn btn-success btn-block">{{'global.action.Proceed' | translate}}</a></p>
+              </div>
+            </div>
+          </form>
+          <!-- <pre>{{formData}}</pre> -->
+      </div>
+    </div>
+  </div>
+
+  <div data-ng-hide="authentication.user.roles=='*'" class="text-center">
+    <div class="col-xs-6 col-xs-offset-3 ">
+      <h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+      <p class="lead text-center">{{'ErrorMsg.401-para' | translate}}</a></p><br>
+      <p class="text-center"><a ng-click="intro = !intro" ng-href="/#!/" class="btn btn-warning btn-block">{{'global.action.GoBackHome' | translate}}</a></p>
+    </div>
+  </div>
+
+</section>

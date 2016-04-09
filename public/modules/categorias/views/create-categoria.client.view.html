@@ -1,0 +1,50 @@
+<section id="category" class="animated fadeInRight" data-ng-controller="CategoriasController">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+
+      <div data-ng-show="authentication.user.roles=='*'" class="container" id="form-container">
+        <a href="/#!/categorias" class="navbar-brand"><span class="glyphicon glyphicon-list"></span></a>
+        <a href="/#!/categorias/create" class="navbar-brand"><span class="glyphicon glyphicon-th"></span></a>
+        <div class="page-header text-center">
+          <h2>{{'Category.Label.NewCategory' | translate}}&nbsp;<span ng-if="formData.serviceId">-&nbsp;</span><span ng-if="formData.translateId" translate="Category.Content.Name.{{formData.translateId}}"></span></h2>
+
+          <!-- the links to our nested states using relative paths -->
+          <!-- add the active class if the state matches our ui-sref -->
+          <div ng-hide="intro" id="status-buttons" class="text-center">
+            <a ui-sref-active="active" ui-sref=".content"><span>1</span> {{'Category.Label.FormName.Content' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".info"><span>2</span> {{'Category.Label.FormName.Info' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".layout"><span>3</span> {{'Category.Label.FormName.Layout' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".map"><span>4</span> {{'Category.Label.FormName.Map' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".ratings"><span>5</span> {{'Category.Label.FormName.Ratings' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".preview"><span>6</span> {{'global.action.Preview' | translate}}</a>
+          </div>
+        </div>
+
+        <!-- use ng-submit to catch the form submission and use our Angular function -->
+        <form class="min-height" name="categoryForm" data-ng-submit="create()" novalidate>
+          <!-- our nested state views will be injected here -->
+
+          <div id="form-views" ui-view></div>
+          <!-- <pre>{{formData}}</pre> -->
+          <div ng-show="intro">
+            <div class="tournote well">
+              <p class="lead">{{'Category.Content.FormPara_1' | translate}}</p>
+              <p class="lead">{{'Category.Content.FormPara_2' | translate}}</p>
+              <p class="lead">{{'Category.Content.FormPara_3' | translate}}</p>
+              <p class="text-right"><a ng-click="intro = !intro" ui-sref=".content" class="btn btn-success btn-block">{{'global.action.Proceed' | translate}}</a></p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div data-ng-hide="authentication.user.roles=='*'" class="text-center">
+    <div class="col-xs-6 col-xs-offset-3 ">
+      <h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+      <p class="lead text-center">{{'ErrorMsg.401-para' | translate}}</a></p><br>
+      <p class="text-center"><a ng-click="intro = !intro" ng-href="/#!/" class="btn btn-warning btn-block">{{'global.action.GoBackHome' | translate}}</a></p>
+    </div>
+  </div>
+
+</section>

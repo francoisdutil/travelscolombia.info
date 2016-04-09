@@ -1,0 +1,175 @@
+
+<div class="container">
+  <div style="padding-top:20px;" class="row">
+    <div class="col-xs-3">
+      <div class="group" ng-class="{ 'has-error' : milestoneForm.minCost.$invalid && !milestoneForm.minCost.$pristine }">
+        <input
+        type="number"
+        ng-model="formData.minCost"
+        id="minCost"
+        required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label><span translate="Milestone.Label.Billing.MinCost"></span></label>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div style="margin-bottom:0;" class="group">
+        <input
+        style="font-size:1.1em;"
+        type="number"
+        readonly="readonly"
+        ng-model="formData.calcCost"
+        placeHolder="{{formData.minCost * formData.devDiffLevelFactor | currency:'$COP'}}"
+        id="calcCost">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label style="color:#999"><span translate="Milestone.Label.Billing.CalcCost"></span></label>
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <div class="group" ng-class="{ 'has-error' : milestoneForm.invoiceUrl.$invalid && !milestoneForm.invoiceUrl.$pristine }">
+        <input
+        type="text"
+        ng-model="formData.invoiceUrl"
+        id="invoiceUrl">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label><span translate="Milestone.Label.Billing.InvoiceUrl"></span></label>
+      </div>
+    </div>
+
+    <div class="col-xs-2 text-right">
+      <label style="padding-top:5px;" class="control-label" for="hasBeenInvoiced">{{'Milestone.Label.Billing.HasBeenInvoiced' | translate}}</label>
+    </div>
+    <div class="col-xs-2 text-left">
+      <div class="onoffswitch">
+        <input type="checkbox" name="hasBeenInvoiced" ng-model="formData.hasBeenInvoiced" class="onoffswitch-checkbox" id="hasBeenInvoiced" checked>
+        <label class="onoffswitch-label" for="hasBeenInvoiced">
+          <span class="onoffswitch-inner"></span>
+          <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="group">
+        <input id="FirstDepositDate" ng-disabled="false" type="readonly" readonly="readonly" ng-model="formData.startDate" />
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label style="color:#999;"><span translate="Milestone.Label.Billing.FirstDepositDate"></span></label>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div style="margin-bottom:0;" class="group">
+        <input
+        type="number"
+        readonly="readonly"
+        ng-model="firstDepositAmount"
+        placeHolder="{{formData.minCost * formData.devDiffLevelFactor / 3 | currency:'$COP'}}"
+        id="firstDepositAmount">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label style="color:#999"><span translate="Milestone.Label.Billing.FirstDepositAmount"></span></label>
+      </div>
+    </div>
+    <div class="col-xs-2 text-right">
+      <label style="padding-top:5px;" class="control-label" for="firstDepositPaid">{{'Milestone.Label.Billing.FirstDepositPaid' | translate}}</label>
+    </div>
+    <div class="col-xs-2 text-left">
+      <div class="onoffswitch">
+        <input type="checkbox" name="firstDepositPaid" ng-model="formData.firstDepositPaid" class="onoffswitch-checkbox" id="firstDepositPaid" checked>
+        <label class="onoffswitch-label" for="firstDepositPaid">
+          <span class="onoffswitch-inner"></span>
+          <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="group">
+        <input id="SecondDepositDate" ng-disabled="false" type="readonly" readonly="readonly" ng-model="formData.startDate" />
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label style="color:#999;"><span translate="Milestone.Label.Billing.SecondDepositDate"></span></label>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div style="margin-bottom:0;" class="group">
+        <input
+        type="number"
+        readonly="readonly"
+        ng-model="secondDepositAmount"
+        placeHolder="{{formData.minCost * formData.devDiffLevelFactor / 3 | currency:'$COP'}}"
+        id="secondDepositAmount">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label style="color:#999"><span translate="Milestone.Label.Billing.SecondDepositAmount"></span></label>
+      </div>
+    </div>
+    <div class="col-xs-2 text-right">
+      <label style="padding-top:5px;" class="control-label" for="secondDepositPaid">{{'Milestone.Label.Billing.SecondDepositPaid' | translate}}</label>
+    </div>
+    <div class="col-xs-2 text-left">
+      <div class="onoffswitch">
+        <input type="checkbox" name="secondDepositPaid" ng-model="formData.secondDepositPaid" class="onoffswitch-checkbox" id="secondDepositPaid" checked>
+        <label class="onoffswitch-label" for="secondDepositPaid">
+          <span class="onoffswitch-inner"></span>
+          <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="group" ng-class="{ 'has-error' : milestoneForm.finalPaymentDate.$invalid && !milestoneForm.finalPaymentDate.$pristine }">
+        <input
+        type="text"
+        readonly="readonly"
+        ng-model="formData.publishDate"
+        id="finalPaymentDate">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label style="color:#999;"><span translate="Milestone.Label.Billing.FinalPaymentDate"></span></label>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div style="margin-bottom:0;" class="group">
+        <input
+        type="number"
+        readonly="readonly"
+        ng-model="finalPaymentAmount"
+        placeHolder="{{formData.minCost * formData.devDiffLevelFactor / 3 | currency:'$COP'}}"
+        id="finalPaymentAmount">
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label style="color:#999"><span translate="Milestone.Label.Billing.FinalPaymentAmount"></span></label>
+      </div>
+    </div>
+    <div class="col-xs-2 text-right">
+      <label style="padding-top:5px;" class="control-label" for="secondDepositPaid">{{'Milestone.Label.Billing.FinalPaymentPaid' | translate}}</label>
+    </div>
+    <div class="col-xs-2 text-left">
+      <div class="onoffswitch">
+        <input type="checkbox" name="finalPaymentPaid" ng-model="formData.finalPaymentPaid" class="onoffswitch-checkbox" id="finalPaymentPaid" checked>
+        <label class="onoffswitch-label" for="finalPaymentPaid">
+          <span class="onoffswitch-inner"></span>
+          <span class="onoffswitch-switch"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref-active="active" ui-sref="{{action}}.preview" class="btn btn-block btn-info" ng-disabled="milestoneForm.$invalid" ng-class="{'btn-danger': milestoneForm.$invalid, 'btn-success': !milestoneForm.$invalid }">
+        {{'General.Label.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+    </div>
+  </div>
+</div>

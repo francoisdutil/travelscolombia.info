@@ -1,0 +1,26 @@
+
+  <div class="container shade" ng-style="{'border-color': eventResult.item.colorbg, 'color' : eventResult.item.colorfont }" style="background-color: #d1d7e7; background-image: url('/assets/img/bg-mapa-expotur.png'); background-size: 100% auto;">
+    <p class="text-center lead"><span translate="Tour.FormLabel.Tips"></span></p>
+    <h4 class="text-danger text-center">{{ eventResult.item.tourtitle }}</h4>
+
+    <div class="row">
+
+      <div ng-if="eventResult.item.tips" class="container col-xs-12 text-left">
+        <h5>
+          <span class="lighten" translate="Tour.FormLabel.Tips"></span>: <strong>{{eventResult.item.tips}}</strong>
+        </h5>
+      </div>
+      <div ng-if="eventResult.item.tips == ''" class="container col-xs-12 text-left">
+        <h5>
+          <strong>{{'General.PlaceHolder.Tips' | translate}}</strong>
+        </h5>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+        <p class="text-center"><img style="width: auto;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur-sm.png" /></p>
+      </div>
+    </div>
+  </div>

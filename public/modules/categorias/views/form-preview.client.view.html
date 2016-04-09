@@ -1,0 +1,56 @@
+
+<div class="container">
+  <div>
+
+    <div class="row">
+      <div  ng-if="formData.translateId" class="well col-xs-10 col-xs-offset-1">
+        <div class="row text-center">
+          <div style="border-bottom:solid thin #999;" class="col-xs-12 col-md-6">
+            <label><span translate="Category.Label.Name"></span></label><br>
+            <p><span translate="Category.Content.Name.{{formData.translateId}}"></span></p>
+          </div>
+          <div style="border-bottom:solid thin #999;" class="col-xs-12 col-md-6">
+            <label><span translate="Category.Label.Slogan"></span></label><br>
+            <p><span translate="Category.Content.Slogan.{{formData.translateId}}"></span></p>
+          </div>
+          <div style="border-bottom:solid thin #999;" class="col-xs-12">
+            <label><span translate="Category.Label.Description"></span></label><br>
+            <p><span translate="Category.Content.Description.{{formData.translateId}}"></span></p>
+          </div>
+          <div class="col-xs-12">
+            <label><span translate="Category.Label.Summary"></span></label><br>
+            <p><span translate="Category.Content.Summary.{{formData.translateId}}"></span></p>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Show a notification when a button is clicked -->
+  <div data-ng-if="action==='createCategory'">
+    <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+      <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+      {{'General.Notification.WellDone' | translate}}&nbsp;
+      {{'Category.Notification.CreatedSuccess' | translate}}
+    </growl-notification>
+  </div>
+  <div data-ng-if="action==='editCategory'">
+    <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+      <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+      {{'General.Notification.Superb' | translate}}&nbsp;
+      {{'Category.Notification.UpdatedSuccess' | translate}}
+    </growl-notification>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <button
+      type="submit"
+      ng-click="showGrowl = true"
+      class="btn btn-block btn-success"
+      ng-disabled="categoryForm.$invalid"
+      ng-class="{'btn-danger': categoryForm.$invalid, 'btn-success': !categoryForm.$invalid }">{{'global.action.Submit' | translate}}&nbsp;<span translate="Category.Content.Name.{{formData.translateId}}"></span>
+    </button>
+    </div>
+  </div>
+
+</div>

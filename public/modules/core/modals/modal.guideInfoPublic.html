@@ -1,0 +1,92 @@
+<div style="background-image: url('https://res.cloudinary.com/travelscolombia/image/upload/v1425593847/assets/demo-expotur/img/bg-mapa-expotur.png'); background-size: 100% auto;" class="container">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 text-right" data-ng-show="authentication.user.roles=='*'">
+  		<p>
+        <a class="btn btn-warning btn-lg" ng-click="closeThisDialog('button')" ng-href="/#!/guides/{{guide._id}}/edit">
+          <span class="glyphicon glyphicon-edit"></span>&nbsp;{{'global.action.Modify' | translate}}
+        </a>
+        <a style="margin-right: 10px;" class="btn btn-danger btn-lg" ng-click="closeThisDialog('button'); confirmDeleteGuide()">
+          <span class="glyphicon glyphicon-trash"></span>&nbsp;{{'global.action.Delete' | translate}}
+        </a>
+      </p>      
+  	</div>
+  </div>
+  <div class="well">
+    <div class="row">
+      <div class="col-xs-4 text-center">
+        <div ng-if="guide.pictureUrl != '' ">
+          <img style="padding-left: 20px; vertical-align: middle; width: 100%; height: auto" ng-src="{{guide.pictureUrl}}" />
+        </div>
+        <div ng-if="guide.pictureUrl == '' ">
+          <img style="padding-left: 20px; vertical-align: middle; width: 100%; height: auto" src="http://placehold.it/240x240" />
+        </div>
+      </div>
+
+      <div class="col-xs-8">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-6">
+              <p>{{guide.name}} <span ng-if="guide.nickName !=''"> ({{guide.nickName}})</span></p>
+              <p class="text-info small" ng-if="guide.speaksEnglish">{{'Guides.Label.SpeaksEnglish' | translate}}<p>
+            </div>
+              <div class="col-xs-6 text-left">
+              <p><span class="required glyphicon glyphicon-heart"></span> {{guide.counterLikes}}</p>
+              <p><span class="glyphicon glyphicon-thumbs-up"></span> {{guide.counterRecommended}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <label style="color:#999"; opacity: .7;>{{'General.Label.Location' | translate}}</label>
+              <p class="small">{{guide.locationName}}</p>
+              <label ng-if="guide.categories !='[]'" style="color:#999"; opacity: .7;>{{'Tour.FormLabel.FavoriteCircuits' | translate}}</label>
+              <br><ul class="small" ng-repeat="cat in guide.categories">
+                <li translate="Category.Content.Name.{{cat}}"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body">
+
+      <div>
+        <p ng-if="locale ==='es'" class="small">{{guide.intro_es}}</p>
+        <p ng-if="locale ==='en'" class="small">{{guide.intro_en}}</p>
+        <p ng-if="locale ==='fr'" class="small">{{guide.intro_fr}}</p>
+        <p ng-if="locale ==='de'" class="small">{{guide.intro_de}}</p>
+      </div>
+
+
+      <p class="small">{{'Guides.PlaceHolder.GenericDescription' | translate}}</p>
+      <br>
+      <div ng-controller="GuidesController" class="row">
+        <div class="col-xs-4 text-center">
+          <a ng-click="addLike()" type="button" class="btn btn-warning btn-md btn-block"><span class="required glyphicon glyphicon-heart"></span><span class="hidden-xs">&nbsp;{{'global.action.Like' | translate}}</span></a>
+        </div>
+        <div class="col-xs-4 text-center">
+          <a ng-click="showReview()" type="button" class="btn btn-warning btn-md btn-block" ><span class="glyphicon glyphicon-bullhorn"></span><span class="hidden-xs">&nbsp;{{'global.action.Review' | translate}}</span></a>
+        </div>
+        <div class="col-xs-4 text-center">
+          <a ng-click="addRecommended()" ng-class="disable()" type="button" class="btn btn-warning btn-md btn-block"><span class="hidden-xs">&nbsp;{{'global.action.Recommend' | translate}}</span>&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4 text-center">
+        <div style="font-size: 2.5em;" share-square="false" share-links="Facebook, Twitter, Google-Plus" share-title="Article Title"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 text-center" style="margin-top:20px">
+      <a ng-controller="ModalController" ng-click="closeThisDialog()" type="button" class="btn btn-primary btn-block">{{'global.action.Close' | translate}}</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+      <p class="text-center"><img style="width: auto;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur-sm.png" /></p>
+    </div>
+  </div>
+</div>

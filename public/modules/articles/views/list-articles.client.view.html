@@ -1,0 +1,33 @@
+<div class="container">
+	<section style="background-image: url('/assets/img/mapa_turistico.png'); background-size: 100% auto;" class="animated fadeInRight" data-ng-controller="ArticlesController" data-ng-init="find()">
+		<md-toolbar class="shade md-theme-light">
+			<h1 class="md-toolbar-tools">
+				<span>{{ 'Tour.FormLabel.CountBookings' | translate}}</span>
+			</h1>
+		</md-toolbar>
+
+		<md-content class="shade container">
+			<md-list>
+				<md-item ng-repeat="article in articles">
+					<md-item-content>
+						<div class="md-tile-left">
+							<img style="width: 64px" ng-src="/assets/img/avatar.gif" class="face" alt="Expotur">
+							<h5 data-ng-bind="article.created | date:'mediumDate'"></h5>
+						</div>
+						<div class="md-tile-content">
+
+							<h3><a href="#!/articles/{{article._id}}">{{article.title}}</a></h3>
+
+							<p>{{'global.doneAction.PostedBy' | translate}}<a href="#!/articles/{{article._id}}"><span data-ng-bind="article.user.displayName"></span></a>
+							</p>
+
+							<p ng-bind-html="article.content"></p>
+							<a href="#!/articles/{{article._id}}" class="btn btn-primary">{{'global.action.ReadMore' | translate}} <i class="fa fa-angle-right"></i></a>
+						</div>
+					</md-item-content>
+					<md-divider md-inset ng-if="!$last"></md-divider>
+				</md-item>
+			</md-list>
+		</md-content>
+	</section>
+</div>

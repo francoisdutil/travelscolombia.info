@@ -1,0 +1,126 @@
+
+<section data-ng-controller="BookingsController" style="background-image: url('https://res.cloudinary.com/travelscolombia/image/upload/v1425593847/assets/demo-expotur/img/bg-mapa-expotur.png'); background-size: 100% auto;">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 header">
+      <p class="text-center">
+        <img style="margin:0; width:200px;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425587493/assets/demo-expotur/img/logo-expotur-xs.png" />
+        <br><span class="text-md text-info" translate="global.action.Checkout"></span>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <span><span translate="Bookings.Label.Step-3-btn-success"></span></span>
+          <!-- fill up the space between left and right area -->
+          <span flex></span>
+          <md-checkbox ng-model="isChecked" aria-label="Confirmed?">
+            Confirmed ?
+          </md-checkbox>
+        </div>
+      </md-toolbar>
+    </div>
+  </div>
+
+  <md-content>
+
+    <div data-ng-controller="BookingsController" layout="row" layout-margin layout-fill layout-padding>
+      <div flex flex-order="1" layout-margin layout-fill layout-padding layout-align="center">
+        <md-toolbar>
+          <div class="text-center" layout-padding>
+            <span><span translate="Bookings.Label.YourTour"></span></span>
+            <md-divider md-inset></md-divider>
+            <h4 class="text-danger">{{formData.tourName}}<br>{{formData.duration}}&nbsp;<span ng-if="formData.duration > 1" translate="General.Label.Days"></span><span ng-if="formData.duration < 2" translate="General.Label.Day"></span>
+              <span ng-if="formData.numberParticipants > 1">
+                <br>
+                <small><span translate="Bookings.Label.GroupOf"></span>
+                {{formData.numberParticipants}}&nbsp;<span translate="General.Label.Persons"></small>
+              </span>
+            </h4>
+            <span translate="Bookings.Label.TourDate"></span><br><span class="text-danger" style="font-size:1.4em;">{{formData.departureDate}}</span>
+            <br>
+          </div>
+        </md-toolbar>
+      </div>
+      <div flex flex-order="2">
+        <md-toolbar>
+          <div class="text-center" layout-padding>
+            <span ng-class="getParticipants()">
+              <span ng-show="formData.numberParticipants = 1" translate="Bookings.Label.Participant"></span>
+              <span ng-if="formData.numberParticipants > 1" translate="Bookings.Label.Participants"></span>({{formData.numberParticipants}})
+              <md-divider md-inset></md-divider>
+            </span>
+            <!-- fill up the space between left and right area -->
+          </div>
+        </md-toolbar>
+      </div>
+      <div flex flex-order="3">
+        <md-toolbar>
+          <div class="text-center" layout-padding>
+            <span><span translate="Bookings.Label.Invoicing"></span></span>
+            <md-divider md-inset></md-divider>
+            <!-- fill up the space between left and right area -->
+          </div>
+        </md-toolbar>
+      </div>
+    </div>
+
+
+      <div class="row container">
+        <div class="col-xs-6">
+          <button
+            ng-click="closeThisDialog('button')"
+            ng-href="/#!/bookings/create"
+            type="button"
+            class="btn btn-primary btn-block"
+            <span translate="global.action.Cancel"></span>
+          </button>
+        </div>
+        <div class="col-xs-6">
+          <button
+            ng-click="confirm(formData)"
+            ng-href="/#!/bookings/create"
+            type="submit"
+            class="btn btn-success btn-block"
+            ng-disabled="bookingForm.$invalid"
+            ng-class="{'btn-danger': bookingForm.$invalid, 'btn-success': !bookingForm.$invalid }">
+            <span translate="global.action.Proceed"></span>
+          </button>
+        </div>
+      </div>
+
+        <growl-notification class="fading btn-success" ng-if="showGrowl">
+            {{'General.Notification.WellDone' | translate}}{{'General.Notification.Welcome' | translate}}{{credentials.username}}
+        </growl-notification>
+
+
+      <div data-ng-if="error" class="text-center text-danger">
+        <strong>{{error | translate}}</strong>
+        <growl-notification class="fading btn-danger" ng-if="showGrowl">
+            {{'General.Notification.Attention' | translate}} <span translate="{{error}}"></span>
+        </growl-notification>
+      </div>
+
+    <div class="row">
+      <div class="col-xs-12 text-center">
+        <md-button ng-disabled="true" class="md-colored">
+          PagosOnline
+        </md-button>
+        <span flex></span>
+        <md-button ng-disabled="true" class="md-colored">
+          Pay with Paypal
+        </md-button>
+        <span flex></span>
+        <md-button ng-disabled="true" class="md-colored">
+          Pay with CreditCard
+        </md-button>
+        <span flex></span>
+        <md-button ng-disabled="true" class="md-colored">
+          Keep in my Favorites
+        </md-button>
+      </div>
+    </div>
+  </md-content>
+
+</section>

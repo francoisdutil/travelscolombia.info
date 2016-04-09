@@ -1,0 +1,42 @@
+<div class="container" data-ng-controller="SettingsController" style="background-image: url('https://res.cloudinary.com/travelscolombia/image/upload/v1425585831/assets/demo-expotur/img/bg-beige.jpg'); position: top;">
+  <div class="row">
+    <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+      <p class="text-center"><img style="width: auto;" src="/assets/img/logo-expotur-sm.png" /></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <gravatar-image class="text-center shadow img-circle" style="margin: 10px;" email="{{user.email}}" size="50"></gravatar-image>
+    </div>
+  </div>
+  <div class="row">
+    <h3 class="col-md-12 text-center" data-ng-show="hasConnectedAdditionalSocialAccounts()">
+
+      <span translate="form.social-accounts.connected">Connected social accounts</span>:
+    </h3>
+
+    <div class="col-xs-12">
+
+      <div class="col-md-12 text-center">
+        <div data-ng-repeat="(providerName, providerData) in user.additionalProvidersData" class="remove-account-container">
+          <img ng-src="/modules/users/img/buttons/{{providerName}}.png">
+          <a class="btn btn-danger btn-remove-account" data-ng-click="removeUserSocialAccount(providerName)">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+        </div>
+      </div>
+      <h3 class="col-md-12 text-center"><span translate="form.social-accounts.other">Connect other social accounts</span>:</h3>
+      <div class="col-md-12 text-center">
+        <a href="/auth/facebook" data-ng-hide="isConnectedSocialAccount('facebook')" class="undecorated-link">
+          <img src="/modules/users/img/buttons/facebook.png">
+        </a>
+        <a href="/auth/twitter" data-ng-hide="isConnectedSocialAccount('twitter')" class="undecorated-link">
+          <img src="/modules/users/img/buttons/twitter.png">
+        </a>
+        <a href="/auth/google" data-ng-hide="isConnectedSocialAccount('google')" class="undecorated-link">
+          <img src="/modules/users/img/buttons/google.png">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

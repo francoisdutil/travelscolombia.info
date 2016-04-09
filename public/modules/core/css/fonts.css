@@ -1,0 +1,331 @@
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Oswald Light'), local('Oswald-Light'), url(/#!/assets/fonts/oswald-light.woff) format('woff');
+  src: local('Oswald Light'), local('Oswald-Light'), url(/#!/assets/fonts/oswald-light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oswald Regular'), local('Oswald-Regular'), url(/#!/assets/fonts/oswald-regular.woff) format('woff');
+  src: local('Oswald Regular'), local('Oswald-Regular'), url(/#!/assets/fonts/oswald-regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Oswald Bold'), local('Oswald-Bold'), url(/#!/assets/fonts/oswald-bold.woff) format('woff');
+  src: local('Oswald Bold'), local('Oswald-Bold'), url(/#!/assets/fonts/oswald-bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(/#!/assets/fonts/Roboto-Light.woff) format('woff');
+  src: local('Roboto Light'), local('Roboto-Light'), url(/#!/assets/fonts/Roboto-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(/#!/assets/fonts/Roboto-Regular.woff) format('woff');
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(/#!/assets/fonts/Roboto-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(/#!/assets/fonts/Roboto-Medium.woff) format('woff');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(/#!/assets/fonts/Roboto-Medium.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(/#!/assets/fonts/Roboto-Bold.woff) format('woff');
+  src: local('Roboto Bold'), local('Roboto-Bold'), url(/#!/assets/fonts/Roboto-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'RobotoSlab';
+  font-style: normal;
+  font-weight: 200;
+  src: local('RobotoSlab Thin'), local('RobotoSlab-Thin'), url(/#!/assets/fonts/robotoslab-thin.webfont.woff) format('woff');
+  src: local('RobotoSlab Thin'), local('RobotoSlab-Thin'), url(/#!/assets/fonts/robotoslab-thin.webfont.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RobotoSlab';
+  font-style: normal;
+  font-weight: 300;
+  src: local('RobotoSlab Light'), local('RobotoSlab-Light'), url(/#!/assets/fonts/robotoslab-light.webfont.woff) format('woff');
+  src: local('RobotoSlab Light'), local('RobotoSlab-Light'), url(/#!/assets/fonts/robotoslab-light.webfont.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RobotoSlab';
+  font-style: normal;
+  font-weight: 400;
+  src: local('RobotoSlab Regular'), local('RobotoSlab-Regular'), url(/#!/assets/fonts/robotoslab-regular.webfont.woff) format('woff');
+  src: local('RobotoSlab Regular'), local('RobotoSlab-Regular'), url(/#!/assets/fonts/robotoslab-regular.webfont.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'RobotoSlab';
+  font-style: normal;
+  font-weight: 700;
+  src: local('RobotoSlab Bold'), local('RobotoSlab-Bold'), url(/#!/assets/fonts/robotoslab-bold.webfont.woff) format('woff');
+  src: local('RobotoSlab Bold'), local('RobotoSlab-Bold'), url(/#!/assets/fonts/robotoslab-bold.webfont.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: "Amasis";
+    font-weight: 700;
+    font-style: normal;
+    src: local('Amasis Bold'), local('Amasis-Bold'), url(/#!/assets/fonts/amasis_mt_bold.woff) format('woff');
+    src: local('Amasis Bold'), local('Amasis-Bold'), url(/#!/assets/fonts/amasis_mt_bold.ttf) format('truetype');
+}
+@font-face {
+    font-family: "Proxima Nova";
+    font-weight: bold;
+    font-weight: 700;
+    font-style: normal;
+    src: local('Proxima Bold'), local('Proxima-Bold'), url(/#!/assets/fonts/proximanova-bold-webfont.woff) format('woff');
+    src: local('Proxima Bold'), local('Proxima-Bold'), url(/#!/assets/fonts/proximanova-bold-webfont.ttf) format('truetype');
+}
+@font-face {
+    font-family: "Proxima Nova";
+    font-weight: 500;
+    font-style: normal;
+    src: local('Proxima Medium'), local('Proxima-Medium'), url(/#!/assets/fonts/proximanova-semibold-webfont.woff) format('woff');
+    src: local('Proxima Medium'), local('Proxima-Medium'), url(/#!/assets/fonts/proximanova-semibold-webfont.ttf) format('truetype');
+}
+@font-face {
+    font-family: "Proxima Nova";
+    font-weight: 400;
+    font-style: normal;
+    src: local('Proxima Regular'), local('Proxima-Regular'), url(/#!/assets/fonts/proximanova-regular-webfont.woff) format('woff');
+    src: local('Proxima Regular'), local('Proxima-Regular'), url(/#!/assets/fonts/proximanova-regular-webfont.ttf) format('truetype');
+}
+@font-face {
+    font-family: "Proxima Nova";
+    font-weight: 300;
+    font-style: normal;
+    src: local('Proxima Light'), local('Proxima-Light'), url(/#!/assets/fonts/proximanova-light-webfont.woff) format('woff');
+    src: local('Proxima Light'), local('Proxima-Light'), url(/#!/assets/fonts/proximanova-light-webfont.ttf) format('truetype');
+}
+@font-face {
+    font-family: "GreatVibes";
+    font-weight: 400;
+    font-style: normal;
+    src: local('GreatVibes Regular'), local('GreatVibes-Regular'), url(/#!/assets/fonts/greatvibes-regular.woff) format('woff');
+    src: local('GreatVibes Regular'), local('GreatVibes-Regular'), url(/#!/assets/fonts/greatvibes-regular.ttf) format('truetype');
+}
+
+.icon-mtc {
+  background: transparent;
+  opacity: .3;
+  color: white;
+  padding: 5px;
+  border-radius: 50%;
+  border: solid white;
+  border-width: 5px;
+}
+
+.about a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f05a";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.guides a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f0c0";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.contact a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f140";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.facebook a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f09a";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.twitter a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f099";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.youtube a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f16a";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.googlePlus a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f0d5";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.legal a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f0e3";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+
+.data a:before {
+  font-family: FontAwesome;
+  font-weight: 500;
+  font-size: 2.2em;
+  content: "\f1c0";
+  display: inline-block;
+  padding-right: 10px;
+  vertical-align: middle;
+}
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+.pbs, .pvs {
+  padding-bottom: .25em;
+}
+
+.glyph {
+  font-size: 16px;
+  width: 17em;
+  margin-right: 1.5em;
+  float: left;
+  overflow: hidden;
+}
+.fs1 {
+  font-size: 32px;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  display: inline-block;
+  color: #000000;
+  fill: currentColor;
+}
+
+.icon-home {
+  width: 32px;
+  height: 32px;
+}
+.icon-image {
+  width: 32px;
+  height: 32px;
+}
+.icon-bullhorn {
+  width: 32px;
+  height: 32px;
+}
+.icon-location {
+  width: 32px;
+  height: 32px;
+}
+.icon-location2 {
+  width: 32px;
+  height: 32px;
+}
+.icon-rocket {
+  width: 32px;
+  height: 32px;
+}
+.icon-globe {
+  width: 32px;
+  height: 32px;
+}
+.icon-earth {
+  width: 32px;
+  height: 32px;
+}
+.icon-eye {
+  width: 32px;
+  height: 32px;
+}
+.icon-star {
+  width: 32px;
+  height: 32px;
+}
+.icon-star2 {
+  width: 32px;
+  height: 32px;
+}
+.icon-star3 {
+  width: 32px;
+  height: 32px;
+}
+.icon-thumbs-up {
+  width: 32px;
+  height: 32px;
+}
+.icon-info {
+  width: 32px;
+  height: 32px;
+}
+.icon-insert-template {
+  width: 32px;
+  height: 32px;
+}
+.icon-facebook {
+  width: 32px;
+  height: 32px;
+}
+.icon-facebook2 {
+  width: 32px;
+  height: 32px;
+}
+.icon-twitter {
+  width: 32px;
+  height: 32px;
+}
+.icon-twitter2 {
+  width: 32px;
+  height: 32px;
+}

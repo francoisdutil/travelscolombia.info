@@ -1,0 +1,99 @@
+<section class="animated fadeInRight row" data-ng-controller="BookingsController">
+	<h3 class="col-md-12 text-center" <span translate="Bookings.Label.BookingsList"></span></h3>
+
+	<div data-ng-show="authentication.user.roles=='*'" data-ng-init="find()" class="container" id="form-container">
+    <div class="page-header text-center">
+      <h2><span translate="Bookings.Label.BookingsList"></span></h2>
+    </div>
+
+    <div class="container">
+			<div class="row">
+        <div class="col-xs-10 col-xs-offset-1" style="margin-bottom: 20px">
+						<md-button md-primary>Show Tours by Category</md-button>
+						<hr>
+				</div>
+			</div>
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" style="margin-bottom: 20px">
+          <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+												<th width="15%"><span translate="Bookings.Label.Booking"></span></th>
+												<th width="15%"><span translate="Bookings.Label.TourName"></span></th>
+												<th width="30%"><span translate="Bookings.Label.Customer"></span></th>
+                        <th width="5%"><span translate="Bookings.Label.NumberOfParticipant"></span></th>
+                        <th width="10%"><span translate="Bookings.Label.TourDate"></span></th>
+												<th width="10%"><span translate="Bookings.Label.TourReturnDate"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="booking in bookings | groupBy:tourCategory">
+                        <td>{{booking._id}}</td>
+                        <td>{{booking.tourName}}</td>
+												<td>{{booking.userId}}</td>
+                        <td>{{booking.numParticipant}}</td>
+												<td>{{booking.departureDate}}</td>
+												<td>{{booking.returnDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" data-ng-show="bookings.length">
+        <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/bookings/create">{{'Bookings.Label.NewBooking' | translate}}</a></p>
+      </div>
+      <div class="text-center" data-ng-hide="!bookings.$resolved || bookings.length">
+        <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/bookings/create">{{'Bookings.ErrorMsg.NoBookingYet' | translate}}</a></p>
+      </div>
+			<div class="row">
+		    <div class="lighten container text-center col-xs-12 col-md-10 col-md-offset-1">
+		      <button data-ng-show="authentication.user.roles=='*'" class="btn btn-sm btn-warning" ng-disabled="true"><span translate="global.action.Update"></span>&nbsp;<span translate="global.currency.ExchangeRate"></span></button>
+		    </div>
+		  </div>
+    </div>
+  </div>
+	<div data-ng-show="authentication.user.roles=='customer'" data-ng-init="find()" class="container" id="form-container">
+    <div class="page-header text-center">
+      <h2><span translate="Bookings.Label.BookingsList"></span></h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" style="margin-bottom: 20px">
+          <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+												<th width="5%">#</th>
+												<th width="20%"><span translate="Bookings.Label.YourTour"></span></th>
+                        <th width="5%"><span translate="Bookings.Label.NumberOfParticipant"></span></th>
+                        <th width="20%"><span translate="Bookings.Label.TourDate"></span></th>
+												<th width="20%"><span translate="Bookings.Label.TourReturnDate"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="booking in bookings | filter:query | filter:{userId:currentUser} | groupBy:tourCategory">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td>{{booking.tourName}}</td>
+                        <td>{{booking.numParticipant}}</td>
+												<td>{{booking.departureDate}}</td>
+												<td>{{booking.returnDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-ng-show="!authentication.user" class="text-center">
+    <div class="col-xs-6 col-xs-offset-3 ">
+      <h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+      <p class="lead text-center">{{'ErrorMsg.401-para' | translate}}</a></p><br>
+      <p class="text-center"><a ng-href="/#!/" class="btn btn-warning btn-block">{{'global.action.GoBackHome' | translate}}</a></p>
+    </div>
+  </div>
+
+</section>

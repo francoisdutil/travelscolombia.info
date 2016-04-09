@@ -1,0 +1,73 @@
+#guides {
+  background: url(https://res.cloudinary.com/travelscolombia/image/upload/v1425585822/assets/demo-expotur/img/bg-guides.png) repeat 0 0;
+  background-size: 100% auto;
+  box-shadow: 0 0 50px #000;
+}
+ol, ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.btn.red {
+  color: white;
+  border: 1px solid #CC363B;
+  background-color: #CC363B;
+}
+
+.btn.red.active, .btn.red:hover {
+  background-color: #a52a2e;
+}
+
+.item-container {
+  width: 100%;
+  padding: 10px;
+  pading-top:0;
+  color: white;
+  border-top:2px solid #222;
+  box-shadow:0 0 50px #000;
+  min-height: 670px;
+  min-width: 310px;
+  border-bottom:1px solid #222;
+}
+.item-container .item {
+  /*display: inline-block;*/
+  background-color: #87b7a0;
+  background-image: url(https://res.cloudinary.com/travelscolombia/image/upload/v1425585822/assets/demo-expotur/img/bg-map-thumbnail.png);
+  background-size: 100% auto;
+  padding: 10px;
+  margin: 0;
+  color: white;
+  -webkit-box-shadow: -5px 0 13px rgba(50, 50, 50, 0.54);
+  -moz-box-shadow:    -5px 0 13px rgba(50, 50, 50, 0.54);
+  box-shadow:         -5px 0 13px rgba(50, 50, 50, 0.54);
+}
+.item-container.list .item {
+  position: top center;
+  display: inline-block;
+  height: 310px;
+  width: 310px;
+  margin: 7px;
+  padding: 20px;
+  border-width:thin medium thin medium;
+  -webkit-box-shadow: inset 0 9px 18px 3px rgba(145, 212, 224, 0.59);
+  -moz-box-shadow:    inset 0 9px 18px 3px rgba(145, 212, 224, 0.59);
+  box-shadow:         inset 0 9px 18px 3px rgba(145, 212, 224, 0.59);
+}
+.item:hover {
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 3px rgba(0,0,0,0.2);
+  box-shadow: inset 0 3px rgba(0,0,0,0.2);
+}
+.item a {
+  color: white;
+}
+.item a:hover {
+  color: cyan;
+}
+
+.item img {
+  -webkit-box-shadow: inset 0 9px 18px 3px rgba(145, 212, 224, 0.59);
+  -moz-box-shadow:    inset 0 9px 18px 3px rgba(145, 212, 224, 0.59);
+  box-shadow:         inset 0 9px 18px 3px rgba(145, 212, 224, 0.59);
+}

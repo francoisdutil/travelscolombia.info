@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.countbookings.$invalid && !tourForm.countbookings.$pristine }">
+          <label><span translate="Tour.FormLabel.CountBookings"></span></label>
+          <input type="number" min="1" name="countbookings" ng-model="formData.countbookings" id="countbookings" class="form-control" placeholder="{{'Tour.PlaceHolder.CountBookings' | translate}}">
+          <div class="err_tip" ng-show="tourForm.countbookings.$dirty && tourForm.countbookings.$invalid">
+            <span ng-show="tourForm.countbookings.$invalid && !tourForm.countbookings.$pristine"><span translate="ErrorMsg.NumberRequired"></span></span>
+          </div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.countrecommended.$invalid && !tourForm.countrecommended.$pristine }">
+          <label><span translate="Tour.FormLabel.CountRecommended"></span></label>
+          <input type="number" min="1" name="countrecommended" ng-model="formData.countrecommended" id="countrecommended" class="form-control" placeholder="{{'Tour.PlaceHolder.CountRecommended' | translate}}">
+          <div class="err_tip" ng-show="tourForm.countrecommended.$dirty && tourForm.countrecommended.$invalid">
+            <span ng-show="tourForm.countrecommended.$invalid && !tourForm.countrecommended.$pristine"><span translate="ErrorMsg.NumberRequired"></span></span>
+          </div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.countlikes.$invalid && !tourForm.countlikes.$pristine }">
+          <label><span translate="Tour.FormLabel.CountLikes"></span></label>
+          <input type="number" min="1" name="countlikes" ng-model="formData.countlikes" id="countlikes" class="form-control" placeholder="{{'Tour.PlaceHolder.CountLikes' | translate}}">
+          <div class="err_tip" ng-show="tourForm.countlikes.$dirty && tourForm.countlikes.$invalid">
+            <span ng-show="tourForm.countlikes.$invalid && !tourForm.countlikes.$pristine"><span translate="ErrorMsg.NumberRequired"></span></span>
+          </div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.countfollowers.$invalid && !tourForm.countfollowers.$pristine }">
+          <label><span translate="Tour.FormLabel.CountFollowers"></span></label>
+          <input type="number" min="1" name="countfollowers" ng-model="formData.countfollowers" id="countfollowers" class="form-control" placeholder="{{'Tour.PlaceHolder.CountFollowers' | translate}}">
+          <div class="err_tip" ng-show="tourForm.countfollowers.$dirty && tourForm.countfollowers.$invalid">
+            <span ng-show="tourForm.countfollowers.$invalid && !tourForm.countfollowers.$pristine"><span translate="ErrorMsg.NumberRequired"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.review.$invalid && !tourForm.review.$pristine }">
+          <label class="required"><span translate="Tour.FormLabel.Review"></span></label>
+          <textarea cols="77" name="review" rows="2" wrap="physical" class="form-control" ng-model="formData.review" placeholder="{{'Tour.PlaceHolder.Review' | translate}}" required></textarea>
+          <div class="err_tip" ng-show="tourForm.review.$dirty && tourForm.review.$invalid">
+            <span ng-show="tourForm.urlTripAdvisor.$invalid && !tourForm.review.$pristine"><span translate="ErrorMsg.ReviewRequired"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.comments.$invalid && !tourForm.comments.$pristine }">
+          <label><span translate="Tour.FormLabel.Comments"></span></label>
+          <textarea cols="77" name="comments" rows="2" wrap="physical" class="form-control" ng-model="formData.comments" placeholder="{{'Tour.PlaceHolder.Comments' | translate}}"></textarea>
+          <div class="err_tip" ng-show="tourForm.comments.$dirty && tourForm.comments.$invalid">
+            <span ng-show="tourForm.comments.$invalid && !tourForm.comments.$pristine"><span translate="ErrorMsg.CommentsRequired"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<div class="form-group row">
+  <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref="{{action}}.seo" class="btn btn-block btn-info" ng-disabled="tourForm.$invalid" ng-class="{'btn-danger': tourForm.$invalid, 'btn-success': !tourForm.$invalid }">
+      {{'Tour.FormLabel.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+  </div>
+</div>

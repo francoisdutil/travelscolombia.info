@@ -1,0 +1,190 @@
+<section id="tour" class="animated fadeIn" ng-controller="ToursController" data-ng-init="find()">
+  <div data-ng-show="authentication.user.roles=='*'" class="row">
+
+    <div class="col-xs-12 text-center">
+      <div data-ng-hide="!tours.$resolved || tours.length">
+        <p class="lead">
+          <a data-ng-show="authentication.user.roles=='*'" class="button btn btn-lg btn-info" href="/#!/tours/create">{{'ErrorMsg.NoTourYet' | translate}}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <p class="text-center row container">
+    <div class="text-center col-xs-12 col-md-4">
+      <button style="font-weight: 300; height: 36px; padding: 0 10px;" class="btn input-medium btn-md btn-default" data-ng-click="isCollapsed = !isCollapsed">
+        <span class="lead"> {{'global.action.Toggle' | translate}} {{'global.action.FilterPannel' | translate}}</span>
+      </button>
+    </div>
+
+    <div class="text-center col-xs-12 col-md-4">
+      <input style="font-weight: 300; height: 36px;" ng-model="query" type="text" class="text-center input-medium search-query" placeholder="{{'Tour.PlaceHolder.SearchTours' | translate}}" autofocus />
+    </div>
+
+    <div class="text-center col-xs-12 col-md-4">
+      <select class="input-medium" style="font-weight: 300; width: 50%; height: 36px;" ng-model="sortorder">
+        <option value="tourtitle">{{'global.action.SortBy' | translate}} {{'General.Label.Name' | translate}}</option>
+        <option value="duration">{{'global.action.SortBy' | translate}} {{'Tour.FormLabel.Duration' | translate}}</option>
+        <option value="sellingprice">{{'global.action.SortBy' | translate}} {{'Tour.FormLabel.SellingPrice' | translate}}</option>
+        <option value="ratingaverage">{{'global.action.SortBy' | translate}} {{'General.Label.MostRated' | translate}}</option>
+        <option value="countbookings">{{'global.action.SortBy' | translate}} {{'General.Label.MostVisited' | translate}}</option>
+        <option value="countlikes">{{'global.action.SortBy' | translate}} {{'General.Label.MostViewed' | translate}}</option>
+        <option value="countrecommended">{{'global.action.SortBy' | translate}} {{'General.Label.MostRecommended' | translate}}</option>
+      </select>
+    </div>
+  </p>
+  <p>&nbsp;</p>
+  <div class="row" collapse="isCollapsed">
+    <div class="input-medium well well-xs text-center col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-md-offset-1">
+      <div class="row" style="margin-left:5px;">
+        <div id="slider-container" class="text-center col-xs-12 col-sm-4">
+          <em><h3 class="text-center"><span class="glyphicon glyphicon-filter"></span> <span translate="General.Label.FilterBy"></span> <span translate="Category.Label.Category"></span></h3></em>
+          <div>
+            <ul class="inline">
+              <li>
+
+                <div class="btn-group" data-ng-class="{open:open}">
+                  <button class="btn btn-success dropdown-toggle" data-ng-click="open=!open"><span translate="Category.Label.Categories"></span>&nbsp;&nbsp;<span class="caret"></span></button>
+                  <ul class="dropdown-menu listcategories" aria-labelledby="dropdownMenu">
+                    <li><a data-ng-click="checkAll()"><span class="glyphicon glyphicon-ok"></span>  <span translate="global.action.CheckAll"></span></a></li>
+                    <li><a data-ng-click="selectedTourCategory=[];"><span class="glyphicon glyphicon-remove"></span>  <span translate="global.action.UncheckAll"></span></a></li>
+                    <li class="divider"></li>
+                    <li data-ng-repeat="category in categoryList | orderBy:'id'"> <a data-ng-click="setSelectedTour()"><span translate="Category.Content.Name.{{category.name}}"></span><span data-ng-class="isChecked(category.id)"></span></a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><br><small style="text-align: justify; margin: 20px;"><span translate="Tour.Content.ParaCategoryFilter"></span></small></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="slider-container" class="text-center col-xs-12 col-sm-4">
+          <em><h3 class="text-center"><span class="glyphicon glyphicon-filter"></span> <span translate="General.Label.FilterBy"></span> <span translate="Tour.FormLabel.DifficultyLevel"></span></h3></em>
+          <div>
+            <ul class="inline">
+              <li>
+                <div class="btn-group" name:"diffLevel" data-ng-class="{open:open}">
+                  <button class="btn btn-success dropdown-toggle" data-ng-click="open=!open"><span translate="Tour.FormLabel.DifficultyLevel"></span>&nbsp;&nbsp;<span class="caret"></span></button>
+                  <ul class="dropdown-menu listdifflevels" aria-labelledby="dropdownMenu">
+                    <!--<li><a data-ng-click="checkAllDiffLevels()"><span class="glyphicon glyphicon-ok"></span>  <span translate="global.action.CheckAll"></span></a></li>-->
+                    <li><a data-ng-click="selectedTourDiffLevel=[];"><span class="glyphicon glyphicon-remove"></span>  <span translate="global.action.UncheckAll"></span></a></li>
+                    <li class="divider"></li>
+                    <li data-ng-repeat="diffLevel in diffLevelList | orderBy:'translateId'"> <a data-ng-click="setSelectedTourDiffLevel()"><span translate="Tour.FormLabel.{{diffLevel.name}}"></span><span data-ng-class="isCheckedDiffLevel(diffLevel.translateId)"></span></a></li>
+                  </ul>
+                </div>
+              </li>
+              <li><br><small style="text-align: justify; margin: 20px;"><span translate="Tour.Content.ParaDifficultyLevelFilter"></span></small></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="slider-container" class="text-center col-xs-12 col-sm-4">
+
+
+          <div class="row">
+            <div class="col-xs-offset-1 col-xs-10">
+              <div>
+                <em><h3 class="text-center"><span class="glyphicon glyphicon-filter"></span> <span translate="General.Label.FilterBy"></span> <span translate="Tour.FormLabel.Duration"></span> (<span translate="General.Label.Days"></span>)</h3></em>
+                <span class="text-left">min</span>
+                <md-slider
+                  class="md-primary"
+                  ng-model="values.low"
+                  step="{{ step }}"
+                  min="{{ floor }}"
+                  max="{{ ceiling }}"
+                  aria-label="min">
+                </md-slider>
+                <span class="text-left">max</span>
+                <md-slider
+                  class="md-primary"
+                  ng-model="values.high"
+                  step="{{ step }}"
+                  min="{{ floor }}"
+                  max="{{ ceiling }}"
+                  aria-label="max">
+                </md-slider>
+
+                <!-- <slider
+                  floor='{{ floor }}'
+                  ceiling='{{ ceiling }}'
+                  step='{{ step }}'
+                  precision='{{ precision }}'
+                  buffer='{{ buffer }}'
+                  stickiness='{{ stickiness }}'
+                  ng-model='values.low'
+                  ng-model-range='values.high'
+                  translate-range-fn='translateRange'
+                  translate-combined-fn='translateCombined'
+                  scale-fn='scale'
+                  inverse-scale-fn='inverseScale'
+                  style="width: {{ sliderWidth }};">
+                </slider> -->
+                <small class="text-center">
+                  <span class="lighten" translate="General.Label.CurrentlySelectedBetween"></span>
+                  <span class="text-info"> <strong>{{values.low}}</strong></span>
+                  <span class="lighten" translate="General.Label.And"></span> <span class="text-info"><strong>{{values.high}}</strong></span>
+                  <span class="lighten"><span translate="General.Label.Days"></span>)</span>
+                </small>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="text-center col-xs-12">
+
+
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="pull-right col-xs-6">
+          <button class="btn btn-primary btn-sm btn-block" data-ng-click="isCollapsed = !isCollapsed"><span translate="global.action.Hide"></span> {{'global.action.FilterPannel' | translate}}</button>
+        </div>
+        <div class="pull-left col-xs-6">
+          <button class="btn btn-primary btn-sm btn-block" data-ng-click="clearAllFilters()"><span translate="global.action.ClearAllFilters"></span></button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h3 data-ng-hide="!(tours|filter:query | filter:{language:preflang} | filter:{isactive:true} | tourCategory:selectedTourCategory | tourDifflevel:selectedTourDiffLevel | tourDuration:values).length" class="text-center">
+        <span translate="General.Label.AvailableTours"></span><br>
+      </h3>
+      <h3 data-ng-show="!(tours|filter:query | filter:{language:preflang} | filter:{isactive:true} | tourCategory:selectedTourCategory | tourDifflevel:selectedTourDiffLevel | tourDuration:values).length" class="text-center">
+        <span translate="General.Label.NoAvailableTours"></span><br>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 col-sm-offset-5 text-center">
+      <h2 ng-if="(tours|filter:query | filter:{language:preflang} | filter:{isactive:true} | tourCategory:selectedTourCategory | tourDifflevel:selectedTourDiffLevel | tourDuration:values).length" style="margin-bottom:15px;" class="text-md label label-info">{{(tours|filter:query | filter:{language:preflang} | filter:{isactive:true} | tourCategory:selectedTourCategory | tourDifflevel:selectedTourDiffLevel | tourDuration:values).length}}</h2>
+      <br><br>
+    </div>
+  </div>
+  <div style="padding-top:10px;">
+    <div class="scale-fade" ng-repeat="tour in tours | filter:query | filter:{language:preflang} | filter:{isactive:true} | tourCategory:selectedTourCategory | tourDifflevel:selectedTourDiffLevel | tourDuration:values | orderBy:sortorder" is-loading="loading" buffer-size='4' >
+      <div ng-style="{'background-color': tour.colorbg }" ng-if="authentication.user.firstname !=''" class="col-xs-12 col-sm-4 col-md-3 col-lg-3" style="box-shadow: 0 0 50px 0 #000000 inset, 0 0 2px 0 red inset; padding-top: 15px; background: url(https://res.cloudinary.com/travelscolombia/image/upload/v1425585827/assets/demo-expotur/img/bg-map-thumbnail.png) repeat 0 0; background-size: 100% auto; box-shadow: 0 0 50px #000; ">
+        <a style="height: 500px; opacity: 1; filter: alpha(opacity=100);" data-ng-controller="ModalController" data-ng-click="openTourView()">
+          <img class="shade sepia hidden-xs img-responsive" style="width: 100%; padding: 5px;" ng-src="{{ tour.pictureurl }}" />
+          <img class="shade sepia hidden-sm hidden-md hidden-lg img-responsive" style="padding: 5px;" ng-src="{{ tour.pictureurl }}" />
+          <h5 ng-style="{'color': tour.colorfont }" class="text-center"><span style="font-size:1.5em;"> {{ tour.tourtitle }}</span>
+            <br />
+            <span style="font-size:1.2em;" translate="Category.Content.Name.{{tour.categorytour}}"></span>
+            <br />
+            <span translate="Tour.FormLabel.Duration"></span>: {{tour.duration}} <span ng-if="tour.duration > 1" translate="General.Label.Days"></span><span ng-if="tour.duration == 1" translate="General.Label.Day"></span>
+            <br>
+            <rating ng-style="{'color': tour.colorbg }" class="hidden text-warning" ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"></rating>
+          </h5>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div ui-scroll-viewport style="height:200px;" >
+   <div ui-scroll="item in tours">{{item.tourtitle}}</div>
+</div>
+</section>

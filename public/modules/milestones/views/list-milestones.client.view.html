@@ -1,0 +1,149 @@
+<section class="animated fadeIn" data-ng-controller="MilestonesController" data-ng-init="find()">
+  <div data-ng-show="authentication.user.roles=='*'" class="container" id="form-container">
+    <div class="page-header text-center">
+      <h2><span translate="Milestone.Label.ListMilestones"></span></h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12" style="margin-bottom: 20px">
+          <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th width="1%">#</th>
+                        <th width="21%"><span translate="Services.Label.ServiceName"></span></th>
+                        <th width="48%"><span translate="Milestone.Label.CaseStudy"></span></th>
+                        <th class="text-center" width="2%"><span translate="Milestone.Label.EstimatedDaysWork"></span></th>
+                        <th class="text-center" width="3%"><span translate="Milestone.Label.PercentCompleted"></span></th>
+                        <th width="3%"><span translate="Milestone.Label.StartDate"></span></th>
+                        <th width="3%"><span translate="Milestone.Label.ApprovedDate"></span></th>
+                        <th width="3%"><span translate="Milestone.Label.PublishDate"></span></th>
+                        <th class="text-center" width="3%"><span translate="Milestone.Label.OverallStatus"></span></th>
+                        <th class="text-center" width="3%"><span translate="Milestone.Label.Billing.HasBeenApproved"></span></th>
+                        <th class="text-right" width="15%"><span translate="General.Label.Actions"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="milestone in milestones | orderBy:'_id'">
+                        <td>{{$index + 1}}</td>
+                        <td><span translate="Milestone.Content.Name.{{milestone.serviceId}}"></span></td>
+                        <td><span translate="Milestone.Content.CaseStudy.{{milestone.serviceId}}"></span></td>
+                        <td class="text-center">{{milestone.estimatedDaysWork}}</td>
+                        <td class="text-center">{{milestone.percentCompleted}}%</td>
+                        <td>{{milestone.startDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{milestone.approvedDate | date:'dd/MM/yyyy'}}</td>
+                        <td>{{milestone.publishDate | date:'dd/MM/yyyy'}}</td>
+                        <td class="text-center"><span translate="Milestone.Label.{{milestone.overallStatus}}"></span></td>
+                        <td class="text-center" ng-if="milestone.hasBeenInvoiced"><img src="/assets/img/checkmark.png" /></td>
+                        <td class="text-center" ng-if="!milestone.hasBeenInvoiced"><img src="/assets/img/wrong.png" /></td>
+                        <td class="text-right" nowrap>
+                            <a type="button" ng-click="deleteMilestone()" class="btn btn-danger btn-xs" href="/#!/milestones/">
+                                <span class="glyphicon glyphicon-trash"></span> <span translate="global.action.Delete"></span>
+                            </a>
+                            <a type="button" class="btn btn-success btn-xs" href="/#!/milestones/{{milestone._id}}/edit">
+                                <span class="glyphicon glyphicon-edit"></span> <span translate="global.action.Edit"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+
+          </div>
+        </div>
+        <!-- Table with payment dates (approved dates) -->
+        <p class="text-center text-success" ng-class="averagePercentCompleted()">
+          <strong>{{averagePercentDone | number:0}}</strong> <span class="lighten" translate="Milestone.Label.PercentCompleted"></span>.<br>
+          <strong>{{daysLeft | number:0}}</strong> <span class="lighten" translate="Milestone.Label.EstimatedDaysWork"></span>.
+        </p>
+        <div class="col-xs-12" style="margin-bottom: 20px">
+          <div class="page-header text-center">
+            <h2><span translate="General.Label.Billing"></span></h2>
+          </div>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th width="5%"></th>
+                  <th width="30%"><span translate="Services.Label.ServiceName"></span></th>
+                  <th class="text-center" width="30%"><span translate="Milestone.Label.Billing.SecondDepositDate"></span></th>
+                  <th class="text-center" width="20%"><span translate="Milestone.Label.Billing.Payment"></span></th>
+                  <th class="text-center" width="15%"><span translate="Milestone.Label.Billing.Paid"></span></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td>
+                  <td><span translate="Milestone.Label.Billing.FirstDepositAmount"></span></td>
+                  <td class="text-center">02/03/2015</td>
+                  <td class="text-center">{{4615000 / 3 | currency:'$COP'}}</td>
+                  <td class="text-center"><img src="/assets/img/wrong.png" /></td>
+                </tr>
+                <tr ng-if="milestone.minCost" ng-repeat="milestone in milestones | orderBy:'approvedDate'">
+                  <td></td>
+                  <td><span translate="Milestone.Content.Name.{{milestone.serviceId}}"></span></td>
+                  <td class="text-center">{{milestone.approvedDate | date:'dd/MM/yyyy'}}</td>
+                  <td class="text-center">{{milestone.minCost / 3 * milestone.devDiffLevelFactor | currency:'$COP'}}</td>
+                  <td class="text-center" ng-if="milestone.hasBeenInvoiced"><img src="/assets/img/checkmark.png" /></td>
+                  <td class="text-center" ng-if="!milestone.hasBeenInvoiced"><img src="/assets/img/wrong.png" /></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><span translate="Milestone.Content.Name.GoLiveDay"></span>.<br /><span translate="Milestone.Label.Billing.FinalPayment"></span></td>
+                  <td class="text-center">11/05/2015</td>
+                  <td class="text-center">{{(4615000 / 3) | currency:'$COP'}}</td>
+                  <td class="text-center"><img src="/assets/img/wrong.png" /></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td style="font-weight:700;" class="text-right"><span translate="Milestone.Label.Billing.TotalInvoiced"></span></td>
+                  <td style="font-weight:700;" class="text-left">{{4615000 | currency:'$COP'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="text-center col-xs-12">
+          <img style="width:250px;" src="/assets/img/logo-fits.png" />
+        </div>
+      </div>
+
+      <div class="text-center" data-ng-show="milestones.length">
+        <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/milestones/create">{{'Milestone.Label.NewMilestone' | translate}}</a></p>
+      </div>
+      <div class="text-center" data-ng-hide="!milestones.$resolved || milestones.length">
+        <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/milestones/create">{{'Milestone.ErrorMsg.NoMilestoneYet' | translate}}</a></p>
+      </div>
+    </div>
+  </div>
+  <div data-ng-hide="authentication.user.roles=='*'"  class="text-center">
+    <div class="col-xs-6 col-xs-offset-3 ">
+      <h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+      <p class="lead text-center">{{'ErrorMsg.401-para' | translate}}</a></p><br>
+      <p class="text-center"><a ng-href="/#!/" class="btn btn-warning btn-block">{{'global.action.GoBackHome' | translate}}</a></p>
+    </div>
+  </div>
+
+  <div data-ng-show="authentication.user.roles=='*'" class="text-center" data-ng-hide="!milestones.$resolved || milestones.length">
+    <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/milestones/create">{{'ErrorMsg.NoMilestoneYet' | translate}}</a></p>
+  </div>
+
+  <div data-ng-show="authentication.user.roles=='*'" class="more-demos">
+    <span>{{'Milestone.Todo.List' | translate}} <br> {{'Milestone.Todo.Todos' | translate}}</span>
+    <ul id="todo-list" ng-controller="TodoCtrl">
+      <li ng-repeat="todo in todos | filter:statusFilter | orderBy:'completed' track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}"><a class="iteration-{{$index +1}}" href="#">&nbsp;&nbsp;{{todo.title}}&nbsp;<input class="pull-right toggle" type="checkbox" ng-model="todo.completed" ng-change="todoCompleted(todo)"></a></li>
+      <li><a class="white" href="/#!/todos/">{{'global.action.Show' | translate}}&nbsp;{{'Milestone.Todo.All' | translate}}</a></li>
+    </ul>
+  </div>
+
+</section>

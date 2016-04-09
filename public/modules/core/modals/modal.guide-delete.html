@@ -1,0 +1,27 @@
+
+  <div data-ng-show="authentication.user.roles=='*'">
+    <div class="modal-header">
+      <h6 class="text-center danger lead"><span translate="General.Label.ConfirmDelete"></span></h6>
+      <h4 class="text-center">{{ guide.name }}</h4>
+    </div>
+    <div class="modal-body">
+      <p class="lead danger text-center"><span translate="Guides.ErrorMsg.ConfirmDelete"></span></h6>
+    </div>
+
+    <div class="modal-footer">
+      <div class="row">
+        <div class="col-xs-6 text-center">
+          <button class="btn btn-primary btn-block" ng-click="closeThisDialog()"><span translate="global.no"></span>, <span translate="global.action.Cancel"></span></button>
+        </div>
+        <div class="col-xs-6 text-center">
+          <button class="btn btn-danger btn-block" ng-controller="GuidesController" ng-click="remove({{scope.guide}});closeThisDialog()"><span translate="global.yes"></span>, <span translate="global.action.Delete"></span></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+        <p class="text-center"><img src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur-xs.png" /></p>
+      </div>
+    </div>
+  </div>

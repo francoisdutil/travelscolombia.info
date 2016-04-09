@@ -1,0 +1,23 @@
+<section data-ng-controller="CategoriasController" data-ng-init="findOne()">
+	<div data-ng-hide="!authentication.user" class="container" id="form-container">
+		<div class="page-header">
+			<h1> <span translate="Category.Content.Name.{{translateId}}"></span></h1>
+			<p class="lead" data-ng-bind="categoria.description"></p>
+		</div>
+		<div class="pull-right">
+			<a class="btn btn-primary" href="/#!/categorias/{{categoria._id}}/edit">
+				<i class="glyphicon glyphicon-edit"></i>
+			</a>
+			<a ng-controller="ModalController" class="btn btn-danger" ng-click="closeThisDialog('button'); confirmDeleteCategory()">
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
+		</div>
+	</div>
+	<div data-ng-hide="authentication.user" class="text-center">
+		<div class="col-xs-6 col-xs-offset-3 ">
+			<h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+			<p class="lead text-center">{{'ErrorMsg.401-para' | translate}}</a></p><br>
+			<p class="text-center"><a ng-href="/#!/" class="btn btn-warning btn-block">{{'global.action.GoBackHome' | translate}}</a></p>
+		</div>
+	</div>
+</section>

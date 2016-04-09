@@ -1,0 +1,197 @@
+<section class="animated fadeIn" style="background-size: 100%; background-repeat: repeat-y; background-image: url(http://res.cloudinary.com/travelscolombia/image/upload/v1425585822/assets/demo-expotur/img/bg-optimized.jpg)" data-ng-controller="GuidesController">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+
+      <div data-ng-show="authentication.user.roles=='*'" class="container">
+          <a href="/#!/guides" class="navbar-brand"><span class="glyphicon glyphicon-list"></span></a>
+          <a href="/#!/guides" class="navbar-brand"><span class="glyphicon glyphicon-th"></span></a>
+
+          <div class="page-header text-center">
+            <h2>{{'Guides.Label.NewGuide' | translate}}<span ng-if="formData.name"> - </span> {{formData.name}}</h2>
+          </div>
+          <!-- use ng-submit to catch the form submission and use our Angular function -->
+          <form name="guideForm" data-ng-submit="create()" novalidate>
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="form-group" ng-class="{ 'has-error' : guideForm.name.$invalid && !guideForm.name.$pristine }">
+                        <label class="required"><span translate="General.Label.Name"></span></label>
+                        <input type="text" name="name" class="form-control" ng-model="formData.name" placeholder="{{'General.PlaceHolder.Name' | translate}}" required>
+                        <div class="err_tip" ng-show="guideForm.name.$dirty && guideForm.name.$invalid">
+                          <span ng-show="guideForm.name.$invalid && !guideForm.name.$pristine"><span translate="ErrorMsg.NameRequired"></span></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="form-group" ng-class="{ 'has-error' : guideForm.nickName.$invalid && !guideForm.nickName.$pristine }">
+                        <label><span translate="General.Label.NickName"></span></label>
+                        <input type="text" name="nickName" class="form-control" ng-model="formData.nickName" placeholder="{{'General.Label.NickName' | translate}}">
+                        <div class="err_tip" ng-show="guideForm.name.$dirty && guideForm.nickName.$invalid">
+                          <span ng-show="guideForm.nickName.$invalid && !guideForm.nickName.$pristine"><span translate="ErrorMsg.NameRequired"></span></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="form-group" ng-class="{ 'has-error' : guideForm.email.$invalid && !guideForm.email.$pristine }">
+                        <label class="required"><span translate="General.Label.Email"></span></span></label>
+                        <input type="text" name="email" class="form-control" ng-model="formData.email" placeholder="{{'General.PlaceHolder.Email' | translate}}" required>
+                        <div class="err_tip" ng-show="guideForm.email.$dirty && guideForm.email.$invalid">
+                          <span ng-show="guideForm.email.$invalid && !guideForm.email.$pristine"><span translate="ErrorMsg.EmailRequired"></span></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="form-group">
+                        <label class="required"><span translate="General.Label.Phone"></span></span></label>
+                        <input type="text" name="phone" class="form-control" ng-model="formData.phone" placeholder="{{'General.PlaceHolder.Phone' | translate}}" required>
+                        <div class="err_tip" ng-show="guideForm.phone.$dirty && guideForm.phone.$invalid">
+                          <span ng-show="guideForm.phone.$invalid && !guideForm.phone.$pristine"><span translate="ErrorMsg.PhoneRequired"></span></span>
+                        </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="col-xs-3">
+                    <div class="form-group">
+                        <label><span translate="General.Label.Location"></span></label>
+                        <input type="text" name="locationName" class="form-control" ng-model="formData.locationName" placeholder="{{'General.PlaceHolder.Location' | translate}}">
+                        <div class="err_tip" ng-show="guideForm.locationName.$dirty && guideForm.locationName.$invalid">
+                          <span ng-show="guideForm.locationName.$invalid && !guideForm.locationName.$pristine"><span translate="ErrorMsg.NameRequired"></span></span>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="form-group">
+                      <label><span translate="General.Label.Experience"></span></label>
+                      <input type="number" min=1 name="yearsExperience" class="form-control" ng-model="formData.yearsExperience" placeholder="{{'General.Label.Experience' | translate}}">
+                    </div>
+                  </div>
+                  <div class="col-xs-3">
+                    <div class="form-group">
+                      <label><span translate="General.Label.TeamMemberSince"></span></label>
+                      <input type="month" name="dateTeamMember" class="form-control" ng-model="formData.dateTeamMember" placeholder="{{'General.Label.TeamMemberSince' | translate}}">
+                    </div>
+                  </div>
+
+                  <div class="col-xs-3">
+                    <label class="required" for="formData.pictureUrl"><span translate="General.Label.PictureUrl"></span></label>
+                    <input type="text" name="picture" ng-model="formData.pictureUrl" id="picture" class="form-control">
+                  </div>
+                </div>
+                <div class="row">
+                  <div data-ng-controller="CategoriasController" class="col-xs-12">
+                    <div class="form-group">
+                      <label class="control-label">{{'Category.Label.FavoriteCircuits' | translate}}</label>
+                      <ui-select ng-click="find()" multiple ng-model="multipleDemo.selectedCats" theme="bootstrap" ng-disabled="disabled">
+                        <ui-select-match placeholder="{{'Category.Label.SelectCategories' | translate}}..."><span translate="Category.Content.Name.{{$item.translateId | highlight: $select.search}}"></span></ui-select-match>
+                        <ui-select-choices repeat="categoria.translateId as categoria in categorias">
+                          <span translate="Category.Content.Name.{{categoria.translateId | highlight: $select.search}}"></span>
+                          <div class="small"> <span translate="Category.Content.Slogan.{{categoria.translateId | highlight: $select.search}}"></span></div>
+                        </ui-select-choices>
+                      </ui-select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+
+                  <div class="col-xs-3">
+                      <label class="control-label" for="available"><span translate="General.Label.Avail"></span></label>
+                      <div class="onoffswitch">
+                          <input type="checkbox" name="available"  ng-model="formData.available" class="onoffswitch-checkbox" id="available">
+                          <label class="onoffswitch-label" for="available">
+                              <span class="onoffswitch-inner onoffswitch-inner-{{preflang}}"></span>
+                              <span class="onoffswitch-switch"></span>
+                          </label>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-3">
+                      <label class="control-label" for="speaksEnglish">{{'Guides.Label.SpeaksEnglish' | translate}}</label>
+                      <div class="onoffswitch">
+                        <input type="checkbox" name="speaksEnglish"  ng-model="formData.speaksEnglish" class="onoffswitch-checkbox" id="speaksEnglish">
+                        <label class="onoffswitch-label" for="speaksEnglish">
+                          <span class="onoffswitch-inner onoffswitch-inner-{{preflang}}"></span>
+                          <span class="onoffswitch-switch"></span>
+                        </label>
+                      </div>
+                  </div>
+                  <div class="col-xs-6">
+                    <div class="form-group">
+                      <label><span translate="General.Label.Counters"></span></label>
+                      <div class="row">
+                        <div class="col-xs-6">
+                          <input type="text" name="counterLikes" ng-model="formData.counterLikes" id="counterLikes" class="form-control">
+                        </div>
+                        <div class="col-xs-6">
+                          <input type="text" name="counterRecommended" ng-model="formData.counterRecommended" id="counterRecommended" class="form-control">
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+
+                      <label>
+                        {{'General.Label.Description' | translate}} ({{'global.language.es' | translate}})
+                      </label>
+                      <textarea cols="77" name="introES" rows="3" wrap="physical" class="form-control" ng-model="formData.introES"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                      <label>
+                        {{'General.Label.Description' | translate}} ({{'global.language.en' | translate}})
+                      </label>
+                      <textarea cols="77" name="introEN" rows="3" wrap="physical" class="form-control" ng-model="formData.introEN"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                      <label>
+                        {{'General.Label.Description' | translate}} ({{'global.language.fr' | translate}})
+                      </label>
+                      <textarea cols="77" name="introFR" rows="3" wrap="physical" class="form-control" ng-model="formData.introFR"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group">
+                      <label>
+                        {{'General.Label.Description' | translate}} ({{'global.language.de' | translate}})
+                      </label>
+                      <textarea cols="77" name="introDE" rows="3" wrap="physical" class="form-control" ng-model="formData.introDE"></textarea>
+                  </div>
+                </div>
+              </div>
+              <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+                  <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+                  {{'General.Notification.WellDone' | translate}}&nbsp;
+                  {{'General.Notification.GuideCreatedSuccess' | translate}}
+              </growl-notification>
+              <div class="form-group row">
+                <div class="col-xs-6 col-xs-offset-3">
+                  <button ng-click="showGrowl = true" type="submit" class="btn btn-block btn-success" ng-disabled="guideForm.$invalid" ng-class="{'btn-danger': guideForm.$invalid, 'btn-success': !guideForm.$invalid }">{{'global.action.Create' | translate}}&nbsp;{{formData.name}}</button>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div data-ng-hide="authentication.user.roles=='*'" class="row text-center container">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+      <p class="lead text-center">{{'ErrorMsg.401-para' | translate}}</a></p><br>
+      <p class="text-center"><a ng-click="intro = !intro" ng-href="/#!/" class="btn btn-warning btn-lg">{{'global.action.GoBackHome' | translate}}</a></p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+<div class="animated fadeInRight row container">
+  <div class="col-xs-12" ng-class="scale-fade-in"
+    <br><br>
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="warning text-center"><span translate="aboutPage.about.title"></span></h2>
+        <div class="row">
+          <div class="col-xs-12">
+            <em><h2 style="text-align: justify" class="success"><span translate="aboutPage.about.intro"></span></h2></em>
+            <br />
+          </div>
+        </div>
+        <div data-ng-controller="AboutController">
+          <accordion close-others="oneAtATime">
+            <accordion-group heading="{{ 'aboutPage.about.story-label' | translate }}" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+              <p class="lead text-center"><span translate="aboutPage.about.story-content"></span></p>
+              <h5 class="yellow-star">
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;
+              </h5>
+            </accordion-group>
+            <accordion-group heading="{{ 'aboutPage.about.mission-label' | translate }}">
+              <p class="lead text-center"><span translate="aboutPage.about.mission-content"></span></p>
+              <h5 class="yellow-star">
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;
+              </h5>
+            </accordion-group>
+            <accordion-group heading="{{ 'aboutPage.about.community-label' | translate }}">
+              <p class="lead text-center"><span translate="aboutPage.about.community-content"></span></p>
+              <h5 class="yellow-star">
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;
+              </h5>
+            </accordion-group>
+            <accordion-group heading="{{ 'aboutPage.about.progress-label' | translate }}">
+              <p class="lead text-center"><span translate="aboutPage.about.progress-content"></span></p>
+              <h5 class="yellow-star">
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;
+              </h5>
+            </accordion-group>
+            <accordion-group heading="{{ 'aboutPage.about.team-label' | translate }}">
+              <p class="lead text-center"><a ng-href="/#!/guides" translate="aboutPage.about.team-content"></a></p>
+              <h5 class="yellow-star">
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>
+                &nbsp;<span class="glyphicon glyphicon-star"></span>&nbsp;
+              </h5>
+            </accordion-group>
+          </accordion>
+          <h1 class="text-center" style="color: white; font-size: 3.6em;" share-square="false" share-links="Facebook, Twitter, Google-Plus, Pin" share-title="{{'Places.Label.Place' | translate}}"></h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

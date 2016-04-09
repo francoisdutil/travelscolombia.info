@@ -1,0 +1,21 @@
+<section class="animated fadeInRight" style="background-size: 100%; background-repeat: repeat-y; background-image: url(http://res.cloudinary.com/travelscolombia/image/upload/v1425585822/assets/demo-expotur/img/bg-optimized.jpg)" data-ng-controller="GuidesController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1 data-ng-bind="guide.name"></h1>
+	</div>
+	<div class="pull-right" data-ng-show="authentication.user.roles=='*'">
+		<a class="btn btn-primary" href="/#!/guides/{{guide._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>
+	<small>
+		<em class="text-muted">
+			Posted on
+			<span data-ng-bind="guide.created | date:'mediumDate'"></span>
+			by
+			<span data-ng-bind="guide.user.displayName"></span>
+		</em>
+	</small>
+</section>

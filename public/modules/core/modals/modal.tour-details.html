@@ -1,0 +1,70 @@
+
+  <div class="container" ng-style="{'border-color': tour.colorbg, 'color' : tour.colorfont }" style="background-color: #d1d7e7; background-image: url('/assets/img/bg-mapa-expotur.png'); background-size: 100% 100%;">
+    <div class="row">
+      <div class="col-xs-12">
+        <p class="text-center lead"><span translate="General.Label.AddInfo"></span></p>
+        <h4 class="text-danger text-center">{{ tour.tourtitle }}</h4>
+      </div>
+    </div>
+
+    <div class="row well" style="background-image: url('/assets/img/bg-beige.jpg'); position: top;">
+      <span class="text-center">
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <h5><span class="lighten" translate="Tour.FormLabel.GroupSize"></span>:
+                <span class="visible-xs"><br></span>
+                <strong>{{tour.groupminsize}} - {{tour.groupmaxsize}} <span translate="General.Label.Persons"></span></strong>
+              </h5>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <h5>
+                <div><span class="lighten" translate="Tour.FormLabel.DifficultyLevel"></span>: <strong><span translate="Tour.FormLabel.{{tour.difficultylevel}}"></strong></div>
+              </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div ng-if="tour.leadername" class="col-xs-12 col-md-6">
+              <h5>
+                <span class="lighten" translate="Tour.FormLabel.GroupLeader"></span>:
+                <span class="visible-xs"><br></span>
+                <strong>{{tour.leadername}}</strong>
+              </h5>
+            </div>
+            <div ng-if="tour.leadername == ''" class="col-xs-12 col-md-6">
+              <h5>
+                <span class="lighten" translate="Tour.FormLabel.GroupLeader"></span>:
+                <span class="visible-xs"><br></span>
+                <strong>{{'General.PlaceHolder.LocalGuide' | translate}}</strong>
+              </h5>
+            </div>
+            <div class="col-xs-12 col-md-6">
+              <h5>
+                <md-button style="text-decoration:none;" class="md-primary" target="_new" href="{{tour.urlmoreinfo}}"><span translate="Tour.FormLabel.UrlMoreInfo"></span></md-button>
+              </h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 text-center">
+              <p class="text-success lead">{{tour.description}}</p>
+              <span class="visible-xs"><br></span>
+            </div>
+            <div ng-if="tour.description == ''" class="col-xs-12 text-center">
+              <br />
+              <em><h6 class="lead">{{'General.PlaceHolder.TourDescriptionMTC' | translate}}</h6></em>
+              <span class="visible-xs"><br></span>
+            </div>
+            <div ng-if="!tour.summary == ''" class="col-xs-12 text-center">
+              <span class="text-success">{{tour.summary}}</span>
+              <span class="visible-xs"><br></span>
+            </div>
+          </div>
+          <div class="row">
+        		<div class="col-xs-12 text-center">
+        			<p class="text-center"><img src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur.png" /></p>
+        		</div>
+        	</div>
+        </div>
+      </span>
+    </div>
+  </div>

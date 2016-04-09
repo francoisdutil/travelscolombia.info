@@ -1,0 +1,4 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","id":"SMR","properties":{"name":"Santa Marta"},"geometry":{"type":"Point","coordinates":[-74.1618, 11.2471]}
+},{"type":"Feature","id":"TAG","properties":{"name":"Taganga"},"geometry":{"type":"Point","coordinates":[-73.1618, 10.2471]}
+}]}

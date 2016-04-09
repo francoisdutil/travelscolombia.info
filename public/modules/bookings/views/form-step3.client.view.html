@@ -1,0 +1,64 @@
+
+<div>
+  <div class="row" ng-controller="BookingsController as invoice">
+    <div class="lighten container text-center col-xs-12 col-md-10 col-md-offset-1">
+      <span ng-repeat="c in invoice.currencies">
+        {{invoice.total(c) * counter | currency:c}}
+        <!--
+          amount converted from COP to a specific currency only
+          http://jsonrates.com/convert/?from=COP&to=USD&amount=700000&apiKey=jr-0e8637927e2fd98b9986697495f83a86
+          amount converted in all currency base on COP
+          http://jsonrates.com/convert/?base=COP&amount=700000&apiKey=jr-0e8637927e2fd98b9986697495f83a86
+        -->
+      </span>
+      <button data-ng-show="authentication.user.roles=='*'" class="btn btn-sm btn-warning" ng-disabled="true"><span translate="global.action.Update"></span>&nbsp;<span translate="global.currency.ExchangeRate"></span></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container col-xs-12 col-md-10 col-md-offset-1">
+      <legend><span translate="global.billing.tourUnitCost"></span></legend>
+      <h2>{{formData.tourPriceCOP | currency:'$COP '}}</h2>
+      <legend><span translate="global.billing.numberOfParticipants"></span></legend>
+      <h2>{{counter}}</h2>
+      <legend><span translate="global.billing.totalInvoiced"></span></legend>
+      <h2>{{formData.tourPriceCOP * counter | currency:'$COP '}}</h2>
+      <legend><span translate="global.billing.deposit"></span> ({{formData.percentdeposit}}%)</legend>
+      <h2>{{formData.tourPriceCOP * counter * (formData.percentdeposit / 100) | currency:'$COP '}}&nbsp;
+        <button type="button" data-ng-if="!formData.tourPriceCOP==''" class="pull-right btn btn-sm btn-warning" ng-disabled="bookingForm.$invalid" ng-class="{'btn-danger': bookingForm.$invalid, 'btn-success': !bookingForm.$invalid }" ng-click="payNow();"><span translate="global.action.PayNow"></span></button></h2>
+      <legend><span translate="global.billing.balance"></span></legend>
+      <h2>{{(formData.tourPriceCOP * counter) - formData.tourPriceCOP * counter * (formData.percentdeposit / 100) | currency:'$COP '}}
+        <button type="button" data-ng-if="!formData.tourPriceCOP==''" class="pull-right btn btn-sm btn-warning" ng-disabled="bookingForm.$invalid" ng-class="{'btn-danger': bookingForm.$invalid, 'btn-success': !bookingForm.$invalid }" ng-click="payNow();"><span translate="global.action.PayNow"></span></button></h2>
+      <span class="text-sm text-warning glyphicon glyphicon-info-sign"></span>&nbsp;<span><em class="text-warning"><span translate="global.billing.balancePayableOn"></span>&nbsp;({{formData.departureDate}})</em></span>
+    </div>
+  </div>
+
+  <!-- Show a notification when a button is clicked -->
+  <div data-ng-if="action==='createBooking'">
+    <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+      <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+      {{'General.Notification.WellDone' | translate}}&nbsp;
+      {{'Bookings.Notification.CreatedSuccess' | translate}}
+    </growl-notification>
+  </div>
+  <div data-ng-if="action==='editBooking'">
+    <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+      <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+      {{'General.Notification.Superb' | translate}}&nbsp;
+      {{'Bookings.Notification.UpdatedSuccess' | translate}}
+    </growl-notification>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <a
+      type="submit"
+      ng-click="showGrowl = true"
+      class="btn btn-lg btn-block"
+      ng-disabled="bookingForm.$invalid"
+      ng-class="{'btn-danger': bookingForm.$invalid, 'btn-success': !bookingForm.$invalid }">
+      {{'global.action.Submit' | translate}}
+    </a>
+    </div>
+  </div>
+
+</div>

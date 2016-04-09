@@ -1,0 +1,7 @@
+<section data-ng-controller="InstagramController as Images">
+	<div>
+		<div ng-repeat="p in pics">
+			<img ng-src="{{p.images.thumbnail.url}}" />
+		</div>
+	</div>
+</section>

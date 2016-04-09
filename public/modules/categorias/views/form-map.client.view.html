@@ -1,0 +1,17 @@
+
+<div class="container">
+
+  <div class="row">
+    <div class="text-center col-xs-10 col-xs-offset-1">
+      <img style="width:500px; padding-bottom:20px;" src="/assets/img/bg-mapa-expotur.png" />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref-active="active" ui-sref="{{action}}.ratings" class="btn btn-block btn-info" ng-disabled="categoryForm.$invalid" ng-class="{'btn-danger': categoryForm.$invalid, 'btn-success': !categoryForm.$invalid }">
+        {{'Tour.FormLabel.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+
+<div class="container">
+  <!-- Show a notification when a button is clicked -->
+  <div data-ng-if="action==='createMilestone'">
+    <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+      <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+      {{'General.Notification.WellDone' | translate}}&nbsp;
+      {{'Milestone.Notification.CreatedSuccess' | translate}}
+    </growl-notification>
+  </div>
+  <div data-ng-if="action==='editMilestone'">
+    <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+      <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+      {{'General.Notification.Superb' | translate}}&nbsp;
+      {{'Milestone.Notification.UpdatedSuccess' | translate}}
+    </growl-notification>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <button
+      type="submit"
+      ng-click="showGrowl = true"
+      class="btn btn-block btn-success"
+      ng-disabled="milestoneForm.$invalid"
+      ng-class="{'btn-danger': milestoneForm.$invalid, 'btn-success': !milestoneForm.$invalid }">{{'global.action.Submit' | translate}}&nbsp;<span translate="Milestone.Content.Name.{{formData.serviceId}}"></span>
+    </button>
+    </div>
+  </div>
+</div>

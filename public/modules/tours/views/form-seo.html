@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.urlanalytics.$invalid && !tourForm.urlanalytics.$pristine }">
+          <label><span translate="Tour.FormLabel.UrlAnalytics"></span></label>
+          <input type="url" name="urlanalytics" ng-model="formData.urlanalytics" class="form-control" placeholder="{{'Tour.PlaceHolder.UrlAnalytics' | translate}}">
+          <div class="err_tip" ng-show="tourForm.urlanalytics.$dirty && tourForm.urlanalytics.$invalid">
+            <span ng-show="tourForm.urlanalytics.$invalid && !tourForm.urlanalytics.$pristine"><span translate="ErrorMsg.UrlInvalid"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.seodescription.$invalid && !tourForm.seodescription.$pristine }">
+          <label><span translate="Tour.FormLabel.SeoDescription"></span></label>
+          <textarea cols="77" name="seodescription" rows="2" wrap="physical" class="form-control" ng-model="formData.seodescription" placeholder="{{'Tour.PlaceHolder.SeoDescription' | translate}}"></textarea>
+          <div class="err_tip" ng-show="tourForm.seodescription.$dirty && tourForm.seodescription.$invalid">
+            <span ng-show="tourForm.seodescription.$invalid && !tourForm.seodescription.$pristine"><span translate="ErrorMsg.DescriptionRequired"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group" ng-class="{ 'has-error' : tourForm.seokeywords.$invalid && !tourForm.seokeywords.$pristine }">
+          <label><span translate="Tour.FormLabel.SeoKeywords"></span></label>
+          <textarea cols="77" name="seokeywords" rows="2" wrap="physical" class="form-control" ng-model="formData.seokeywords" placeholder="{{'Tour.PlaceHolder.SeoKeywords' | translate}}"></textarea>
+          <div class="err_tip" ng-show="tourForm.seokeywords.$dirty && tourForm.seokeywords.$invalid">
+            <span ng-show="tourForm.seokeywords.$invalid && !tourForm.seokeywords.$pristine"><span translate="ErrorMsg.KeywordsRequired"></span></span>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-xs-2 text-left">
+    <div class="onoffswitch">
+        <input type="checkbox" name=" isactive" ng-model="formData.isactive" class="onoffswitch-checkbox" id="isactive" checked>
+        <label class="onoffswitch-label" for="isactive">
+            <span class="onoffswitch-inner onoffswitch-inner-{{preflang}}"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
+  </div>
+  <div class="col-xs-4">
+      <label style="padding-top:10px;" class="control-label" for="isactive">{{'Tour.FormLabel.IsActive' | translate}}</label>
+  </div>
+
+  <div class="col-xs-2">
+    <div class="onoffswitch">
+        <input type="checkbox" name="isfeatured" ng-model="formData.isfeatured" class="onoffswitch-checkbox" id="isfeatured" checked>
+        <label class="onoffswitch-label" for="isfeatured">
+            <span class="onoffswitch-inner onoffswitch-inner-{{preflang}}"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
+  </div>
+  <div class="col-xs-4">
+      <label class="control-label" for="isfeatured">{{'Tour.FormLabel.IsFeatured' | translate}}</label>
+  </div>
+</div>
+<br>
+
+
+<!-- Show a notification when a button is clicked -->
+<div data-ng-if="action==='createTour'">
+  <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+      <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+      {{'General.Notification.Great' | translate}}&nbsp;
+      {{'General.Notification.TourCreatedSuccess' | translate}}
+  </growl-notification>
+</div>
+<div data-ng-if="action==='editTour'">
+  <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+      <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+      {{'General.Notification.Excellent' | translate}}&nbsp;
+      {{'General.Notification.TourUpdatedSuccess' | translate}}
+  </growl-notification>
+</div>
+
+<div class="form-group row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <button
+      type="submit"
+      ng-click="showGrowl = true"
+      class="btn btn-block btn-success"
+      ng-disabled="tourForm.$invalid"
+      ng-class="{'btn-danger': tourForm.$invalid, 'btn-success': !tourForm.$invalid }">{{'global.action.Submit' | translate}}&nbsp;{{formData.name}}
+    </button>
+  </div>
+</div>

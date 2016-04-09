@@ -1,0 +1,47 @@
+
+<div class="container" style="background-image: url('/assets/img/bg-mapa-expotur.png'); position: top;">
+	<div class="row">
+		<div class="col-xs-offset-4 col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+			<p class="text-center"><img style="width: auto;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur-sm.png" /></p>
+		</div>
+	</div>
+	<h4 class="text-center">{{'General.Label.SantaMartaOffice' | translate}}</h4>
+	<div class="container well">
+		<div class="row">
+			<div class ="col-xs-6 text-left">
+				<label class="text-center">{{'General.Label.StreetView' | translate}}</label>
+				<img class="shade img-responsive" src="https://res.cloudinary.com/travelscolombia/image/upload/v1425585814/assets/demo-expotur/img/expotur-street-view-santamarta.jpg" />
+			</div>
+			<div class ="col-xs-6 text-left">
+				<label></span>{{'General.Label.OfficeHours' | translate}}</label>
+
+				<h5><span class="fa fa-star">&nbsp;&nbsp;{{'General.Label.OpenEveryDay' | translate}}</h5>
+
+				<label>{{'General.Label.Location' | translate}}</label>
+				<h5>
+					<span class="fa fa-home">&nbsp;&nbsp;</span>Carrera 3 # 17-27 Local 3 Edificio Rex, <span translate="General.Label.HistoricCenter"></span><br>
+					<span class="fa fa-phone">&nbsp;&nbsp;</span><span style="opacity:.5;">+57 5</span> 420 7739 / cel: 311 418 2706<br />
+				</h5>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 text-left">
+				<p class="text-center">{{'General.Label.ReachUs' | translate}} ({{'General.Label.SantaMartaOffice' | translate}})</p>
+				<h5>
+					<label><span class="fa fa-taxi">&nbsp;&nbsp;</span>{{'General.Label.FromAirport' | translate}}:&nbsp;&nbsp;</label><br />{{'General.PlaceHolder.FromAirport' | translate}}<br />
+					<label><span class="fa fa-bus">&nbsp;&nbsp;</span>{{'General.Label.ByBus' | translate}}:&nbsp;&nbsp;</label><br />{{'General.PlaceHolder.ByBusSantaMarta' | translate}}<br />
+					<label><span class="fa fa-male">&nbsp;&nbsp;</span>{{'General.Label.ByFoot' | translate}}:&nbsp;&nbsp;</label><br />{{'General.PlaceHolder.ByFootSantaMarta' | translate}}<br />
+				</h5>
+			</div>
+		</div>
+	</div>
+
+	<div ng-controller="ModalController" class="row container">
+		<div class="col-xs-6 text-center">
+			<button ng-click="showContactMap()" type="button" class="btn btn-success btn-block" >{{'global.action.ViewMap' | translate}}</button>
+		</div>
+		<div class="col-xs-6 text-center">
+			<button ng-click="closeThisDialog('button')" type="button" class="btn btn-primary btn-block" >{{'global.menu.LeaveMessage' | translate}}</button>
+		</div>
+	</div>
+</div>

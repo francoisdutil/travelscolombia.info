@@ -1,0 +1,175 @@
+<section>
+  <div ng-controller="MarkerController">
+    <div style="background: #b3d1ff; padding: 10px 20px;" class="animated fadeIn shade col-md-4">
+      <h1 style="padding:10px 0; margin:0;">{{'Places.Label.NewPlace' | translate}}</h1>
+      <form name="newPlaceForm" ng-init="initForm()" data-ng-submit="create()" class="form-horizontal" novalidate>
+        <fieldset>
+          <div class="row" style="margin-bottom:20px;">
+            <div class="col-xs-6">
+              <div style="margin-bottom:10px;" class="group">
+                <input ng-model="markers.m1.lat" type="number">
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <div style="margin-bottom:10px;" class="group">
+                <input
+                type="number"
+                ng-model="markers.m1.lng"
+                id="lng">
+              </div>
+            </div>
+          </div>
+          <div style="margin:0;" class="group" ng-class="{ 'has-error' : newPlaceForm.name.$invalid && !newPlaceForm.name.$pristine }">
+            <input
+            class="name"
+            type="text"
+            ng-model="formData.name"
+            ng-change="updateWebPageUrl(formData.name)"
+            id="name"
+            required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label><span class="required" translate="General.Label.Name"></span></label>
+          </div>
+
+          <div style="margin-top:30px; margin-bottom:0;" class="group" ng-class="{ 'has-error' : newPlaceForm.pictureUrl.$invalid && !newPlaceForm.pictureUrl.$pristine }">
+            <input
+            class="description"
+            type="text"
+            ng-model="formData.description"
+            id="description">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label style="color:#999;"><span translate="General.Label.Description"></span></label>
+          </div>
+
+          <div data-ng-controller="CategoriasController">
+            <div style="margin-top:10px;" class="group">
+              <span class="lighten group" translate="Category.Label.Category"></span>
+              <ui-select ng-click="find()" ng-model="categoria.selected" ng-change="updateCategory(categoria.selected.translateId,categoria.selected.color)" theme="bootstrap">
+                <ui-select-match placeholder="{{'Category.Label.SelectCategory' | translate}}">{{$select.selected.translateId}}</ui-select-match>
+                  <ui-select-choices repeat="categoria as categoria in categorias | filter: $select.search | orderBy:'translateId'">
+                    <span translate="Category.Content.Name.{{categoria.translateId | highlight: $select.search}}"></span>
+                    <div class="small"> <span translate="Category.Content.Slogan.{{categoria.translateId | highlight: $select.search}}"></span></div>
+                  </ui-select-choices>
+              </ui-select>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+
+            </div>
+          </div>
+
+          <div style="margin-top:30px; margin-bottom:0;" class="group" ng-class="{ 'has-error' : newPlaceForm.pictureUrl.$invalid && !newPlaceForm.pictureUrl.$pristine }">
+            <input
+            class="pictureUrl"
+            type="text"
+            ng-model="formData.pictureUrl"
+            id="pictureUrl">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label style="color:#999;"><span translate="General.Label.PictureUrl"></span></label>
+          </div>
+
+          <div style="margin-top:30px; margin-bottom:0;" class="group" ng-class="{ 'has-error' : newPlaceForm.url.$invalid && !newPlaceForm.url.$pristine }">
+            <input
+            type="text"
+            ng-model="formData.webPageUrl"
+            id="webPageUrl">
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label style="color:#999;"><span translate="Places.Label.Url"></span></label>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-4">
+              <div style="margin-top:30px; margin-bottom:0;" class="group">
+                <input
+                type="text"
+                ng-model="formData.color"
+                id="color">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label style="color:#999;"><span translate="General.Label.Color"></span></label>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div style="margin-top:30px; margin-bottom:0;" class="group">
+                <input
+                type="text"
+                ng-model="formData.icon"
+                placeHolder="{{'General.Label.Icon' | translate}}"
+                id="icon">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label style="color:#999;"><span translate="General.Label.Icon"></span></label>
+              </div>
+            </div>
+            <div class="col-xs-4">
+              <div style="margin-top:30px; margin-bottom:0;" class="group">
+                <input
+                type="number"
+                placeHolder= 13
+                min= 8
+                max= 16
+                ng-model="formData.zoom"
+                id="zoom">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label style="color:#999;">Zoom</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row container">
+            <div class="col-xs-12 text-center">
+              <button
+              ng-click="showGrowl = true"
+              type="submit"
+              ng-disabled="newPlaceForm.$invalid"
+              class="btn btn-lg btn-block"
+              ng-class="{'btn-danger': newPlaceForm.$invalid, 'btn-success': !newPlaceForm.$invalid }">
+              <span translate="global.action.Create"></span> {{formData.message}}
+              </button>
+            </div>
+          </div>
+
+          <div data-ng-if="error" class="text-center text-danger">
+            <h5 class="text-danger"><strong>{{error | translate}}</strong></h5>
+            <growl-notification class="fading btn-danger" ng-if="showGrowl">
+              <i class="big warning glyphicon glyphicon-warning-sign"></i>&nbsp;&nbsp;&nbsp;
+              {{'General.Notification.Attention' | translate}} <span translate="{{error}}"></span>
+            </growl-notification>
+          </div>
+
+          <div data-ng-if="authentication.user" ng-class="closeThisDialog('button')">
+            <growl-notification class="fading" ng-if="showGrowl">
+              <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+              {{'General.Notification.Excellent' | translate}} {{authentication.user.firstName}}
+            </growl-notification>
+          </div>
+
+
+        </fieldset>
+      </form>
+      <nav style="margin-top:15px; color: white; height: 80px;" class="sepia text-center">
+        <md-button>{{'global.action.Like' | translate}}</md-button>
+        <md-button>{{'global.action.Review' | translate}}</md-button>
+        <md-button>{{'global.action.Share' | translate}}</md-button><br>
+        <span style="color: white; font-size: 1.6em;" share-square="false" share-links="Facebook, Twitter, Google-Plus, Pin" share-title="{{'Places.Label.Place' | translate}}"></span>
+
+      </nav>
+    </div>
+
+    <div style="height:100%; top:0; margin:0; padding:0; position:absolute; right:0; background:#B3D1FF" class="col-md-8">
+      <leaflet
+        defaults="defaults"
+        center="center"
+        markers="markers"
+        event-broadcast="events"
+        width="100%"
+        height="93%">
+      </leaflet>
+      <div class="info box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zoom: {{center.zoom}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Marker: [ lat: {{ markers.m1.lat | number:4 }}, lng: {{ markers.m1.lng | number:4 }} ]</div>
+    </div>
+  </div>
+</section>

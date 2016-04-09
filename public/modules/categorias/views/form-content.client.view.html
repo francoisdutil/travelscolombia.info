@@ -1,0 +1,60 @@
+
+<div class="container">
+  <div>
+    <div style="padding-top:20px;" class="row">
+      <div class="col-xs-5 col-xs-offset-1">
+        <div class="group" ng-class="{ 'has-error' : categoryForm.translateId.$invalid && !categoryForm.translateId.$pristine }">
+          <input
+          type="text"
+          ng-model="formData.translateId"
+          id="translateId"
+          required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label><span translate="General.Label.TranslateId"></span></label>
+        </div>
+      </div>
+      <div class="col-xs-2 text-left">
+        <div class="onoffswitch">
+          <input type="checkbox" name="isactive" ng-model="formData.isactive" class="onoffswitch-checkbox" id="isactive" checked>
+          <label class="onoffswitch-label" for="isactive">
+            <span class="onoffswitch-inner onoffswitch-inner-{{preflang}}"></span>
+            <span class="onoffswitch-switch"></span>
+          </label>
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <label style="padding-top:5px;" class="control-label" for="isactive">{{'Category.Label.IsActive' | translate}}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div  ng-if="formData.translateId" class="well col-xs-10 col-xs-offset-1">
+        <div class="row text-center">
+          <div style="border-bottom:solid thin #999;" class="col-xs-12 col-md-6">
+            <label><span translate="Category.Label.Name"></span></label><br>
+            <p><span translate="Category.Content.Name.{{formData.translateId}}"></span></p>
+          </div>
+          <div style="border-bottom:solid thin #999;" class="col-xs-12 col-md-6">
+            <label><span translate="Category.Label.Slogan"></span></label><br>
+            <p><span translate="Category.Content.Slogan.{{formData.translateId}}"></span></p>
+          </div>
+          <div style="border-bottom:solid thin #999;" class="col-xs-12">
+            <label><span translate="Category.Label.Description"></span></label><br>
+            <p><span translate="Category.Content.Description.{{formData.translateId}}"></span></p>
+          </div>
+          <div class="col-xs-12">
+            <label><span translate="Category.Label.Summary"></span></label><br>
+            <p><span translate="Category.Content.Summary.{{formData.translateId}}"></span></p>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref-active="active" ui-sref="{{action}}.info" class="btn btn-block btn-info" ng-disabled="categoryForm.$invalid" ng-class="{'btn-danger': categoryForm.$invalid, 'btn-success': !categoryForm.$invalid }">
+        {{'Tour.FormLabel.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+    </div>
+  </div>
+</div>

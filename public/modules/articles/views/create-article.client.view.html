@@ -1,0 +1,42 @@
+<section class="animated fadeIn" data-ng-controller="ArticlesController">
+	<div data-ng-hide="authentication.user" class="row text-center container">
+		<div class="col-xs-6 col-xs-offset-3">
+			<h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+			<p class="lead text-center">{{'ErrorMsg.401-RegisteredUserCanPost' | translate}}</a></p><br>
+			<p class="text-center">
+				<a class="btn btn-success btn-lg" ng-controller="ModalController" ng-click="modalLogin()"><span translate="global.menu.Login"></span></a>
+				<a ng-click="intro = !intro" ng-href="/#!/" class="btn btn-warning btn-lg">{{'global.action.GoBackHome' | translate}}</a>
+			</p>
+		</div>
+	</div>
+
+	<div data-ng-show="authentication.user" class="row text-center container">
+		<div class="page-header">
+			<h1>New Article</h1>
+		</div>
+		<div class="col-md-12">
+			<form name="articleForm" class="form-horizontal" data-ng-submit="create()" novalidate>
+				<fieldset>
+					<div class="form-group" ng-class="{ 'has-error': articleForm.title.$dirty && articleForm.title.$invalid }">
+						<label class="control-label" for="title">Title</label>
+						<div class="controls">
+							<input name="title" type="text" data-ng-model="title" id="title" class="form-control" placeholder="Title" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="content">Content</label>
+						<div class="controls">
+							<textarea name="content" data-ng-model="content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<input type="submit" class="btn btn-default">
+					</div>
+					<div data-ng-show="error" class="text-danger">
+						<strong data-ng-bind="error"></strong>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,57 @@
+
+<div>
+  <div class="form-group" ng-class="{ 'has-error': bookingForm.tour.$invalid }" style="border-radius:5px; background-image:url({{eventResult.item.pictureurl}}); background-repeat:no-repeat; background-size:100% auto; padding-bottom:20px;">
+    <div data-ng-controller="ToursController" style="padding-top:20px;" class="row container">
+      <div class="col-xs-12 col-md-6">
+        <div style="margin-top:10px;" class="group">
+          <span style="font-size:1.4em" class="required" translate="Bookings.Label.YourTour"></span>
+          <ui-select name="tour" ng-required="true" on-select="someFunction($item, $model)" ng-click="find()" ng-model="tour.selected" ng-change="updateTour(tour.selected)" ng-disabled="disabled" theme="bootstrap">
+            <ui-select-match style="font-size:1.1em;" placeholder="{{'Bookings.PlaceHolder.SelectTour' | translate}}">{{$select.selected.tourtitle}}</ui-select-match>
+            <ui-select-choices style="-webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.2); box-shadow: 0 0 20px 0 rgba(0,0,0,.2);" repeat="tour in tours | filter: $select.search  | filter:{language:preflang} | filter:{isactive:true} | orderBy:'categorytour'">
+              <div ng-bind-html="tour.tourtitle | highlight: $select.search"></div>
+              <div class="small" style="opacity:.6;" ng-bind-html="tour.categorytour + ' - ' + tour.duration + ' d' | highlight: $select.search"></div>
+            </ui-select-choices>
+          </ui-select>
+        </div>
+      </div>
+      <div ng-if="eventResult.item.tourtitle" style="background:{{eventResult.item.colorbg}}" class="well col-xs-12 col-md-6">
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <label style="opacity:.3;color:{{eventResult.item.colorfont}};"><span class translate="Tour.FormLabel.Category"></span></label><br><span style="font-size:1.6em; color:{{eventResult.item.colorfont}};" translate="Category.Content.Name.{{eventResult.item.categorytour}}"></span><br><br>
+            <label style="opacity:.3;color:{{eventResult.item.colorfont}};"><span class translate="Tour.FormLabel.DifficultyLevel"></span></label><br><span style="color:{{eventResult.item.colorfont}};font-size:1em;" translate="Tour.FormLabel.{{eventResult.item.difficultylevel}}"></span><br><br>
+            <label style="opacity:.3;color:{{eventResult.item.colorfont}};"><span class translate="Tour.FormLabel.SellingPrice"></span></label><br><span style="color:{{eventResult.item.colorfont}};font-size:1.4em;">{{eventResult.item.sellingprice | currency:"COP$"}}</span>
+
+            <br><a class="text-center" ng-controller="BookingsController" style="text-decoration:none;" data-ng-click="showTourModal()">
+              <br><span style="font-size:1.8em" class="text-center glyphicon glyphicon-info-sign"></span>
+              <br>{{'General.Label.AddInfo' | translate}}</a>
+            </span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <a data-ng-controller="ModalController" data-ng-click="openTourView()">
+
+            </a>
+          </div>
+        </div>
+      </div>
+      <div ng-if="!eventResult.item.tourtitle" style="background:#ebebeb" class="well col-xs-12 col-md-6">
+        <div class="row">
+          <div class="col-xs-12 text-center">
+            <br><span class="text-info" style="font-size:1.6em;" translate="global.exploreColombia"></span><br>
+            <br><span class="text-success" style="font-size:1.6em;" translate="global.slogan"></span><br>
+            <br><span class="text-danger" style="font-size:1.6em;" translate="Bookings.Label.Step-2-msg-success"></span><br>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <a ui-sref-active="active" ui-sref="{{action}}.step2" class="btn btn-lg btn-block" ng-disabled="bookingForm.$invalid" ng-class="{'btn-danger': bookingForm.$invalid, 'btn-success': !bookingForm.$invalid }">
+          {{'Bookings.Label.FormName.Step2' | translate}}&nbsp;<span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,209 @@
+
+<div id="home" ng-hide="fakeIntro" class="animated fadeIn" data-ng-controller="HomeController">
+  <div class="bgWrap">
+    <div class="bgPlaceholder" style="position: fixed; z-index: 0; background: none;">
+      <div class="backstretch" style="left: 0px; top: 0px; overflow: hidden; margin: 0px; padding: 0px; height: 100%; width: 100%; z-index: -999998; position: absolute;">
+        <img class="bgimg-responsive" src="https://res.cloudinary.com/travelscolombia/image/upload/v1425580301/assets/images/colombia/parqueSierraNevada/5.jpg" style="position: absolute; margin: 0px; padding: 0px; border: none; max-height: none; max-width: none; z-index: -999999; left: 0px; top: 50px">
+      </div>
+    </div>
+    <!-- Section 1 - Top home -->
+    <section id="section-1" class="section1" style="position: relative; data-spy="scroll" data-target=".sections-index" padding-top: 50px; height: 100%;">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <div class="sections-index">
+            <a ng-click="showPanel = !showPanel">
+              <ul class="nav navbar-nav navbar-left" style="padding-top: 70px; margin-left: 30px;">
+                  <li><i class="fa fa-navicon fa-3x pull-left"></i></li>
+              </ul>
+            </a>
+            <nav>
+              <ul du-spy-context class="nav navbar-nav navbar-right circleSideBtns" style="padding-top: 10px; padding-bottom: 10px; margin-right: 20px;">
+                <li style="padding-top: 30px;">
+                  <a href="#section-1" du-smooth-scroll du-scrollspy><i class="fa fa-home fa-3x"></i>
+                    <div class="circleSideBtnsLive"></div>
+                  </a>
+                </li></br></br>
+                <li style="padding-top: 30px;">
+                  <a href="#section-2" du-smooth-scroll du-scrollspy><i class="fa fa-photo fa-3x"></i>
+                    <div class="circleSideBtnsLive"></div>
+                  </a>
+                </li></br></br>
+                <li style="padding-top: 30px;">
+                  <a href="#section-3" du-smooth-scroll du-scrollspy><i class="fa fa-map-marker fa-4x"></i>
+                    <div class="circleSideBtnsLive"></div>
+                  </a>
+                </li></br></br>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="text-center col-xs-offset-4 col-xs-4 col-xs-offset-4">
+  				<img style="width: 100%; height: auto;" class="text-center" alt="&nbsp;Expotur Logo Grande" class="text-center" src="/assets/img/logo-expotur.png" />
+  			</div>
+      </div>
+      <div class="row">
+        <div class="text-center col-xs-12">
+          <h2 class="home slogan"><span translate="global.slogan"></span></h2>
+        </div>
+      </div>
+      <!-- Screen -->
+      <div class="row hidden-xs" style="margin-top: 5px;">
+        <div data-ng-controller="ToursController" class="col-sm-offset-4 col-sm-4 col-sm-offset-4 text-center">
+          <div class="form-group">
+            <ui-select style="margin-bottom: 20px" ng-click="find()" ng-model="tour.selected" ng-change="updateTour(tour.selected.tourtitle)" ng-disabled="false" theme="bootstrap">
+              <ui-select-match placeholder="{{'Bookings.PlaceHolder.SelectTour' | translate}}">{{$select.selected.tourtitle}}</ui-select-match>
+              <ui-select-choices style="-webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.2); box-shadow: 0 0 20px 0 rgba(0,0,0,.2);" repeat="tour in tours | filter: $select.search  | filter:{language:preflang} | orderBy:'categorytour'">
+                <a ng-click="findTour(tour._id); showTour()">
+                  <div ng-bind-html="tour.tourtitle | highlight: $select.search"></div>
+                  <div class="small" style="opacity:.6;" ng-bind-html="tour.categorytour + ' - ' + tour.duration + ' d' | highlight: $select.search"></div>
+                </a>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Mpbile -->
+      <div class="visible-xs row" style="margin-top: 5px;">
+        <div data-ng-controller="ToursController" class="col-xs-offset-2 col-xs-8 col-xs-offset-2 text-center">
+          <div class="form-group">
+            <ui-select style="margin-bottom: 20px" ng-click="find()" ng-model="tour.selected" ng-change="updateTour(tour.selected.tourtitle)" ng-disabled="false" theme="bootstrap">
+              <ui-select-match placeholder="{{'Bookings.PlaceHolder.SelectTour' | translate}}">{{$select.selected.tourtitle}}</ui-select-match>
+              <ui-select-choices style="-webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.2); box-shadow: 0 0 20px 0 rgba(0,0,0,.2);" repeat="tour in tours | filter: $select.search  | filter:{language:preflang} | orderBy:'categorytour'">
+                <a ng-click="findTour(tour._id); showTour()">
+                  <div ng-bind-html="tour.tourtitle | highlight: $select.search"></div>
+                  <div class="small" style="opacity:.6;" ng-bind-html="tour.categorytour + ' - ' + tour.duration + ' d' | highlight: $select.search"></div>
+                </a>
+              </ui-select-choices>
+            </ui-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden-xs bottominfo row">
+        <div class="col-sm-12 hidden-xs photoinfo">
+          <div style="opacity: .6" class="pull-left infotext">
+            <div>
+              <!--todo put > in this-->
+              <small class="white">
+                <span translate>Tour.FormLabel.ThisPhoto</span> :
+                <span translate>Category.Content.Name.parqueSierraNevada</span>
+              </small>
+            </div>
+            <div>
+              <small class="white">
+                <span translate>Tour.FormLabel.PictureCredits</span>
+                <a style="color: white" href="http://www.pinterest.com/Expotur-eco/" target="_blank" class="white-link">
+                  Pinterest
+                </a>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden-xs">
+        <span class="sponsor pull-right">
+          <small>{{'global.doneAction.RecommendedBy' | translate}}</small>
+          <img style="opacity: .3; right: 205px; width: 150px;" src="/assets/img/lonelyPlanet_logo.svg">
+          <img style="opacity: .3; right: 55px; height: 50px;" src="/assets/img/logo-tripadvisor.png">
+        </span>
+      </div>
+
+      <span href="#section-2" du-smooth-scroll du-scrollspy><i class="fa fa-arrow-down fa-2x mtcicon-button mtcicon arrowDown"></i></span>
+    </section>
+
+    <!-- Section 2 - Show featured Tours -->
+    <section id="section-2" class="section2" style="height: 100%;">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+
+          <flex-slider
+          flex-slide="s in slideshow.slides"
+          animation="fade"
+          start="slideshow.start($slider)"
+          before="slideshow.before()"
+          after="slideshow.after()"
+          end="slideshow.end()">
+          <li>
+            <img class="img-responsive" ng-src="{{s}}">
+          </li>
+        </flex-slider>
+
+        <div class="hidden-xs" style="opacity: .3;">
+          <p>Callbacks:</p>
+          <ul>
+            <li ng-repeat="l in slideshow.log track by l.id">{{l.message}}</li>
+          </ul>
+        </div>
+        </div>
+        <span class="bothIcons">
+          <span href="#section-3" du-smooth-scroll du-scrollspy><i class="fa fa-arrow-down fa-2x mtcicon-button mtcicon arrowDown"></i></span>
+          <span href="#section-1" du-smooth-scroll du-scrollspy><i class="fa fa-arrow-up fa-2x mtcicon-button mtcicon arrowDown"></i></span>
+          <div class="clearfix"></div>
+        </span>
+      </div>
+    </section>
+
+    <!-- Section 3 - Map view -->
+    <section ng-controller="MapController" id="section-3" class="section3">
+
+      <leaflet
+        id="mymap"
+        layers="layers"
+        defaults="defaults"
+        center="center"
+        height="94%"
+        width="100%">
+      </leaflet>
+
+
+      <span class="bothIcons">
+        <span href="#section-1" du-smooth-scroll du-scrollspy><i class="fa fa-home fa-2x mtcicon-button mtcicon arrowUp"></i></span>
+        <div class="clearfix"></div>
+      </span>
+    </section>
+
+    <div ng-show="showPanel" class="userNavPanel scale-fade">
+      <div class="panelArrow"></div>
+      <div class="clearfix"></div>
+      <ul class="list-group">
+        <li class="list-group-item about" style="border-top: none;">
+          <a href="/#!/about" ng-click="$anchorScroll()"><span translate>global.menu.About</span> <span translate>global.title</span></a>
+        </li>
+        <li class="list-group-item guides">
+          <a href="/#!/guides"><span translate>global.menu.OurGuides</span></a>
+        </li>
+        <li class="list-group-item contact">
+          <a href="/#!/contact"><span translate>global.menu.GetInTouch</span></a>
+        </li>
+        <li class="list-group-item facebook">
+          <a ng-click="showPanel = !showPanel" href="https://www.facebook.com/CiudadPerdidaTheLostCityTrek" target="_blank"><span translate>global.action.FindUsOn</span> Facebook</a>
+        </li>
+        <li class="list-group-item twitter">
+          <a ng-click="showPanel = !showPanel" href="https://twitter.com/LostCityTrek" target="_blank"><span translate>global.action.FindUsOn</span> Twitter</a>
+        </li>
+        <li class="list-group-item googlePlus">
+          <a ng-click="showPanel = !showPanel" href="https://plus.google.com/112569605517894382373/posts" target="_blank"><span translate>global.action.FindUsOn</span> Google +</a>
+        </li>
+        <li class="list-group-item legal">
+          <a href="/#!/terms-conditions"><span translate>global.terms-conditions.title</span></a>
+        </li>
+        <li class="list-group-item data" style="border-bottom: none;">
+          <a href="/#!/privacy-policy"><span translate>global.privacy-policy.title</span></a>
+        </li>
+      </ul>
+    </div>
+    <div ng-controller="TodoCtrl" class="hidden more-demos">
+      <span>{{'Milestone.Todo.List' | translate}} <br> {{'Milestone.Todo.Todos' | translate}}</span>
+      <ul id="todo-list">
+        <li ng-repeat="todo in todos | filter:statusFilter | orderBy:'completed' track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}"><a class="iteration-{{$index +1}} white" style="font-weight:400; color:#fff;" href="#">{{todo.title}}&nbsp;<input class="pull-right toggle" type="checkbox" ng-model="todo.completed" ng-change="todoCompleted(todo)"></a></li>
+        <li><a href="/#!/todos/">{{'global.action.Show' | translate}}&nbsp;{{'Milestone.Todo.All' | translate}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

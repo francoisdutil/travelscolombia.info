@@ -1,0 +1,45 @@
+<div class="animated zoomIn row">
+	<div class="col-sm-8 col-sm-offset-2 text-center">
+		<section id="todoapp" ng-controller="TodoCtrl">
+			<header id="header">
+				<h1 style="color:#ebebeb;">todos</h1>
+				<form id="todo-form" ng-submit="addTodo()">
+					<input style="background:#c9c9c9; height:50px; margin-bottom:10px;" id="new-todo" placeholder="{{'Milestone.Todo.WhatToDo' | translate}}" ng-model="newTodo" autofocus>
+				</form>
+			</header>
+			<section id="main" ng-show="todos.length" ng-cloak>
+				<input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+				<label for="toggle-all">{{'Milestone.Todo.WhatToDo' | translate}}</label>
+				<ul id="todo-list">
+					<li class="text-left" ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+						<div class="view">
+							<input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="todoCompleted(todo)">
+							<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+							<button class="destroy" ng-click="removeTodo(todo)"></button>
+						</div>
+						<form ng-submit="doneEditing(todo)">
+							<input class="edit" ng-trim="false" ng-model="todo.title" ng-blur="doneEditing(todo)" todo-escape="revertEditing(todo)" todo-focus="todo == editedTodo">
+						</form>
+					</li>
+				</ul>
+			</section>
+			<footer class="container" id="footer" ng-show="todos.length" ng-cloak>
+				<span id="todo-count"><strong>{{remainingCount}}</strong>
+					<ng-pluralize count="remainingCount" when="{ one: 'todo', other: 'todos' }"></ng-pluralize>
+				</span>
+				<ul id="filters">
+					<li>
+						<a ng-class="{selected: location.path() == '/todos/'} " href="/#!/todos/">{{'Milestone.Todo.All' | translate}}</a>
+					</li>
+					<li>
+						<a ng-class="{selected: location.path() == '/todos/active'}" href="/#!/todos/active">{{'Milestone.Todo.Active' | translate}}</a>
+					</li>
+					<li>
+						<a ng-class="{selected: location.path() == '/todos/completed'}" href="/#!/todos/completed">{{'Milestone.Todo.Completed' | translate}}</a>
+					</li>
+				</ul>
+				<button id="clear-completed" class="pull-right" ng-click="clearCompletedTodos()" ng-show="remainingCount < todos.length">{{'Milestone.Todo.ClearCompleted' | translate}}  ({{todos.length - remainingCount}})</button>
+			</footer>
+		</section>
+	</div>
+</div>

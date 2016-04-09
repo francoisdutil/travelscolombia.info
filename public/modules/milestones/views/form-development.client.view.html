@@ -1,0 +1,132 @@
+
+<div class="container">
+  <div>
+    <div style="padding-top:20px;" class="row">
+      <div class="col-xs-4">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.percentCompleted.$invalid && !milestoneForm.percentCompleted.$pristine }">
+          <input
+          type="number"
+          ng-model="formData.percentCompleted"
+          id="percentCompleted"
+          required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label><span translate="Milestone.Label.PercentCompleted"></span></label>
+        </div>
+      </div>
+
+      <div class="col-xs-4">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.overallStatus.$invalid && !milestoneForm.overallStatus.$pristine }">
+          <input
+          type="text"
+          ng-model="formData.overallStatus"
+          id="overallStatus"
+          required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label><span translate="Milestone.Label.OverallStatus"></span></label>
+        </div>
+      </div>
+
+      <div class="col-xs-2">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.estimatedDaysWork.$invalid && !milestoneForm.estimatedDaysWork.$pristine }">
+          <input
+          type="number"
+          ng-model="formData.estimatedDaysWork"
+          id="estimatedDaysWork"
+          required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label><span translate="Milestone.Label.EstimatedDaysWork"></span></label>
+        </div>
+      </div>
+
+      <div class="col-xs-2">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.devDiffLevelFactor.$invalid && !milestoneForm.devDiffLevelFactor.$pristine }">
+          <input
+          type="number"
+          ng-model="formData.devDiffLevelFactor"
+          id="devDiffLevelFactor"
+          required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label><span translate="Milestone.Label.DifficultyLevelFactor"></span></label>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-top:20px;" class="row">
+      <div class="col-xs-4">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.startDate.$invalid && !milestoneForm.startDate.$pristine }">
+          <input
+          type="date"
+          ng-model="formData.startDate"
+          id="startDate"
+          required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label><span translate="Milestone.Label.StartDate"></span></label>
+        </div>
+      </div>
+
+      <div class="col-xs-4">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.approvedDate.$invalid && !milestoneForm.approvedDate.$pristine }">
+          <input
+          type="date"
+          ng-model="formData.approvedDate"
+          id="approvedDate"
+          required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label><span translate="Milestone.Label.ApprovedDate"></span></label>
+        </div>
+      </div>
+
+      <div class="col-xs-4">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.publishDate.$invalid && !milestoneForm.publishDate.$pristine }">
+          <input
+          type="date"
+          ng-model="formData.publishDate"
+          id="publishDate"
+          required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label><span translate="Milestone.Label.PublishDate"></span></label>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding-top:20px;" class="row">
+      <div class="col-xs-6">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.internalNote.$invalid && !milestoneForm.internalNote.$pristine }">
+          <input
+          type="text"
+          ng-model="formData.internalNote"
+          id="internalNote">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label style="color:#999;"><span translate="Milestone.Label.InternalNote"></span></label>
+        </div>
+      </div>
+
+      <div class="col-xs-6">
+        <div class="group" ng-class="{ 'has-error' : milestoneForm.comment.$invalid && !milestoneForm.comment.$pristine }">
+          <input
+          type="text"
+          ng-model="formData.comment"
+          id="comment">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label style="color:#999;"><span translate="Milestone.Label.Comment"></span></label>
+        </div>
+      </div>
+    </div>
+
+  <div class="form-group row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref-active="active" ui-sref="{{action}}.billing" class="btn btn-block btn-info" ng-disabled="milestoneForm.$invalid" ng-class="{'btn-danger': milestoneForm.$invalid, 'btn-success': !milestoneForm.$invalid }">
+        {{'General.Label.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+    </div>
+  </div>
+</div>

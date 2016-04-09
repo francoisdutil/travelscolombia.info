@@ -1,0 +1,200 @@
+<section class="container animated fadeInRight row" data-ng-controller="SettingsController" style="background-image: url('https://res.cloudinary.com/travelscolombia/image/upload/v1425585831/assets/demo-expotur/img/bg-beige.jpg'); position: top;">
+	<div>
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-xs-offset-4 col-xs-12 col-md-4 col-xs-offset-4 text-center" style="margin-top:20px">
+	        <p class="text-center"><img style="width: auto;" src="/assets/img/logo-expotur-sm.png" /></p>
+	      </div>
+	    </div>
+	    <h3 class="primary text-center">
+	      <span translate="form.profile.title"></span>
+	      <br>
+	      <gravatar-image class="shadow img-circle" style="margin: 10px;" email="{{user.email}}" size="50"></gravatar-image>
+	    </h3>
+	    <form name="EditProfileForm" data-ng-submit="updateUserProfile(true)" class="signin form-horizontal" autocomplete="off">
+	      <fieldset>
+	        <div class="row">
+	          <div class="col-xs-12 col-md-4">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.firstName.$invalid && !EditProfileForm.firstName.$pristine }">
+	                <input
+	                type="text"
+	                ng-model="user.firstName"
+	                id="firstName"
+	              required>
+	              <span class="highlight"></span>
+	              <span class="bar"></span>
+	              <label><span translate="General.Label.Signup.FirstName"></span></label>
+	            </div>
+	          </div>
+	          <div class="col-xs-12 col-md-4">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.lastName.$invalid && !EditProfileForm.lastName.$pristine }">
+	                <input
+	                type="text"
+	                ng-model="user.lastName"
+	                id="lastName"
+	              required>
+	              <span class="highlight"></span>
+	              <span class="bar"></span>
+	              <label><span translate="General.Label.Signup.LastName"></span></label>
+	            </div>
+	          </div>
+	          <div class="col-xs-12 col-md-4">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.username.$invalid && !EditProfileForm.username.$pristine }">
+	                <input
+	                type="text"
+	                ng-model="user.username"
+	                id="username"
+	              required>
+	              <span class="highlight"></span>
+	              <span class="bar"></span>
+	              <label><span translate="General.Label.Signup.Username"></span></label>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <div class="col-xs-12 col-md-4">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.documentId.$invalid && !EditProfileForm.documentId.$pristine }">
+	                <input
+	                type="text"
+	                ng-model="user.documentId"
+	                id="documentId"
+	              required>
+	              <span class="highlight"></span>
+	              <span class="bar"></span>
+	              <label><span translate="General.Label.Signup.DocumentId"></span></label>
+	            </div>
+	          </div>
+	          <div class="col-xs-12 col-md-4">
+	            <div ng-if="user.nationality">
+								<div class="group" ng-class="{ 'has-error' : EditProfileForm.nationality.$invalid && !EditProfileForm.nationality.$pristine }">
+		                <input
+		                type="text"
+		                ng-model="user.nationality"
+		                id="nationality"
+		              required>
+		              <span class="highlight"></span>
+		              <span class="bar"></span>
+		              <label><span translate="General.Label.Signup.Nationality"></span></label>
+		            </div>
+							</div>
+							<div style="top:-20px;" ng-if="!user.nationality" data-ng-controller="SettingsController" class="group" ng-class="{ 'has-error' : EditProfileForm.nationality.$invalid && !EditProfileForm.nationality.$pristine }">
+								<span class="required" style="padding-left:10px;">{{'General.Label.Signup.Nationality' | translate}}</span>
+								<ui-select ng-model="user.selected" theme="bootstrap" ng-disabled="disabled" required>
+	                <ui-select-match placeholder="{{'General.Label.Signup.Nationality' | translate}}"> {{$select.selected.name}}</ui-select-match>
+	                <ui-select-choices repeat="country in countries | filter: $select.search">
+	                  <span ng-bind-html="country.name | highlight: $select.search"></span>
+	                  <small ng-bind-html="country.code | highlight: $select.search"></small>
+	                </ui-select-choices>
+	              </ui-select>
+	              <span class="highlight"></span>
+	            </div>
+	          </div>
+	          <div class="col-xs-12 col-md-4" data-ng-controller="LanguageController">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.prefLang.$invalid && !EditProfileForm.prefLang.$pristine }">
+	              <select name="prefLang" class="group" ng-model="user.prefLang" ng-change="changeLanguage(user.prefLang)" required>
+	                <option value=""></option>
+	                <option value="en">{{'global.language.en' | translate}}</option>
+	                <option value="es">{{'global.language.es' | translate}}</option>
+	                <option value="fr">{{'global.language.fr' | translate}}</option>
+	                <option value="de">{{'global.language.de' | translate}}</option>
+	              </select>
+	              <span class="highlight"></span>
+	              <label><span translate="General.Label.Signup.PrefLang"></span></label>
+
+	            </div>
+	          </div>
+	        </div>
+
+	        <div class="row">
+	          <div class="col-xs-6">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.email.$invalid && !EditProfileForm.email.$pristine }">
+	                <input
+	                type="email"
+	                ng-model="user.email"
+	                id="email"
+	              required>
+	              <span class="highlight"></span>
+	              <span class="bar"></span>
+	              <label><span translate="General.Label.Signup.Email"></span></label>
+	            </div>
+	          </div>
+
+	          <div class="col-xs-6">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.password.$invalid && !EditProfileForm.password.$pristine }">
+	                <input
+	                type="password"
+	                ng-model="user.password"
+	                id="password"
+	                required>
+	              <span class="highlight"></span>
+	              <span class="bar"></span>
+	              <label><span translate="General.Label.Signup.Password"></span></label>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <div class="col-xs-12 col-md-6">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.contactPersonName.$invalid && !EditProfileForm.contactPersonName.$pristine }">
+	              <input
+	              type="text"
+	              ng-model="user.personcontactname"
+	              id="contactPersonName"
+	              required>
+	              <span class="highlight"></span>
+	              <span class="bar"></span>
+	              <label><span translate="General.Label.Signup.PersonContactName"></span></label>
+	            </div>
+	          </div>
+	          <div class="col-xs-12 col-md-6">
+	            <div class="group" ng-class="{ 'has-error' : EditProfileForm.personContactPhone.$invalid && !EditProfileForm.personContactPhone.$pristine }">
+	              <input
+	              type="text"
+	              ng-model="user.personcontactphone"
+	              id="personContactPhone"
+	              required>
+	              <span class="highlight"></span>
+	              <span class="bar"></span>
+	              <label><span translate="General.Label.Signup.PersonContactPhone"></span></label>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="row container ngdialog-buttons">
+	          <div class="col-xs-6 text-center">
+	            <a
+	              type="button"
+								class="btn btn-info btn-block"
+	              ng-href="/#!/"
+	              class="ngdialog-button-primary btn btn-info btn-block">
+	                <span translate="global.action.GoBackHome"></span>
+	            </a>
+	          </div>
+
+	          <div class="col-xs-6 text-center">
+	            <button
+	              ng-click="closeThisDialog('button'); showGrowl = true"
+	              type="submit" class="btn btn-success btn-block"
+	              ng-disabled="EditProfileForm.$invalid"
+	              ng-class="{'btn-danger': EditProfileForm.$invalid, 'btn-success': !EditProfileForm.$invalid }">
+	              {{'global.action.Update' | translate}}
+	            </button>
+	          </div>
+	        </div>
+	        <div data-ng-if="success" ng-class="closeThisDialog('button')">
+	          <growl-notification class="fading ns-effect-scale" ng-if="showGrowl">
+	            <i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+	            {{'General.Notification.WellDone' | translate}} {{'form.profile.success' | translate}}
+	          </growl-notification>
+	        </div>
+	        <div data-ng-if="error" class="text-center text-danger">
+	          <span translate="{{error}}"></span>
+	          <growl-notification class="fading btn-danger" ng-if="showGrowl">
+	            <i class="big danger glyphicon glyphicon-warning-sign"></i>&nbsp;&nbsp;&nbsp;
+	            {{'General.Notification.Oops' | translate}} <span translate="{{error}}"></span>
+	          </growl-notification>
+	        </div>
+	      </fieldset>
+	    </form>
+	  </div>
+	</div>
+
+</section>

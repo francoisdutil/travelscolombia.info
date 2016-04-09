@@ -1,0 +1,114 @@
+
+#contact {
+	background-color: #1e1f3c;
+	background-image: url('https://res.cloudinary.com/travelscolombia/image/upload/v1425593847/assets/demo-expotur/img/bg-mapa-expotur.png');
+	color: #ebebeb;
+	padding-top: 50px;
+
+}
+#contact h1 {
+		color: #34B5E4;
+    font-size: 1.8em;
+}
+#contact h2 {
+    color: #569490;
+    font-size: 1em;
+}
+
+
+#contact .line-row .hr {
+	background-color: #1e1f3c;
+	color: #4e4e4e;
+}
+
+#contact a {
+	color: inherit;
+	outline: none;
+	text-decoration: none;
+}
+
+#contact label {
+  color: #8F865C;
+}
+
+
+#contact label.required{
+  color: #C12E2A;
+}
+
+
+#map-modal .angular-google-map-container {
+
+  height: 300px;
+}
+
+#map-street-view .angular-google-map-container {
+
+	height: 150px;
+}
+
+.with-hover-text{
+		margin-bottom: 2em;
+		margin-top: 1em;
+	}
+
+.title-row {
+	font-size: 45px;
+	padding-bottom: 10px;
+}
+
+
+.line-row .hr {
+	background-color: #F1E7DA;
+	height: 5px;
+	margin: 0 auto;
+	width: 33%;
+}
+
+.subtitle-row {
+	font-size: 35px;
+	padding-bottom: 40px;
+	padding-top: 20px;
+}
+
+
+#contact-row-4 {
+	padding-top: 125px;
+}
+
+#contact-row-4 .col-12 {
+	height: 175px;
+	overflow: hidden;
+	padding-top: 20px;
+	transition: all ease-in .5s;
+}
+
+#contact-row-4 img {
+	display: block;
+	margin: 0 auto;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+#contact-row-4 .col-12:hover {
+	height: 175px;
+	padding-top: 0;
+}
+
+#contact-row-4 .col-12 .hover-text {
+	display: none;
+	font-size: 20px;
+}
+
+.ng-pageslide {
+  background: #eee;
+  margin-top: 65px;
+}
+
+.angular-google-map-marker {
+	border-style: none;
+	border-color: transparent;
+	border:none;
+	color: white;
+	background: transparent;
+}

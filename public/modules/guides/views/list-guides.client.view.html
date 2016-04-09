@@ -1,0 +1,109 @@
+<section id="guides" class="animated fadeIn" data-ng-controller="GuidesController" data-ng-init="find()">
+  <div class="row text-center">
+    <div class="col-xs-12 text-center">
+      <ul style="background-size: auto 100%; background-repeat: repeat; background-image: url(http://res.cloudinary.com/travelscolombia/image/upload/v1425585822/assets/demo-expotur/img/bg-mapa-expotur.png)" class="item-container" ng-class="{'list' : layoutMode == 0}" >
+        <h2 class="text-center"><span translate="Guides.Label.GridGuides"></span></h2>
+
+        <p class="lead text-center">
+          <input ng-model="query" type="text" class="input-medium search-query" placeholder="{{'Guides.Label.SearchGuides' | translate}}..." autofocus />
+        </p>
+    		<li
+          style="width: 300px; height: 300px; border-radius: 5px;"
+          ng-controller="ModalController"
+          ng-click="showGuideInfoPublic()"
+          class="shade item scale-fade text-center"
+          ng-show="isShow"
+          ng-repeat="guide in guides | filter:query | filter:{available:true} | orderBy:name">
+          <div ng-if="guide.pictureUrl !=''">
+            <img style="width:249px; height:227px; border-radius: 5px;" class="sepia shade" ng-src="{{ guide.pictureUrl }}" />
+            <br>{{ guide.name}}
+          </div>
+          <div ng-if="guide.pictureUrl == ''">
+            <img style="width:249px; height:227px; border-radius: 5px;" class="sepia shade"  src="http://placehold.it/215x200" />
+            <br>{{ guide.name}}
+          </div>
+          <div ng-controller="ModalController" class="row">
+            <div class="col-xs-12 text-center" style="margin-top:5px">
+              <a ng-click="showLike()">&nbsp;<span class="glyphicon glyphicon-thumbs-up"></span></a>
+              <a ng-click="showReview()">&nbsp;<span class="glyphicon glyphicon-bullhorn"></span></a>
+              <a ng-click="showEmailGuide()">&nbsp;<span class="glyphicon glyphicon-envelope"></span>&nbsp;</a>
+            </div>
+          </div>
+        </li>
+    	</ul>
+    </div>
+  </div>
+
+
+  <div data-ng-show="authentication.user.roles=='*'" class="container">
+    <div class="row">
+
+      <div class="col-xs-12" style="margin-bottom: 20px">
+        <div class="table-responsive">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th width="20%"><span translate="General.Label.Name"></span></th>
+                      <th width="13%"><span translate="General.Label.Location"></span></th>
+                      <th width="12%"><span translate="General.Label.Phone"></span></th>
+                      <th width="20%"><span translate="General.Label.Email"></span></th>
+                      <th><span translate="General.Label.Avail"></span></th>
+                      <th><span translate="Guides.Label.SpeaksEnglish"></span></th>
+                      <th width="35%"><span translate="Tour.FormLabel.PicActions"></span></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr ng-repeat="guide in guides | filter:query | orderBy:name">
+                      <td>{{ guide.name }}</td>
+                      <td>{{ guide.locationName }}</td>
+                      <td>{{ guide.phone }}</td>
+                      <td>{{ guide.email }}</td>
+                      <td ng-if="guide.available ">{{'global.yes' | translate}}</td>
+                      <td ng-if="!guide.available ">{{'global.no' | translate}}</td>
+                      <td ng-if="guide.speaksEnglish ">{{'global.yes' | translate}}</td>
+                      <td ng-if="!guide.speaksEnglish ">{{'global.no' | translate}}</td>
+                      <td nowrap data-ng-show="authentication.user.roles=='*'">
+                        <a ng-controller="ModalController" ng-click="showGuideInfoPublic()" type="button" class="btn btn-success btn-xs">
+                            <span class="glyphicon glyphicon-user"></span> <span translate="global.action.Contact"></span>
+                        </a>
+
+                        <a ng-controller="ModalController" ng-click="showGuideInfo()" type="button" class="btn btn-primary btn-xs">
+                            <span class="glyphicon glyphicon-upload"></span> <span translate="global.action.Show"></span>
+                        </a>
+
+                        <a type="button" class="btn btn-warning btn-xs" href="/#!/guides/{{guide._id}}/edit">
+                            <span class="glyphicon glyphicon-edit"></span> <span translate="global.action.Modify"></span>
+                        </a>
+                        <a ng-controller="ModalController" ng-click="deleteGuide()" type="button" class="btn btn-danger btn-xs">
+                            <span class="glyphicon glyphicon-trash"></span> <span translate="global.action.Delete"></span>
+                        </a>
+                      </td>
+                      <td nowrap data-ng-hide="authentication.user.roles=='*'">
+                          <a ng-controller="ModalController" ng-click="showGuideInfoPublic()" type="button" class="btn btn-primary btn-xs">
+                              <span class="glyphicon glyphicon-info-sign"></span> <span translate="global.action.Show"></span>
+                          </a>
+                          <a type="button" class="btn btn-warning btn-xs" href="mailto:{{guide.email}}">
+                              <span class="glyphicon glyphicon-send"></span> <span translate="global.action.SendEmail"></span>
+                          </a>
+                          <a ng-controller="ModalController" ng-click="reportGuide()" type="button" class="btn btn-danger btn-xs">
+                              <span class="glyphicon glyphicon-flag"></span> <span translate="global.action.Report"></span>
+                          </a>
+
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+
+        </div>
+      </div>
+    </div>
+    <div data-ng-show="authentication.user.roles=='*'" class="text-center">
+      <p class="lead ">
+        <a data-ng-hide="!guides.length" class="button btn btn-lg btn-warning" href="/#!/guides/create">{{'Guides.Label.NewGuide' | translate}}</a>
+      </p>
+    </div>
+    <div data-ng-show="authentication.user.roles=='*'" class="text-center" data-ng-hide="!guides.$resolved || guides.length">
+      <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/guides/create">{{'ErrorMsg.NoGuideYet' | translate}}</a></p>
+    </div>
+  </div>
+</section>

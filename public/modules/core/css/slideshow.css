@@ -1,0 +1,187 @@
+.slider {
+    border: 15px solid #FFFFFF;
+    border-radius: 5px;
+    height: 500px;
+    margin: 20px auto;
+    position: relative;
+    width: 800px;
+
+    -webkit-perspective: 1000px;
+    -moz-perspective: 1000px;
+    -ms-perspective: 1000px;
+    -o-perspective: 1000px;
+    perspective: 1000px;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.slide.ng-hide-add {
+    opacity:1;
+
+    -webkit-transition:1s linear all;
+    -moz-transition:1s linear all;
+    -o-transition:1s linear all;
+    transition:1s linear all;
+
+    -webkit-transform: rotateX(50deg) rotateY(30deg);
+    -moz-transform: rotateX(50deg) rotateY(30deg);
+    -ms-transform: rotateX(50deg) rotateY(30deg);
+    -o-transform: rotateX(50deg) rotateY(30deg);
+    transform: rotateX(50deg) rotateY(30deg);
+
+    -webkit-transform-origin: right top 0;
+    -moz-transform-origin: right top 0;
+    -ms-transform-origin: right top 0;
+    -o-transform-origin: right top 0;
+    transform-origin: right top 0;
+}
+.slide.ng-hide-add.ng-hide-add-active {
+    opacity:0;
+}
+.slide.ng-hide-remove {
+    -webkit-transition:1s linear all;
+    -moz-transition:1s linear all;
+    -o-transition:1s linear all;
+    transition:1s linear all;
+
+    display:block!important;
+    opacity:0;
+}
+.slide, .slide.ng-hide-remove.ng-hide-remove-active {
+    opacity:1;
+}
+
+/*
+generic styles applied to any carousel
+must be ul/li
+*/
+.rn-carousel-container {
+  overflow: hidden; }
+
+ul.rn-carousel-slides {
+  position: relative;
+  white-space: nowrap;
+  overflow: visible;
+  -webkit-transform: translate3d(0px, 0, 0);
+  -moz-transform: translate3d(0px, 0, 0);
+  transform: translate3d(0px, 0, 0);
+  padding: 0;
+  margin: 0; }
+
+ul.rn-carousel-slides li {
+  white-space: normal;
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden; }
+
+.rn-carousel-animate {
+  -webkit-transition: -webkit-transform .2s ease-out;
+  -moz-transition: -moz-transform .2s ease-out;
+  transition: transform .2s ease-out; }
+
+.rn-carousel-noanimate {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none; }
+
+.rn-carousel-indicator {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  bottom: 20px;
+  height: 20px;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.6); }
+
+.rn-carousel-indicator span {
+  padding: 0 5px;
+  color: #333;
+  transition: color .2s ease-out; }
+
+.rn-carousel-indicator span.active {
+  color: white; }
+
+.rn-carousel-container {
+  position: absolute;
+  top: 50px;
+  bottom: 0px;
+  width: 101% !important;
+  transition: -webkit-filter 0.3s ease-in !important; }
+
+.rn-carousel-slides {
+  height: 100%; }
+
+.ng-cloak {
+  display: none; }
+
+#content {
+  height: 100%;
+  width: 100% !important;
+  box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.5); }
+
+#content > div {
+  background-color: #ecf0f1; }
+
+.bgimage {
+    text-align:right;
+    color:white;
+    background-size: cover;
+    height: 100%;
+    background-position: center center;
+}
+
+ul[rn-carousel] {
+    width:100%;
+    height:100%;
+    margin: 0;
+}
+
+.carousel1 li {
+    width:100%;
+    height:100%;
+    font-size:30px;
+    background-color: #ccc;
+}
+
+.carousel-demo {
+    margin-top:20px;
+    display:inline-block;
+    text-align: center;
+}
+.carousel-demo-fullscreen {
+  width:100%;
+}
+.carousel-demo-fullscreen ul[rn-carousel] {
+  width:100%;
+  height:100%;
+}
+
+input.tiny {
+    width:50px;
+    text-align:center;
+}
+
+
+.carousel-demo ul[rn-carousel-transition="hexagon"] {
+  margin-left:100px;
+}
+
+.custom-indicator span {
+  transition: all 0.3s ease-in;
+}
+.custom-indicator span.active {
+  color:yellow !important;
+}

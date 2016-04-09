@@ -1,0 +1,68 @@
+<div class="container">
+  <div>
+    <div class="col-xs-6 pull-right">
+      <div class="form-group">
+        <div class="container" style="border-radius:7px" ng-style="{'background-image': '-webkit-gradient(linear, left top, left bottom, color-stop(0%,'+ categoria.color +'), color-stop(100%,#f0f0f0 ))'}">
+          <label for="selectedType" ng-style="{ 'color' : categoria.color }"><span translate="Tour.FormLabel.SelectPicture"></span></label>
+          <select data-ng-model="selectedUrl" ng-change="updateCategotryPictureUrl(selectedUrl)" class="form-control">
+            <option data-ng-repeat="image in images | filter:{name:formData.translateId}" value="{{image.url}}">
+              {{image.title}}
+            </option>
+          </select>
+          <img style="height:auto; width:100%; margin-right:30px; border-radius:7px" src={{formData.pictureurl}} />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">
+      <div class="form-group">
+        <label class="control-label" for="color">
+          <span translate="Category.Label.Color">
+          </label>
+          <span ng-style="{ 'background' : categoria.color}" class="glyphicon glyphicon-fullscreen"></span>
+          <div style="border-radius:4px; height:20px" ng-style="{'background-color':categoria.color}"></div>
+          <input colorpicker colorpicker-with-input="true" colorpicker-position="right" type="text" data-ng-model="formData.color" name="color" class="form-control" placeholder="{{'Tour.PlaceHolder.ColorBg' | translate}}" />
+
+        </div>
+      </div>
+
+      <div class="col-xs-3">
+        <div class="form-group">
+          <label class="control-label" for="color"><span translate="Tour.FormLabel.ColorFont"></label>
+          <span ng-style="{ 'color' : categoria.color,'background' : categoria.color}" class="glyphicon glyphicon-font"></span>
+          <div style="border-radius:4px; height:20px" ng-style="{'background-color':categoria.color}"></div>
+          <input colorpicker colorpicker-with-input="true" colorpicker-position="right" type="text" data-ng-model="formData.color" name="color" class="form-control" placeholder="{{'Tour.PlaceHolder.ColorFont' | translate}}" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="form-group">
+          <label class="control-label" for="pictureurl"><span translate="General.Label.PictureUrl"></span></label>
+          <input type="text" name="pictureurl" class="form-control" data-ng-model="formData.pictureurl">
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <label class="control-label" for="pictureurl"><span translate="General.Label.Icon"></span></label>
+          <input type="text" name="pictureurl" class="form-control" data-ng-model="formData.pictureurl">
+        </div>
+      </div>
+      <div class="col-xs-4">
+        <div class="form-group">
+          <label class="control-label" for="pictureurl"><span translate="General.Label.Svg"></span></label>
+          <input type="text" name="pictureurl" class="form-control" data-ng-model="formData.pictureurl">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <a ui-sref="{{action}}.map" class="btn btn-block btn-info" ng-class="{'btn-danger': tourForm.$invalid, 'btn-success': !tourForm.$invalid }">
+          {{'Tour.FormLabel.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>
+      </div>
+    </div>
+  </div>

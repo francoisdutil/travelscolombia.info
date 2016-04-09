@@ -1,0 +1,336 @@
+/* BASIC STYLINGS
+============================================================================= */
+
+pre  { margin-bottom:20px; }
+
+button {text-transform: none;}
+
+.tournote {
+  margin: 10px;
+}
+
+
+/* form styling */
+#form-container                { background:#222455; margin-top: 20px; margin-bottom: 20px; padding-bottom:10px; border-radius:5px; box-shadow:0 0 20px #00C0F7; width: 100%}
+#form-container .page-header   {
+  margin: 0;
+  padding: 10px;
+  border: 0;
+  border-radius: 5px;
+  background: #181818;
+  background: -moz-linear-gradient(top,  #222455 0%, #153d63 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222455), color-stop(100%,#153d63));
+  background: -webkit-linear-gradient(top,  #222455 0%,#153d63 100%);
+  background: -o-linear-gradient(top,  #222455 0%,#153d63 100%);
+  background: -ms-linear-gradient(top,  #222455 0%,#153d63 100%);
+  background: linear-gradient(to bottom,  #222455 0%,#153d63 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222455', endColorstr='#153d63',GradientType=0 );
+}
+
+/* numbered buttons */
+/* #status-buttons                 {  } */
+#status-buttons a               { color:#FFF; display:inline-block; font-size:12px; margin-right:10px; text-align:center; text-transform:uppercase; }
+#status-buttons a:hover         { text-decoration:none; }
+#status-buttons span            { background:#080808; display:block; height:30px; margin:0 auto 10px; padding-top:8px; width:30px;
+    border-radius:50%; }
+
+/* active buttons */
+#status-buttons a.active span   { background:#00BC8C; }
+
+/* ANIMATION STYLINGS
+============================================================================= */
+#form            { position:relative; min-height:300px; overflow:hidden; padding:5px 20px; }
+
+/* basic styling for entering and leaving */
+/* left and right added to ensure full width */
+#form-views.ng-enter,
+#form-views.ng-leave      { position:absolute; left:30px; right:30px;
+    transition:0.5s all ease; -moz-transition:0.5s all ease; -webkit-transition:0.5s all ease;
+}
+
+/* enter animation */
+#form-views.ng-enter            {
+    -webkit-animation:slideInRight 0.5s both ease;
+	-moz-animation:slideInRight 0.5s both ease;
+	animation:slideInRight 0.5s both ease;
+}
+
+/* leave animation */
+#form-views.ng-leave            {
+    -webkit-animation:slideOutLeft 0.5s both ease;
+	-moz-animation:slideOutLeft 0.5s both ease;
+	animation:slideOutLeft 0.5s both ease;
+}
+
+/* ANIMATIONS
+============================================================================= */
+/* slide out to the left */
+@keyframes slideOutLeft {
+	to 		{ transform: translateX(-200%); }
+}
+@-moz-keyframes slideOutLeft {
+	to 		{ -moz-transform: translateX(-200%); }
+}
+@-webkit-keyframes slideOutLeft {
+	to 		{ -webkit-transform: translateX(-200%); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+	from 	{ transform:translateX(200%); }
+	to 		{ transform: translateX(0); }
+}
+@-moz-keyframes slideInRight {
+	from 	{ -moz-transform:translateX(200%); }
+	to 		{ -moz-transform: translateX(0); }
+}
+@-webkit-keyframes slideInRight {
+	from 	{ -webkit-transform:translateX(200%); }
+	to 		{ -webkit-transform: translateX(0); }
+}
+
+.required {
+  color: #c12e2a;
+}
+
+/*Error Tooltip */
+.err_tip {
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  width: 200px;
+  background-color: #DA362A;
+  color: white;
+  padding: 2px;
+  border-radius: 16px;
+  box-shadow: 3px 3px 10px #888888;
+  margin: 5px;
+  text-align: center;
+  border: 2px solid #000000;
+  z-index: 1;
+}
+.err_tip:after, .err_tip:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+.err_tip:after {
+  border-color: rgba(218, 54, 42, 0);
+  border-top-color: #DA362A;
+  border-width: 10px;
+  margin-left: -10px;
+}
+.err_tip:before {
+  border-color: rgba(0, 0, 0, 0);
+  border-top-color: #000000;
+  border-width: 13px;
+  margin-left: -13px;
+}
+
+.onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #666666; border-radius: 30px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 16px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+    border-radius: 30px;
+    box-shadow: 0 15px 0 rgba(0,0,0,0.08) inset;
+}
+.onoffswitch-inner:before {
+    padding-left: 15px;
+    background-color: #6BB2ED; color: #FFFFFF;
+    border-radius: 30px 0 0 30px;
+}
+
+.onoffswitch-inner-es:before {
+    content: "Si";
+}
+.onoffswitch-inner-es:after {
+    content: "No";
+}
+
+.onoffswitch-inner-en:before {
+    content: "Yes";
+}
+.onoffswitch-inner-en:after {
+    content: "No";
+}
+
+.onoffswitch-inner-de:before {
+    content: "Ja";
+}
+.onoffswitch-inner-de:after {
+    content: "Nicht";
+}
+
+.onoffswitch-inner-fr:before {
+    content: "Oui";
+}
+.onoffswitch-inner-fr:after {
+    content: "Non";
+}
+
+.onoffswitch-inner:after {
+    padding-right: 15px;
+    background-color: #FFFFFF; color: #666666;
+    text-align: right;
+    border-radius: 0 30px 30px 0;
+}
+.onoffswitch-switch {
+    display: block; width: 30px; margin: 0;
+    background: #FFFFFF;
+    border: 2px solid #666666; border-radius: 30px;
+    position: absolute; top: 0; bottom: 0; right: 56px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s;
+    background-image: -moz-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+    background-image: -webkit-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+    background-image: -o-linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+    background-image: linear-gradient(center top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 80%);
+    box-shadow: 0 1px 1px white inset;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0;
+}
+
+.my-drop-zone { border: dotted 3px lightgray; }
+.nv-file-over { border: dotted 3px red; } /* Default class applied to drop zones on over */
+.another-file-over-class { border: dotted 3px green; }
+
+canvas {
+    background-color: #121010;
+    -webkit-box-shadow: 3px 3px 3px 0 #191515;
+    -moz-box-shadow: 3px 3px 3px 0 #191515;
+    box-shadow: 3px 3px 3px 0 #191515;
+    border: 1px solid #0d0d0d;
+    height: 100px;
+    margin: 6px 0 0 6px;
+}
+.min-height {
+  min-height: 400px;
+}
+img .side-header {
+    width: 100%;
+    margin: 0;
+    padding: 5px;
+    max-height: 120px;
+    align: center;
+    vertical-align: middle;
+}
+.input-medium {
+
+  border-radius: 14px;
+  padding-left: 10px;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow:0 0 20px #00C0F7;
+}
+
+#form-container {
+  margin: 0;
+  padding: 30px;
+  border: 0;
+  border-radius: 5px;
+  background: #153d63;
+  background: -moz-linear-gradient(top,  #222455 0%, #153d63 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#222455), color-stop(100%,#153d63));
+  background: -webkit-linear-gradient(top,  #222455 0%,#153d63 100%);
+  background: -o-linear-gradient(top,  #222455 0%,#153d63 100%);
+  background: -ms-linear-gradient(top,  #222455 0%,#153d63 100%);
+  background: linear-gradient(to bottom,  #222455 0%,#153d63 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222455', endColorstr='#153d63',GradientType=0 );
+  box-shadow: 0 0 50px #000;
+}
+
+/* form starting stylings ------------------------------- */
+.group 			  {
+  position:relative;
+  margin-bottom:45px;
+  padding-left:15px;
+  padding-right:5px;
+  border-radius: 0;
+}
+.group input, .group select				{
+  font-size:18px;
+  padding:10px;
+  display:block;
+  width:100%;
+  border:none;
+  border-bottom:1px solid #757575;
+}
+
+.group select, .group button, .group input {
+  height: 55px;
+  color:#999;
+  font-size:18px;
+  font-weight:normal;
+}
+.group input:focus, .group select:focus, .group button select:focus 		{ outline:none; }
+
+/* LABEL ======================================= */
+.group label 				 {
+  color:#999;
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:25px;
+  top:10px;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.group input:focus ~ .highlight, .group select:focus ~ .highlight, .group button select:focus ~ .highlight {
+  -webkit-animation:inputHighlighter 0.3s ease;
+  -moz-animation:inputHighlighter 0.3s ease;
+  animation:inputHighlighter 0.3s ease;
+}
+
+/* active state */
+.group input:focus ~ label, .group input:valid ~ label, .group select:focus ~ label, .group select:valid ~ label, .group button select:focus ~ label, .group button select:valid ~ label 		{
+  top:-25px;
+  font-size:14px;
+  color:#BE152A;
+}
+/* active state */
+.group input:focus ~ .bar:before, .group input:focus ~ .bar:after, .group select:focus ~ .bar:after, .group button select:focus ~ .bar:after {
+  width:50%;
+}
+
+.group h2 		 {
+  text-align:center;
+  margin-bottom:50px;
+}
+.group h2 small {
+  font-weight:normal;
+  color:#888;
+  display:block;
+}
+
+.lighten {
+  opacity: .5;
+}

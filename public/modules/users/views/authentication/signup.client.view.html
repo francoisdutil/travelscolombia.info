@@ -1,0 +1,152 @@
+<div data-ng-controller="AuthenticationController">
+	<div class="row container">
+		<div style="border-radius:5px; border:solid thin grey; margin-top: 20px" class="col-xs-offset-3 col-xs-6 col-xs-offset-3">
+
+			<h6 class="text-center"><img src="https://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur.png" /></h6>
+			<h3 class="danger text-center"><span translate="global.action.Signup"></span></h3>
+			<h5 style="padding:0 20px" class="text-center"><span translate="General.Label.Signup.Subtitle"></span></h5>
+			<br />
+			<form name="signupForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
+				<fieldset>
+					<div class="row">
+						<div class="col-xs-4">
+							<div class="group" ng-class="{ 'has-error' : signupForm.firstName.$invalid && !signupForm.firstName.$pristine }">
+									<input
+									type="text"
+									ng-model="credentials.firstName"
+									id="firstName"
+								required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label><span translate="General.Label.Signup.FirstName"></span></label>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<div class="group" ng-class="{ 'has-error' : signupForm.lastName.$invalid && !signupForm.lastName.$pristine }">
+									<input
+									type="text"
+									ng-model="credentials.lastName"
+									id="lastName"
+								required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label><span translate="General.Label.Signup.LastName"></span></label>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<div class="group" ng-class="{ 'has-error' : signupForm.username.$invalid && !signupForm.username.$pristine }">
+									<input
+									type="text"
+									ng-model="credentials.username"
+									id="username"
+								required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label><span translate="General.Label.Signup.Username"></span></label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4">
+							<div class="group" ng-class="{ 'has-error' : signupForm.documentId.$invalid && !signupForm.documentId.$pristine }">
+									<input
+									type="text"
+									ng-model="credentials.documentId"
+									id="documentId"
+								required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label><span translate="General.Label.Signup.DocumentId"></span></label>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<div class="group" ng-class="{ 'has-error' : signupForm.nationality.$invalid && !signupForm.nationality.$pristine }">
+									<input
+									type="text"
+									ng-model="credentials.nationality"
+									id="nationality"
+								required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label><span translate="General.Label.Signup.Nationality"></span></label>
+							</div>
+						</div>
+						<div class="col-xs-4">
+							<div class="group" ng-class="{ 'has-error' : signupForm.prefLang.$invalid && !signupForm.prefLang.$pristine }">
+								<select name="prefLang" class="group" ng-model="credentials.prefLang" ng-change="changeLanguage(credentials.prefLang)" required>
+									<option value=""></option>
+									<option value="en">{{'global.language.en' | translate}}</option>
+									<option value="es">{{'global.language.es' | translate}}</option>
+									<option value="fr">{{'global.language.fr' | translate}}</option>
+									<option value="de">{{'global.language.de' | translate}}</option>
+								</select>
+								<span class="highlight"></span>
+								<label><span translate="General.Label.Signup.PrefLang"></span></label>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="group" ng-class="{ 'has-error' : signupForm.email.$invalid && !signupForm.email.$pristine }">
+									<input
+									type="email"
+									ng-model="credentials.email"
+									id="email"
+								required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label><span translate="General.Label.Signup.Email"></span></label>
+							</div>
+						</div>
+
+						<div class="col-xs-6">
+							<div class="group" ng-class="{ 'has-error' : signupForm.password.$invalid && !signupForm.password.$pristine }">
+									<input
+									type="password"
+									ng-model="credentials.password"
+									id="password"
+								required>
+								<span class="highlight"></span>
+								<span class="bar"></span>
+								<label><span translate="General.Label.Signup.Password"></span></label>
+							</div>
+						</div>
+					</div>
+					<div class="row container">
+						<div class="col-xs-6 text-center">
+							<a class="btn btn-primary btn-block" ng-click=LoginCustomer()><span class="glyphicon glyphicon-arrow-left"></span> <span translate="global.action.Login"></span>
+							</a>
+						</div>
+
+						<div class="col-xs-6 text-center">
+							<button
+								ng-click="showGrowl = true"
+								type="submit" class="btn btn-success btn-block"
+								ng-disabled="signupForm.$invalid"
+								ng-class="{'btn-danger': signupForm.$invalid, 'btn-success': !signupForm.$invalid }">
+								<span translate="General.Label.Signup.Continue"></span>
+							</button>
+						</div>
+					</div>
+					<div data-ng-if="authentication.user" class="text-center text-danger">
+						<growl-notification class="fading btn-success" ng-if="showGrowl">
+						<i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+							{{'General.Notification.WellDone' | translate}}{{'General.Notification.Welcome' | translate}}{{credentials.firstName}}
+						</growl-notification>
+					</div>
+
+					<div data-ng-if="error" class="text-center text-danger">
+						<growl-notification class="fading btn-danger" ng-if="showGrowl">
+							<i class="big warning glyphicon glyphicon-warning-sign"></i>&nbsp;&nbsp;&nbsp;
+							{{'General.Notification.Attention' | translate}} <span translate="{{error}}"></span>
+						</growl-notification>
+					</div>
+				</fieldset>
+			</form>
+
+			<h5 style="padding:0 20px" class="text-center"><span translate="General.Label.Signup.Agreement"></span></h5>
+		</div>
+	</div>
+</div>

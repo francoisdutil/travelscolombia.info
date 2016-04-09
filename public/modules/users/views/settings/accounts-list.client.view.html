@@ -1,0 +1,64 @@
+<section class="animated fadeInRight row" data-ng-controller="SettingsController" data-ng-init="find()">
+	<h3 class="col-md-12 text-center" data-ng-hide="!authentication.user"><span translate="General.Label.AccountsList"></span></h3>
+
+	<h3 class="col-md-12 text-center"><span translate="General.Label.AccountsList"></span></h3>
+
+	<div data-ng-hide="authentication.user" class="container" id="form-container">
+    <div class="page-header text-center">
+      <h2><span translate="General.Label.AccountsList"></span></h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1" style="margin-bottom: 20px">
+          <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+												<th width="5%">#</th>
+												<th width="50%"><span translate="General.Label.Name"></span></th>
+                        <th width="5%"><span translate="General.Label.Active"></span></th>
+                        <th width="40%"><span translate="General.Label.Actions"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="booking in bookings">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td>{{user.name}}</td>
+                        <td><span translate="Category.Content.Description.{{categoria.translateId}}"></td>
+                        <td class="text-left" ng-if="categoria.isactive"><img style="height:70%;" src="/assets/img/checkmark.png" /></td>
+                        <td class="text-left" ng-if="!categoria.isactive"><img style="height:70%;" src="/assets/img/wrong.png" /></td>
+                        <td nowrap>
+                            <a type="button" class="btn btn-warning btn-xs" href="/#!/categorias/{{categoria._id}}">
+                                <span class="glyphicon glyphicon-upload"></span> <span translate="global.action.Show"></span>
+                            </a>
+                            <a type="button" class="btn btn-success btn-xs" href="/#!/categorias/{{categoria._id}}/edit">
+                                <span class="glyphicon glyphicon-edit"></span> <span translate="global.action.Edit"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" data-ng-show="categorias.length">
+        <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/categorias/create">{{'Tour.FormLabel.NewCategory' | translate}}</a></p>
+      </div>
+      <div class="text-center" data-ng-hide="!categorias.$resolved || categorias.length">
+        <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/categorias/create">{{'ErrorMsg.NoCategoryYet' | translate}}</a></p>
+      </div>
+    </div>
+  </div>
+  <div data-ng-hide="!authentication.user" class="text-center">
+    <div class="col-xs-6 col-xs-offset-3 ">
+      <h1 class="text-certer danger">{{'ErrorMsg.401' | translate}}</h1><hr><br>
+      <p class="lead text-center">{{'ErrorMsg.401-para' | translate}}</a></p><br>
+      <p class="text-center"><a ng-href="/#!/" class="btn btn-warning btn-block">{{'global.action.GoBackHome' | translate}}</a></p>
+    </div>
+  </div>
+
+  <div data-ng-show="authentication.user" class="text-center" data-ng-hide="!categorias.$resolved || categorias.length">
+    <p class="lead"><a class="button btn btn-lg btn-warning" href="/#!/categorias/create">{{'ErrorMsg.NoCategoryYet' | translate}}</a></p>
+  </div>
+</section>

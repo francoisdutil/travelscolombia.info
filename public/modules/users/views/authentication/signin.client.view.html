@@ -1,0 +1,73 @@
+<div data-ng-controller="AuthenticationController">
+	<div>
+		<div style="border-radius:5px; border:solid thin grey; margin-top: 10px" class="col-xs-offset-2 col-xs-8 col-xs-offset-2">
+			<h1 class="text-center"><br><br><img src="/assets/img/logo-expotur-xs.png" /><h1>
+			<h3 class="primary text-center"><span translate="global.action.Login"></span></h3>
+			<form name="signinForm" data-ng-submit="signin()" class="signin form-horizontal" novalidate autocomplete="off">
+				<fieldset>
+					<div class="row">
+						<div class="col-xs-offset-2 col-xs-8 col-xs-offset-2">
+							<br />
+							<div class="group" ng-class="{ 'has-error' : signinForm.username.$invalid && !signinForm.username.$pristine }">
+									<input
+									class="username"
+									type="text"
+									ng-model="credentials.username"
+									id="username"
+								required>
+								<span class="highlight"></span>
+								<span class="bar username"></span>
+								<label><span translate="General.Label.Signup.Username"></span></label>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-offset-2 col-xs-8 col-xs-offset-2">
+							<div class="group" ng-class="{ 'has-error' : signinForm.password.$invalid && !signinForm.password.$pristine }">
+									<input
+									class="username"
+									type="password"
+									ng-model="credentials.password"
+									id="email"
+								required>
+								<span class="highlight"></span>
+								<span class="bar username"></span>
+								<label><span translate="General.Label.Signup.Password"></span></label>
+							</div>
+						</div>
+					</div>
+					<div class="row container">
+						<div class="col-xs-offset-2 col-xs-8 col-xs-offset-2 text-center">
+							<button
+								ng-click="showGrowl = true"
+								type="submit" class="btn btn-success btn-lg btn-block"
+								ng-disabled="signinForm.$invalid"
+								ng-class="{'btn-danger': signinForm.$invalid, 'btn-success': !signinForm.$invalid }">
+								<span translate="global.action.Login"></span>
+							</button>
+						</div>
+					</div>
+
+					<div data-ng-if="error" class="text-center text-danger">
+						<h5 class="danger"><strong>{{error | translate}}</strong></h5>
+						<growl-notification class="fading btn-danger" ng-if="showGrowl">
+							<i class="big warning glyphicon glyphicon-warning-sign"></i>&nbsp;&nbsp;&nbsp;
+							{{'General.Notification.Attention' | translate}} <span translate="{{error}}"></span>
+						</growl-notification>
+					</div>
+
+					<div data-ng-if="authentication.user">
+						<growl-notification class="fading" ng-if="showGrowl">
+							<i class="big success glyphicon glyphicon-exclamation-sign"></i>&nbsp;&nbsp;&nbsp;
+							{{'General.Notification.WelcomeBack' | translate}} {{authentication.user.firstName}}
+						</growl-notification>
+					</div>
+
+					<div class="forgot-password" ng-controller="PasswordController">
+						<p class="text-center lead"><a href="/#!/password/forgot"> {{'General.Label.Password.Forgot' | translate}}</a></p>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>

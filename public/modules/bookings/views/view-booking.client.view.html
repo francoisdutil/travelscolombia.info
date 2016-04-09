@@ -1,0 +1,83 @@
+<div class="animated fadeIn" data-ng-controller="BookingsController" data-ng-init="findOne()" layout="column" style="min-height:700px;">
+
+	<section layout="row" flex>
+
+	  <md-sidenav style="margin-top:50px;" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+
+	    <md-toolbar class="md-theme-lime">
+	      <h1 class="md-toolbar-tools">Itinerary</h1>
+	    </md-toolbar>
+
+	    <md-content class="md-padding" ng-controller="LeftController">
+	      <md-button ng-click="close()" class="right md-primary" hide-gt-md>
+	        Trails and Tour Map
+	      </md-button>
+	      <p hide-md show-gt-md>
+	        This sidenav is locked open on your device. To go back to the default behavior,
+	        narrow your display.
+	      </p>
+	    </md-content>
+
+	  </md-sidenav>
+
+	  <md-content flex class="md-padding">
+
+	    <div layout="column" layout-fill layout-align="top center">
+
+				<h1>
+					Tour Name<br>
+					<small>Group of 4</small>
+				</h1>
+
+			</div>
+
+			<div layout="column" layout-fill layout-align="top center">
+
+				<div class="bottom-sheet-demo inset" layout="column" layout-sm="row" layout-align="center">
+			    <div style="width:50px;">
+					</div>
+			    <md-button class="md-primary" ng-click="showGridBottomSheet($event)">
+			      Show as Grid
+			    </md-button>
+			  </div>
+		  	<br/>
+			  <b layout="row" layout-align="center center" layout-margin>
+			    {{alert}}
+			  </b>
+			</div>
+
+	    <div>
+	      <md-button ng-click="toggleLeft()"
+	        class="md-primary" hide-gt-md>
+	        Itinerary
+	      </md-button>
+
+	    </div>
+
+	    <div>
+	      <md-button ng-click="toggleRight()"
+	        class="md-primary">
+					Companionship
+	      </md-button>
+	    </div>
+
+	  	<div flex></div>
+
+		</md-content>
+
+	  <md-sidenav style="margin-top:50px;" class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+
+	    <md-toolbar class="md-theme-light">
+	      <h1 class="md-toolbar-tools">Latest Posts</h1>
+	    </md-toolbar>
+	    <md-content ng-controller="RightController" class="md-padding">
+	      <md-button ng-click="close()" class="md-primary">
+	        People on the same path
+	      </md-button>
+	    </md-content>
+
+	  </md-sidenav>
+
+	</section>
+
+</div>

@@ -1,0 +1,77 @@
+<section class="shade" style="margin-top:-50px;" data-ng-controller="PlacesController" data-ng-init="find()">
+
+    <div data-ng-controller="PlacesController" style="margin:0; padding:0;">
+      <div style="height:100%; top:0; margin:0; padding:0; position:absolute; left:0; background:#34B6E5; min-height:500px;" class= "text-left col-xs-8 col-md-9">
+        <leaflet
+          id="mymap"
+          defaults='defaults'
+          layers="layers"
+          center="santamarta"
+          legend="legend"
+          geojson="geojson"
+          geojson-nested="true"
+          height="93%"
+          width="100%">
+        </leaflet>
+        <input type="button" value="center santamarta" ng-click="centerJSON('santamarta')" />
+
+      </div>
+
+      <div style="height:650px; background: #34b6e5; margin-top:50px; margin-left:0; padding-left:0; padding-top:15px;" class="animated fadeIn col-xs-4 col-md-3 pull-right">
+        <md-toolbar class="md-primary md-hue-2" md-scroll-shrink>
+          <h3 class="text-center">{{'Places.Label.Places' | translate | uppercase}}&nbsp;({{(places|filter:query).length}})</h3>
+          <div class="row" style="margin-top: 5px;">
+            <div class="col-xs-12 text-center">
+              <div class="group">
+
+                <input style="font-weight: 300; height: 36px;" ng-model="search.properties.name"  type="text" class="text-center input-medium search-query" placeholder="{{'Places.PlaceHolder.SearchPlaces' | translate}}" autofocus />
+              </div>
+            </div>
+          </div>
+        </md-toolbar>
+        <md-content class="shade text-center" style="height: 446px;">
+          <md-list>
+            <md-item style="padding:0" class="item scale-fade" ng-repeat="place in places | filter:query  | orderBy:'properties.name'">
+              <a href="/#!/places/{{place._id}}" style="text-decoration:none; opacity: 1; filter: alpha(opacity=100);" class="sepia">
+                <md-item-content style="" class="sepia">
+                  <div class="md-tile-left">
+                    <img ng-src="{{place.properties.pictureUrl}}" class="face" style="width:48px; height:48px;" alt="{{place.properties.name}}">
+                  </div>
+                  <div class="md-tile-content">
+                    <h4 style="padding:0; margin:0;"><span class="lead text-warning">{{place.properties.name}}</span></h4>
+                    <h5 ng-if="place.properties.category != ''" style="padding-bottom:0; margin-bottom:0;"><span translate="Category.Content.Name.{{place.properties.category}}"></span></h5>
+                  </div>
+                </md-item-content>
+              </a>
+              <md-divider md-inset ng-if="!$last"></md-divider>
+            </md-item>
+          </md-list>
+          <span class="text-center">
+            <md-button href="/#!/places/create" class="md-primary btn btn-lg" style="width:100%; padding:10px;">
+              {{'Places.Label.AddMore' | translate }}
+              <p class="text-center"><img class="img-responsive" style="width: 100%;" src="/assets/img/logo-expotur.png" /></p>
+            </md-button>
+          </span>
+        </md-content>
+        Name: <input ng-model="search.properties.name" placeholder="Name" />
+        <table id="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in places">
+              <td>{{item.properties.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+    <div class="alert alert-warning text-center" data-ng-hide="!places.$resolved || places.length">
+    	No Places yet, why don't you <a href="/#!/places/create">create one</a>?
+    </div>
+</section>

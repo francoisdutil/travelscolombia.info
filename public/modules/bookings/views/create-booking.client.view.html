@@ -1,0 +1,63 @@
+<!-- Create Booking  -->
+<section id="booking" class="animated fadeIn" data-ng-controller="BookingsController">
+  <div class="row">
+    <h1 class="text-info text-center"><span translate="Bookings.Label.TitleNew"></span></h1>
+    <div data-ng-show="authentication.user" class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+      <div id="form-container">
+        <div class="page-header text-center">
+          <!-- the links to our nested states using relative paths -->
+          <!-- add the active class if the state matches our ui-sref -->
+          <div id="status-buttons" class="hidden-xs text-center">
+            <a ui-sref-active="active" ui-sref=".step1"><span>1</span> {{'Bookings.Label.FormName.Step1' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".step2"><span>2</span> {{'Bookings.Label.FormName.Step2' | translate}}</a>
+            <a ui-sref-active="active" ui-sref=".step3"><span>3</span> {{'Bookings.Label.FormName.Step3' | translate}}</a>
+          </div>
+          <div id="status-buttons" class="visible-xs text-center">
+            <a ui-sref-active="active" ui-sref=".step1"><span>1</span></a>
+            <a ui-sref-active="active" ui-sref=".step2"><span>2</span></a>
+            <a ui-sref-active="active" ui-sref=".step3"><span>3</span></a>
+          </div>
+          <h1 ng-show="formData.tourName" style="color:{{eventResult.item.colorfont}}">
+            {{formData.tourName}} - {{eventResult.item.duration}}&nbsp;<span ng-if="eventResult.item.duration > 1" translate="General.Label.Days"></span><span ng-if="eventResult.item.duration < 2" translate="General.Label.Day"></span>
+          </h1>
+          <h1 ng-show="!formData.tourName" style="color:{{eventResult.item.colorfont}}">
+            <span translate="Bookings.Label.FormName.Step1"></span>
+          </h1>
+        </div>
+
+        <!-- use ng-submit to catch the form submission and use our Angular function -->
+        <form style="min-height: 380px; padding-bottom:20px;" name="bookingForm" data-ng-submit="create()" novalidate>
+          <!-- our nested state views will be injected here -->
+
+          <div id="form-views" ui-view></div>
+          <!-- {{formData}}</pre> -->
+          <div class="hidden-xs" data-ng-if="authentication.user" ng-show="intro">
+            <div class="tournote well">
+              <p class="text-center"><img style="width: auto;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur.png" /></p>
+              <p class="lead">{{'Bookings.Content.Para1' | translate}}</p>
+              <p class="lead">{{'Bookings.Content.Para2' | translate}}</p>
+              <p class="lead">{{'Bookings.Content.Para3' | translate}}</p>
+              <p class="text-right"><a ng-click="intro = !intro" ui-sref=".step1" class="btn btn-success btn-block">{{'global.action.Proceed' | translate}}</a></p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div data-ng-hide="authentication.user" class="container row text-center">
+    <div class="shade well col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <p class="text-center">
+        <img style="width: auto;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur.png" />
+      </p>
+      <h1 class="text-danger" translate="Bookings.Label.Step-1-msg-alert"></h1>
+      <p class="lead text-center"><span translate="Bookings.Label.Step-1-info-alert"></span></a></p><br>
+      <p class="text-center">
+        <a ng-controller="ModalController" ng-href="/#!/tours" class="btn btn-info btn-md">{{'global.action.Cancel' | translate}}</a>
+        <a ng-controller="AuthenticationController" ng-href="/#!/bookings/create" ng-click="modalSignup()" class="btn btn-success btn-md">{{'global.action.Register' | translate}}</a>
+        <a ng-controller="ModalController" ng-click="modalLogin()" class="btn btn-success btn-md">{{'global.action.Login' | translate}}</a>
+      </p>
+    </div>
+  </div>
+
+</section>

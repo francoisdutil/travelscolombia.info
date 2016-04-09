@@ -1,0 +1,88 @@
+<div data-ng-controller="AuthenticationController" style="background-image: url('https://res.cloudinary.com/travelscolombia/image/upload/v1425593847/assets/demo-expotur/img/bg-mapa-expotur.png'); position: top;">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+        <p class="text-center"><img style="width: auto;" src="https://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur-sm.png" /></p>
+      </div>
+    </div>
+    <h3 class="primary text-center"><span translate="global.action.Login"></span></h3>
+
+    <form name="signinForm" data-ng-submit="signin()" class="signin form-horizontal" novalidate autocomplete="off">
+      <fieldset>
+        <br />
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-sm-offset-1 col-md-offset-2 col-md-8 col-md-offset-2 col-lg-offset-3 col-lg-6 col-lg-offset-3">
+            <div class="group" ng-class="{ 'has-error' : signinForm.username.$invalid && !signinForm.username.$pristine }">
+                <input
+                class="username"
+                type="text"
+                ng-model="credentials.username"
+                id="username"
+              required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label><span translate="General.Label.Signup.Username"></span></label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-sm-offset-1 col-md-offset-2 col-md-8 col-md-offset-2 col-lg-offset-3 col-lg-6 col-lg-offset-3">
+            <div class="group" ng-class="{ 'has-error' : signinForm.password.$invalid && !signinForm.password.$pristine }">
+                <input
+                type="password"
+                ng-model="credentials.password"
+                id="email"
+              required>
+              <span class="highlight"></span>
+              <span class="bar"></span>
+              <label><span translate="General.Label.Signup.Password"></span></label>
+            </div>
+          </div>
+        </div>
+        <div class="row container">
+
+          <div class="col-xs-6 text-center">
+            <button
+              ng-click="closeThisDialog('button'); modalSignup()"
+              type="button" class="btn btn-info btn-block"
+              class="btn btn-success btn-block">
+              <span translate="global.action.Register"></span>
+            </button>
+          </div>
+
+          <div class="col-xs-6 text-center">
+            <button
+              ng-click="showGrowl = true"
+              type="submit"
+              ng-href="/#!/bookings/create"
+              ng-disabled="signinForm.$invalid"
+              class="btn btn-success btn-block"
+              ng-class="{'btn-danger': signinForm.$invalid, 'btn-success': !signinForm.$invalid }">
+              <span translate="global.action.Login"></span>
+            </button>
+          </div>
+        </div>
+
+        <div data-ng-if="error" class="text-center text-danger">
+          <h5 class="text-danger"><strong>{{error | translate}}</strong></h5>
+          <growl-notification class="fading btn-danger" ng-if="showGrowl">
+            <i class="big warning glyphicon glyphicon-warning-sign"></i>&nbsp;&nbsp;&nbsp;
+            <span translate="General.Notification.Attention"></span> <span translate="{{error}}"></span>
+          </growl-notification>
+        </div>
+
+        <div ng-class="closeThisDialog('button')" data-ng-if="authentication.user"></div>
+
+      </fieldset>
+    </form>
+    <div class="forgot-password" style="margin-top: 50px;">
+      <small>
+        <h5 style="font-weight: 400; font-size: 1em;" class="text-primary text-center">
+        <a class="text-info" ng-click="closeThisDialog('button'); modalForgotPassword()"
+          ng-controller="ModalController">{{'General.Label.Password.Forgot' | translate}}
+        </a>
+      </h5>
+      </small>
+    </div>
+  </div>
+</div>

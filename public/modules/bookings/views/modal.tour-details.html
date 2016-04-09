@@ -1,0 +1,83 @@
+
+  <div class="container shade" ng-style="{'border-color': eventResult.item.colorbg, 'color' : eventResult.item.colorfont }" style="background-color: #d1d7e7; background-image: url('/assets/img/bg-mapa-expotur.png'); background-size: 100% auto;">
+    <div class="row">
+      <div class="col-xs-12">
+
+          <p class="text-center lead"><span translate="General.Label.AddInfo"></span></p>
+        <h4 class="text-danger text-center">{{ eventResult.item.tourtitle }}</h4>
+      </div>
+      <div class="col-xs-10 col-xs-offset-1 shadow" style="filter: sepia(100%); -webkit-filter: sepia(100%); -moz-filter: sepia(100%); -ms-filter: sepia(100%); -o-filter: sepia(100%); -webkit-filter(1); background-color: #fff ; vertical-align: left; width: 80%; height: auto; background: #ebebeb; background-image: url('/assets/img/bg-mapa-expotur.png'); background-size: 100% auto;">
+        <hr class="lighten"><br />
+        <div class="row">
+          <div ng-if="eventResult.item.frequency" class="col-xs-12 col-md-7 text-left">
+            <h5>
+              <span class="lighten" translate="Tour.FormLabel.Frequency"></span>:
+              <span class="visible-xs"><br></span>
+              <strong>{{eventResult.item.frequency}}</strong>
+            </h5>
+          </div>
+          <div ng-if="eventResult.item.frequency == ''" class="col-xs-12 col-md-7 text-left">
+            <h5>
+              <span class="lighten" translate="Tour.FormLabel.Frequency"></span>:
+              <span class="visible-xs"><br></span>
+              <strong>{{'General.PlaceHolder.DepartUponRequest' | translate}}</strong>
+            </h5>
+          </div>
+          <div class="col-xs-5 text-left">
+            <h5><span class="lighten" translate="Tour.FormLabel.GroupSize"></span>:
+              <span class="visible-xs"><br></span>
+              <strong>{{eventResult.item.groupminsize}} - {{eventResult.item.groupmaxsize}} <span translate="General.Label.Persons"></span></strong>
+            </h5>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-7 text-left">
+            <h5>
+              <div><span class="lighten" translate="Tour.FormLabel.DifficultyLevel"></span>: <strong><span translate="Tour.FormLabel.{{eventResult.item.difficultylevel}}"></strong></div>
+            </h5>
+          </div>
+
+          <div ng-if="eventResult.item.leadername" class="col-xs-12 col-md-7 text-left">
+            <h5>
+              <span class="lighten" translate="Tour.FormLabel.GroupLeader"></span>:
+              <span class="visible-xs"><br></span>
+              <strong>{{eventResult.item.leadername}}</strong>
+            </h5>
+          </div>
+          <div ng-if="eventResult.item.leadername == ''" class="col-xs-12 col-md-7 text-left">
+            <h5>
+              <span class="lighten" translate="Tour.FormLabel.GroupLeader"></span>:
+              <span class="visible-xs"><br></span>
+              <strong>{{'General.PlaceHolder.LocalGuide' | translate}}</strong>
+            </h5>
+          </div>
+
+        </div>
+        <div class="row">
+          <div ng-if="eventResult.item.description" class="col-xs-12 text-center">
+            <br />
+            <h6>{{eventResult.item.description}}</h6>
+            <span class="visible-xs"><br></span>
+          </div>
+          <div ng-if="eventResult.item.description == ''" class="col-xs-12 text-center">
+            <br />
+            <em><h6 class="lead">{{'General.PlaceHolder.TourDescriptionMTC' | translate}}</h6></em>
+            <span class="visible-xs"><br></span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div ng-if="eventResult.item.urlmoreinfo" class="col-xs-12 text-center">
+          <h5>
+            <a ng-style="{ 'color' : eventResult.item.colorbg }" target="_new" href="{{eventResult.item.urlmoreinfo}}"><span translate="Tour.FormLabel.UrlMoreInfo"></a>
+          </h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-offset-4 col-xs-4 col-xs-offset-4 text-center" style="margin-top:20px">
+          <p class="text-center"><img style="width: auto;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425585833/assets/demo-expotur/img/logo-expotur-sm.png" /></p>
+        </div>
+      </div>
+    </div>
+  </div>

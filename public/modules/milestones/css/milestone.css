@@ -1,0 +1,92 @@
+#milestone {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+}
+
+.more-demos {
+    background: rgb(250, 250, 250);
+    position: fixed;
+    top: 8%;
+    left: 100%;
+    width: 300px;
+    padding: 9px 15px;
+    border: solid 2px #e3e3e3;
+    -webkit-transition: all 225ms ease;
+    -moz-transition: all 225ms ease;
+    transition: all 225ms ease;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    transform: translateX(0);
+}
+.more-demos:hover {
+    -webkit-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    transform: translateX(-100%);
+}
+.more-demos span {
+    position: absolute;
+    right: 100%;
+    top: 0;
+    text-align: center;
+    display: block;
+    background: #FF6868;
+    color: #fff;
+    padding: 10px 20px 10px 10px;
+    line-height: 17px;
+    border-radius: 8px 0 0 10px;
+    font-size: 15px;
+    margin-right: 2px;
+    -webkit-transition: all 225ms ease;
+    -moz-transition: all 225ms ease;
+    transition: all 225ms ease;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    transform: translateX(0);
+}
+.more-demos:hover span {
+    -webkit-transform: translateX(1000%);
+    -moz-transform: translateX(1000%);
+    transform: translateX(1000%);
+}
+.more-demos ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.more-demos a {
+    font-size: 13px;
+    display: block;
+    margin: 2px 0;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    background: #6B6DFF;
+    color: #fff;
+    font-weight: 700;
+text-transform: uppercase;
+}
+
+.more-demos a:hover { background: #5A5CFF !important; }
+
+
+.more-demos a.iteration-1 { background: #6B6DFF; }
+.more-demos a.iteration-1:hover { background: #9293FF; }
+
+.more-demos a.iteration-2 { background: #DB92FF; }
+.more-demos a.iteration-2:hover { background: #E8BAFF; }
+
+.more-demos a.iteration-3 { background: #FF65B1; }
+.more-demos a.iteration-3:hover { background: #FF87C2; }
+
+.more-demos a.iteration-4 { background: #3A41C2; }
+.more-demos a.iteration-4:hover { background: #656AD0; }
+
+.more-demos a.iteration-5 { background: #34C3D5; }
+.more-demos a.iteration-5:hover { background: #57D1E0; }
+
+.more-demos a.iteration-6 { background: #57E073; }
+.more-demos a.iteration-6:hover { background: #39E55C; }
+
+.more-demos a.iteration-7 { background: #333; }
+.more-demos a.iteration-7:hover { background: #000; }

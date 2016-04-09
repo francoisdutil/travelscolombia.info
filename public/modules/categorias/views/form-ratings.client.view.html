@@ -1,0 +1,59 @@
+
+<div class="container">
+  <div>
+    <div style="padding-top:20px;" class="row">
+      <div class="col-xs-3">
+        <div class="group" ng-class="{ 'has-error' : categoryForm.urlMoreInfo.$invalid && !categoryForm.urlMoreInfo.$pristine }">
+          <input
+          type="text"
+          ng-model="formData.countbookings"
+          id="urlMoreInfo">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label style="color:#999"><span translate="Category.Label.CountBookings"></span></label>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="group" ng-class="{ 'has-error' : categoryForm.urlMoreInfo.$invalid && !categoryForm.urlMoreInfo.$pristine }">
+          <input
+          type="text"
+          ng-model="formData.countlikes"
+          id="urlMoreInfo">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label style="color:#999"><span translate="Category.Label.CountLikes"></span></label>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="group" ng-class="{ 'has-error' : categoryForm.urlMoreInfo.$invalid && !categoryForm.urlMoreInfo.$pristine }">
+          <input
+          type="text"
+          ng-model="formData.countfollowers"
+          id="urlMoreInfo">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label style="color:#999"><span translate="Category.Label.CountFollowers"></span></label>
+        </div>
+      </div>
+      <div class="col-xs-3">
+        <div class="group" ng-class="{ 'has-error' : categoryForm.urlMoreInfo.$invalid && !categoryForm.urlMoreInfo.$pristine }">
+          <input
+          type="text"
+          ng-model="formData.countrecommended"
+          id="urlMoreInfo">
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label style="color:#999"><span translate="Category.Label.CountRecommended"></span></label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="form-group row container">
+    <div class="col-xs-6 col-xs-offset-3">
+      <a ui-sref-active="active" ui-sref="{{action}}.preview" class="btn btn-block btn-info" ng-disabled="categoryForm.$invalid" ng-class="{'btn-danger': categoryForm.$invalid, 'btn-success': !categoryForm.$invalid }">
+        {{'Tour.FormLabel.NextSection' | translate}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+      </a>
+    </div>
+  </div>
+</div>

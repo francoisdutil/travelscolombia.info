@@ -1,0 +1,150 @@
+<div data-ng-controller="BookingsController" style="background-image: url('https://res.cloudinary.com/travelscolombia/image/upload/v1425593847/assets/demo-expotur/img/bg-mapa-expotur.png'); background-size: 100% auto;" class="container">
+  <div class="container">
+      <p class="text-center"><img style="width:200px;" src="http://res.cloudinary.com/travelscolombia/image/upload/v1425587493/assets/demo-expotur/img/logo-expotur-xs.png" /><p>
+    <h4 class="primary text-center"><span translate="Bookings.Label.Step-2-msg-success"></span></h4>
+
+    <form name="bookingForm" data-ng-submit="create()" class="form-horizontal" novalidate autocomplete="off">
+      <fieldset>
+
+        <div class="row">
+          <div class="col-xs-12 text-center">
+              <md-checkbox ng-model="notAlone" aria-label="checkbox">
+                <span translate="Bookings.Label.Block-Travelers.NotAlone"></span>
+              </md-checkbox>
+          </div>
+        </div>
+
+        <div class="row" style="padding-bottom:20px;" ng-show="notAlone">
+
+          <div class="col-xs-12 col-md-10 col-md-offset-1" style="background:#fff; margin-bottom: 20px">
+            <ul>
+              <li>[<a href ng-click="people.push({}); addParticipant()"><span translate="global.action.Add"></span> </a>]</li>
+              <li ng-repeat="person in people">
+                <input ng-model="person.name" placeholder="{{'Bookings.Label.Block-Travelers.Name' | translate}}">&nbsp;
+                <input ng-model="person.nationality" placeholder="{{'Bookings.Label.Block-Travelers.Nationality' | translate}}">&nbsp;
+                <input ng-model="person.docId" placeholder="{{'Bookings.Label.Block-Travelers.DocumentId' | translate}}">&nbsp;
+                <input ng-model="person.specialCare" placeholder="{{'Bookings.Label.Block-Travelers.Note' | translate}}">&nbsp;
+                <a href ng-click="people.splice($index, 1) ;removeParticipant()"><span class="danger glyphicon glyphicon-trash"></span></a>
+              </li>
+            </ul>
+
+            <span translate="Bookings.Label.GroupOf"></span>: {{counter}}</span>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-md-10 col-md-offset-1" data-ng-controller="ToursController">
+            <div style="margin-top:10px;" class="group">
+              <span class="required lighten group" translate="Bookings.Label.Tour"></span>
+              <ui-select ng-click="find()" ng-model="tour.selected" ng-change="updateTour(tour.selected)" ng-disabled="false" theme="bootstrap" required>
+                <ui-select-match style="font-size:1.1em;" placeholder="{{'global.action.SearchOrSelect  ' | translate}}">{{$select.selected.tourtitle}}</ui-select-match>
+                <ui-select-choices style="-webkit-box-shadow: 0 0 20px 0 rgba(0,0,0,.2); box-shadow: 0 0 20px 0 rgba(0,0,0,.2);" repeat="tour in tours | filter: $select.search  | filter:{language:preflang} | orderBy:'categorytour'">
+                  <div ng-bind-html="tour.tourtitle | highlight: $select.search"></div>
+                  <div class="small" style="opacity:.6;" ng-bind-html="tour.categorytour + ' - ' + tour.duration + ' d' | highlight: $select.search"></div>
+                </ui-select-choices>
+              </ui-select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="margin-top:20px;">
+
+          <div class="col-xs-5">
+            <div class="row">
+              <div class="col-xs-12 text-center">
+                <div class="group">
+                  <input id="departDate" required type="text" show-button-bar="false" datepicker-popup="{{format}}" ng-class="calcReturnDate(dt)" ng-model="dt" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="{{'global.action.Close' | translate}}" />
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label><span translate="Bookings.Label.TourDate"></span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-2 text-center">
+            <button type="button" class="btn btn-default" ng-click="open($event)"><i class="booking glyphicon glyphicon-calendar"></i></button>
+          </div>
+
+          <div class="col-xs-5">
+            <div class="group">
+                <input id="returnDate" ng-disabled="false" type="text" ng-model="returnDate" />
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label><span translate="Bookings.Label.TourReturnDate"></span></label>
+            </div>
+          </div>
+        </div>
+        <div ng-if="seltour.selected" class="hidden row">
+          <div class="col-xs-12 text-center">
+            <div class="btn-group btn-xs btn-group-justified">
+              <div class="btn-group">
+                <button ng-if="!tour.colorbg" ng-controller="ModalController" ng-click="showTourTips()" type="button" class="btn btn-xs" style="background: #52B0C9; color: #BEE3DB">
+                    <span class="glyphicon glyphicon-info-sign"></span> <span class="hidden-xs" translate="Tour.FormLabel.Tips"></span>
+                </button>
+
+              </div>
+              <div class="btn-group">
+                <button ng-if="!tour.colorbg"  ng-controller="ModalController" ng-click="showTourItinerary()" type="button" class="btn btn-xs" style="background: #52B0C9; color: #BEE3DB">
+                  <span class="glyphicon glyphicon-road"></span> <span class="hidden-xs" translate="Tour.FormLabel.Itinerary"></span>
+                </button>
+              </div>
+              <div class="btn-group">
+                <div ng-controller="MarkersController">
+                  <button ng-if="!tour.colorbg"  ng-controller="ModalController" ng-click="showTourMap()" type="button" class="btn btn-xs" style="background: #52B0C9; color: #BEE3DB">
+                    <span class="glyphicon glyphicon-map-marker"></span> <span class="hidden-xs" translate="global.action.ViewMap"></span>
+                  </button>
+                </div>
+              </div>
+              <div class="btn-group">
+                <button ng-if="!tour.colorbg"  ng-controller="ModalController" ng-click="showTourDetails()" type="button" class="btn btn-xs" style="background: #52B0C9; color: #BEE3DB">
+                  <span class="glyphicon glyphicon-zoom-in"></span> <span class="hidden-xs" translate="Tour.FormLabel.Detail"></span>
+                </button>
+              </div>
+              <div class="btn-group">
+                <button ng-if="!tour.colorbg"  ng-controller="ModalController" ng-click="showTourIncluded()" type="button" class="btn btn-xs" style="background: #52B0C9; color: #BEE3DB">
+                  <span class="glyphicon glyphicon-gift"></span> <span class="hidden-xs" translate="Tour.FormLabel.Included"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row container">
+          <div class="col-xs-6">
+            <button
+              ng-click="closeThisDialog('button')"
+              ng-href="/#!/bookings/create"
+              type="button"
+              class="btn btn-primary btn-block"
+              <span translate="global.action.Cancel"></span>
+            </button>
+          </div>
+          <div class="col-xs-6">
+            <button
+              ng-click="confirm(formData)"
+              ng-href="/#!/bookings/create"
+              type="button"
+              class="btn btn-success btn-block"
+              ng-disabled="bookingForm.$invalid"
+              ng-class="{'btn-danger': bookingForm.$invalid, 'btn-success': !bookingForm.$invalid }">
+              <span translate="global.action.Proceed"></span>
+            </button>
+          </div>
+        </div>
+
+          <growl-notification class="fading btn-success" ng-if="showGrowl">
+              {{'General.Notification.WellDone' | translate}}{{'General.Notification.Welcome' | translate}}{{credentials.username}}
+          </growl-notification>
+
+
+        <div data-ng-if="error" class="text-center text-danger">
+          <strong>{{error | translate}}</strong>
+          <growl-notification class="fading btn-danger" ng-if="showGrowl">
+              {{'General.Notification.Attention' | translate}} <span translate="{{error}}"></span>
+          </growl-notification>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
